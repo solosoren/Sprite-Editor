@@ -3,22 +3,24 @@
 
 Canvas::Canvas()
 {
-    // Initializations
-    sizeX = 32;
-    sizeY = 32;
-    image = QImage(sizeX, sizeY, QImage::Format_RGB32);
+    /* Initializations */
+
+    // Window sizes
+    sizeX = 600;
+    sizeY = 600;
+
+    // Qimage size is the size of the grid
+    image = QImage(5, 5, QImage::Format_RGB32);
 
     // Testing setting individual pixels
-    for(int i = 0; i< sizeX; i++) {
-        for(int j =0; j < sizeY; j++) {
-            image.setPixel(i, j, qRgb(100,100, 200));
+    for(int i = 0; i< 2; i++) {
+        for(int j =0; j < 2; j++) {
+            image.setPixel(i, j, qRgb(100*i,100*j, 200));
         }
     }
 
-    pixmap = pixmap.fromImage(image);
-
-    //TODO: Figure out how to make scaling work
-//    pixmap.scaled(200, 300);
+    //Instead of scaling pixmap, scale qimage
+    pixmap = pixmap.fromImage(image.scaled(sizeX,sizeY));
 
     qInfo() << "Pixmap defined " << pixmap;
 
