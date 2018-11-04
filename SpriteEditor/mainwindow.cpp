@@ -1,27 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "canvas.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    Canvas canvas;
 
-//    int sizeX = 600;
-//    int sizeY = 600;
+    QGraphicsScene *graphics = new QGraphicsScene(this);
 
-//    QImage image = QImage(sizeX, sizeY, QImage::Format_RGB32);
+    graphics->addPixmap(canvas.getPixmap());
+    ui->graphicsView->setScene(graphics);
 
-//    for(int i = 0; i<sizeX; i++) {
-//        for(int j =0; j < sizeY; j++) {
-//            image.setPixel(i, j, qRgb(100,100, 200));
-//        }
-//    }
-
-//    QGraphicsScene *graphics = new QGraphicsScene(this);
-
-//    graphics->addPixmap(QPixmap::fromImage(image));
-//    ui->graphicsView->setScene(graphics);
 }
 
 MainWindow::~MainWindow()
