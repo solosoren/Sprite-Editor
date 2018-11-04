@@ -20,6 +20,8 @@ class Canvas  : public QGraphicsScene
         int sizeY;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
+        // Updates pixmap based on image
+        void updatePixmap();
 };
 
 #endif // CANVAS_H

@@ -22,22 +22,29 @@ Canvas::Canvas(QObject *parent):
         }
     }
 
-    //Instead of scaling pixmap, scale qimage
-    pixmap = pixmap.fromImage(image.scaled(sizeX,sizeY));
-    this->addPixmap(pixmap);
+    updatePixmap();
 
     qInfo() << "Pixmap defined " << pixmap;
 
 }
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
-    qInfo() << "Clicked mouse" << convertToPoint(mouseEvent->scenePos());
+    QPointF tPoint = convertToPoint(mouseEvent->scenePos());
+    qInfo() << "Clicked mouse at " << tPoint;
+    setPixel(tPoint.x(), tPoint.y(), qRgb(0, 0, 0));
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
 void Canvas::setPixel(int x, int y, QRgb rgb)
 {
     image.setPixel(x, y, rgb);
+    updatePixmap();
+}
+
+void Canvas::updatePixmap() {
+    //Instead of scaling pixmap, scale qimage
+    pixmap = pixmap.fromImage(image.scaled(sizeX,sizeY));
+    this->addPixmap(pixmap);
 }
 
 QPointF Canvas::convertToPoint(QPointF scaledPos) {
