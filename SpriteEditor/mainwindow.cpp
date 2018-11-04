@@ -7,12 +7,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Canvas canvas;
 
-    QGraphicsScene *graphics = new QGraphicsScene(this);
+    Canvas *canvas = new Canvas();
 
-    graphics->addPixmap(canvas.getPixmap());
-    ui->graphicsView->setScene(graphics);
+    ui->graphicsView->setScene(canvas);
 
 }
 
