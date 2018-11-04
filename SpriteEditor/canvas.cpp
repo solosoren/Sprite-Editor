@@ -31,3 +31,10 @@ QPixmap Canvas::getPixmap() {
     return pixmap;
 }
 
+/***SLOTS***/
+
+void Canvas::setPixel(QPoint pos, QRgb rgb)
+{
+    image.setPixel(pos, rgb);
+    qInfo() << "setPixel Called" << pos;
+}
