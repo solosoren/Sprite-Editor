@@ -7,7 +7,7 @@ class Project
 {
 public:
     Project();
-    void setPixel(int x, int y, QRgb rgbColor);
+    void setCurrentFrame(int frameNumber);
     void createNewFrame();
 private:
     std::string editingMode;

@@ -10,7 +10,8 @@ void Project::createNewFrame()
     frames.push_back(Canvas());
 }
 
-void Project::setPixel(int x, int y, QRgb rgbColor)
+void Project::setCurrentFrame(int frameNumber)
 {
-    frames[currentFrame].setPixel(x, y, rgbColor);
+    currentFrame = frameNumber;
+    //put current frame onto display...
 }
