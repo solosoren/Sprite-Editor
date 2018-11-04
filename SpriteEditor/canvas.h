@@ -18,6 +18,8 @@ class Canvas  : public QGraphicsScene
         int sizeX;
         int sizeY;
 
+    public slots:
+        void setPixel(QPoint pos, QRgb rgb);
 };
 
 #endif // CANVAS_H

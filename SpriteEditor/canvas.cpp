@@ -34,3 +34,11 @@ void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
     qInfo() << "Clicked mouse" << mouseEvent->scenePos();
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
+
+/***SLOTS***/
+
+void Canvas::setPixel(QPoint pos, QRgb rgb)
+{
+    image.setPixel(pos, rgb);
+    qInfo() << "setPixel Called" << pos;
+}
