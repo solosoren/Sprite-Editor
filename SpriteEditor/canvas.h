@@ -18,6 +18,8 @@ class Canvas  : public QGraphicsScene
         QImage image;
         int sizeX;
         int sizeY;
+        // Converts and returns (non-scaled) grid coords
+        QPointF convertToPoint(QPointF scaledPos);
 };
 
 #endif // CANVAS_H

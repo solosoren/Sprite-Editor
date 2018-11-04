@@ -31,11 +31,17 @@ Canvas::Canvas(QObject *parent):
 }
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
-    qInfo() << "Clicked mouse" << mouseEvent->scenePos();
+    qInfo() << "Clicked mouse" << convertToPoint(mouseEvent->scenePos());
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
 void Canvas::setPixel(int x, int y, QRgb rgb)
 {
     image.setPixel(x, y, rgb);
+}
+
+QPointF Canvas::convertToPoint(QPointF scaledPos) {
+    int xPos =(int) (scaledPos.x() * 5) / sizeX;
+    int yPos = (int) (scaledPos.y() * 5) / sizeY;
+    return QPointF(xPos, yPos);
 }

@@ -7,7 +7,7 @@ Project::Project()
 
 void Project::createNewFrame()
 {
-    frames.push_back(Canvas());
+//    frames.push_back(Canvas());
 }
 
 void Project::setCurrentFrame(int frameNumber)
