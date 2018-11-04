@@ -35,10 +35,7 @@ void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
-/***SLOTS***/
-
-void Canvas::setPixel(QPoint pos, QRgb rgb)
+void Canvas::setPixel(int x, int y, QRgb rgb)
 {
-    image.setPixel(pos, rgb);
-    qInfo() << "setPixel Called" << pos;
+    image.setPixel(x, y, rgb);
 }

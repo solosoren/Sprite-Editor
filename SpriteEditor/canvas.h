@@ -10,6 +10,7 @@ class Canvas  : public QGraphicsScene
     public:
         Canvas(QObject *parent = 0);
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
+        void setPixel(int x, int y, QRgb rgb);
 
 
     private:
@@ -17,9 +18,6 @@ class Canvas  : public QGraphicsScene
         QImage image;
         int sizeX;
         int sizeY;
-
-    public slots:
-        void setPixel(QPoint pos, QRgb rgb);
 };
 
 #endif // CANVAS_H
