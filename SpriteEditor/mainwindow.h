@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsView>
+#include <QPixmap>
 
 namespace Ui {
 class MainWindow;
@@ -21,5 +22,16 @@ private:
 
 friend int main(int argc, char *argv[]);
 };
+
+namespace GLOBAL{
+
+    // Window sizes
+    static int windowSizeX = 600;
+    static int windowSizeY = 600;
+
+    static QPixmap convertImageToPixmap(QImage image) {
+         return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
+    }
+}
 
 #endif // MAINWINDOW_H

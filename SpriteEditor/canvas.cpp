@@ -7,9 +7,7 @@ Canvas::Canvas(QObject *parent):
 {
     /* Initializations */
 
-    // Window sizes
-    sizeX = 600;
-    sizeY = 600;
+    catchPixels = false;
 
 
     // Qimage size is the size of the grid
@@ -23,16 +21,25 @@ Canvas::Canvas(QObject *parent):
     }
 
     updatePixmap();
-
-    qInfo() << "Pixmap defined " << pixmap;
-
 }
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
+    catchPixels = true;
     QPointF tPoint = convertToPoint(mouseEvent->scenePos());
-    qInfo() << "Clicked mouse at " << tPoint;
+    qInfo() << "CANVAS: Clicked mouse at " << tPoint;
     setPixel(tPoint.x(), tPoint.y(), qRgb(0, 0, 0));
-    QGraphicsScene::mousePressEvent(mouseEvent);
+}
+
+void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent) {
+    if(catchPixels) {
+        // Record pixels into the set touchedPixels
+        qInfo() << "CANVAS: Mouse moved to " << convertToPoint(mouseEvent->scenePos());
+    }
+}
+
+void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent) {
+    catchPixels = false;
+    qInfo() << "CANVAS: Released mouse at " << convertToPoint(mouseEvent->scenePos());
 }
 
 void Canvas::setPixel(int x, int y, QRgb rgb)
@@ -43,12 +50,14 @@ void Canvas::setPixel(int x, int y, QRgb rgb)
 
 void Canvas::updatePixmap() {
     //Instead of scaling pixmap, scale qimage
-    pixmap = pixmap.fromImage(image.scaled(sizeX,sizeY));
+    pixmap = convertImageToPixmap(image);
     this->addPixmap(pixmap);
+
+    qInfo() << "Pixmap defined " << pixmap;
 }
 
 QPointF Canvas::convertToPoint(QPointF scaledPos) {
-    int xPos =(int) (scaledPos.x() * 5) / sizeX;
-    int yPos = (int) (scaledPos.y() * 5) / sizeY;
+    int xPos =(int) (scaledPos.x() * 5) / windowSizeX;
+    int yPos = (int) (scaledPos.y() * 5) / windowSizeY;
     return QPointF(xPos, yPos);
 }
