@@ -7,7 +7,7 @@ Project::Project()
 
 void Project::createNewFrame()
 {
-//    frames.push_back(Canvas());
+    frames.push_back(new QImage());
 }
 
 void Project::setCurrentFrame(int frameNumber)

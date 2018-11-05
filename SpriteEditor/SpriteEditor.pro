@@ -29,13 +29,15 @@ SOURCES += \
         mainwindow.cpp \
     canvas.cpp \
     project.cpp \
-    tools.cpp
+    tools.cpp \
+    spriteanimation.cpp
 
 HEADERS += \
         mainwindow.h \
     canvas.h \
     project.h \
-    tools.h
+    tools.h \
+    spriteanimation.h
 
 FORMS += \
         mainwindow.ui
