@@ -12,7 +12,8 @@ public:
     void setCurrentFrame(int frameNumber);
     void createNewFrame();
 private:
-    SpriteAnimation animation;
+    // KUNAAL: commented out for now, so project can compile
+//    SpriteAnimation animation;
     std::vector<QImage*> frames;
     int currentFrame;
     Tools tools;

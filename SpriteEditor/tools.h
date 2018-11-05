@@ -6,7 +6,9 @@
 #include <QPainter>
 #include <vector>
 
-int selectedTool = 0;
+// KUNAAL: Needs to be static if it's outside the tools class. I don't see why this needs
+//         to be accessible to any other class.I think you should put this within the Tools class.
+static int selectedTool = 0;
 
 class Tools : public QObject
 {
