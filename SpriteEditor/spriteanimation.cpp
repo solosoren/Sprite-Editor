@@ -11,11 +11,16 @@ SpriteAnimation::SpriteAnimation(std::vector<QImage*>& images)
 void SpriteAnimation::animate()
 {
     int frameIndex = 0;
+    int frameCount = 0;
     while (!imagesDidChange && frameRate > 0)
     {
        QImage  image   = *((*images)[frameIndex]);
        QPixmap pixmap  = convertImageToPixmap(image);
-       QTimer::singleShot(1000 / frameRate, this, SLOT(displayFrame()));
-       // displayPixmap using qtimer * framerate
+       QTimer::singleShot(frameCount++ * (1000 / frameRate), this, SLOT(displayFrame(frameIndex)));
     }
+}
+
+void SpriteAnimation::displayFrame(int frameIndex)
+{
+
 }

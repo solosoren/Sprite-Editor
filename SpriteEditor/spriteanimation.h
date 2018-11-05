@@ -16,7 +16,7 @@ class SpriteAnimation: public QObject
     void animate();
 
 private slots:
-    void displayFrame();
+    void displayFrame(int frameIndex);
 
 public:
     SpriteAnimation(std::vector<QImage*>& images);
