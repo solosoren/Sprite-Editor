@@ -2,6 +2,7 @@
 #define PROJECT_H
 #include <QPixmap>
 #include "canvas.h"
+#include "tools.h"
 
 class Project
 {
@@ -11,9 +12,9 @@ public:
     void createNewFrame();
 private:
     std::string editingMode;
-    std::vector<Canvas> frames;
+    std::vector<QImage> frames;
     int currentFrame;
-    QRgb currentColor;
+    Tools tools;
 };
 
 #endif // PROJECT_H
