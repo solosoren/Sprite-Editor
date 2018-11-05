@@ -1,6 +1,5 @@
 #include "canvas.h"
 #include <QDebug>
-#include <QGraphicsSceneMouseEvent>
 
 Canvas::Canvas(QObject *parent):
     QGraphicsScene (parent)
@@ -27,7 +26,6 @@ void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
     catchPixels = true;
     QPointF tPoint = convertToPoint(mouseEvent->scenePos());
     qInfo() << "CANVAS: Clicked mouse at " << tPoint;
-    setPixel(tPoint.x(), tPoint.y(), qRgb(0, 0, 0));
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent) {
@@ -42,22 +40,27 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent) {
     qInfo() << "CANVAS: Released mouse at " << convertToPoint(mouseEvent->scenePos());
 }
 
-void Canvas::setPixel(int x, int y, QRgb rgb)
-{
-    image.setPixel(x, y, rgb);
-    updatePixmap();
-}
+//void Canvas::setPixel(int x, int y, QRgb rgb)
+//{
+//    image.setPixel(x, y, rgb);
+//    updatePixmap();
+//}
 
 void Canvas::updatePixmap() {
     //Instead of scaling pixmap, scale qimage
     pixmap = convertImageToPixmap(image);
-    this->addPixmap(pixmap);
-
     qInfo() << "Pixmap defined " << pixmap;
+
+    this->addPixmap(pixmap);
 }
 
 QPointF Canvas::convertToPoint(QPointF scaledPos) {
     int xPos =(int) (scaledPos.x() * 5) / windowSizeX;
     int yPos = (int) (scaledPos.y() * 5) / windowSizeY;
     return QPointF(xPos, yPos);
+}
+
+void Canvas::setImage(QImage* image) {
+    this->image = *image;
+    updatePixmap();
 }
