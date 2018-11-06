@@ -10,16 +10,19 @@ using namespace GLOBAL;
 class SpriteAnimation: public QObject
 {
     Q_OBJECT
+
+private:
     std::vector<QImage*>* images;
     int frameRate;
     bool imagesDidChange;
     void animate();
 
 private slots:
-    void displayFrame(int frameIndex);
+    void displayFrame(QPixmap* pixmap);
 
 public:
     SpriteAnimation(std::vector<QImage*>& images);
+    void imagesDidUpdate();
 
 };
 
