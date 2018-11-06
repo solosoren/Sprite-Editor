@@ -8,12 +8,12 @@ Canvas::Canvas(QObject *parent):
     setStickyFocus(true);
 
     // Qimage size is the size of the grid
-    image = QImage(5, 5, QImage::Format_RGB32);
+    image = QImage(gridX, gridY, QImage::Format_ARGB32);
 
-    // Testing setting individual pixels
-    for(int i = 0; i< 5; i++) {
-        for(int j =0; j < 5; j++) {
-            image.setPixel(i, j, qRgb(100*i,100*j, 200));
+    // Initializes empty grid
+    for(int i = 0; i< gridX; i++) {
+        for(int j =0; j < gridY; j++) {
+            image.setPixelColor(i, j, QColor(0,0,0,0));
         }
     }
 
@@ -76,4 +76,8 @@ QPointF Canvas::convertToPoint(QPointF scaledPos) {
 void Canvas::setImage(QImage* image) {
     this->image = *image;
     updatePixmap();
+}
+
+QImage* Canvas::getImage(){
+    return &image;
 }

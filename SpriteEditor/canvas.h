@@ -26,6 +26,7 @@ class Canvas  : public QGraphicsScene
          * @param image - QImage that needs to be displayed in the scene
          */
         void setImage(QImage* image);
+        QImage* getImage();
 
     signals:
         void mousePressed(QPointF point);
