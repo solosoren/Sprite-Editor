@@ -13,7 +13,6 @@
 static int selectedTool = 0;
 static QColor selectedColor;
 
-
 class Tools : public QObject
 {
     Q_OBJECT
@@ -22,7 +21,7 @@ class Tools : public QObject
         Tools();
 
         /* position */
-        std::vector<QImage> startPos(QPointF StartPos, QImage initImage);
+        std::vector<QImage> startPos(QPointF startPos, QImage initImage);
         std::vector<QImage> endPos(QPointF endPos);
 
         /* tools selection */
@@ -34,11 +33,15 @@ class Tools : public QObject
         QPainter doPaint;
         QImage tmpImage;
         QImage currentImage;
+        QPoint currentPos;
 
         /* functions */
-
-
-
+        void useTool(int tool);
+        void penTool();
+        void eraser();
+        void lineTool();
+        void fillTool();
+        void brushTool();
 
 };
 

@@ -36,6 +36,13 @@ namespace GLOBAL{
     static QPixmap convertImageToPixmap(QImage image) {
          return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
     }
+
+    /* tmp NEED TO BE CHANGED*/
+    const int PEN_TOOL = 0;
+    const int ERASER = 1;
+    const int LINE_TOOL = 2;
+    const int FILL_TOOL = 3;
+    const int BRUSH_TOOL = 4;
 }
 
 #endif // MAINWINDOW_H
