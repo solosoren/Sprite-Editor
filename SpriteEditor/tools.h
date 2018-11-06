@@ -8,10 +8,8 @@
 
 #include "toollist.h"
 
-// KUNAAL: Needs to be static if it's outside the tools class. I don't see why this needs
-//         to be accessible to any other class.I think you should put this within the Tools class.
-static int selectedTool = 0;
-static QColor selectedColor;
+/* only receive one Pos
+ * only return one Qimage */
 
 class Tools : public QObject
 {
@@ -20,20 +18,28 @@ class Tools : public QObject
     public:
         Tools();
 
+        /* slots */
         /* position */
-        std::vector<QImage> startPos(QPointF startPos, QImage initImage);
-        std::vector<QImage> endPos(QPointF endPos);
-
+        void startPos(QPointF start, QImage initImage);
+        void endPos(QPointF end);
         /* tools selection */
         void setTool(int tool);
         void setColor(QColor color);
 
+        /* signals */
+        QImage sendImage();
+
+
     private:
         /* field */
+        static int selectedTool;
+        static QColor selectedColor;
         QPainter doPaint;
         QImage tmpImage;
         QImage currentImage;
-        QPoint currentPos;
+        QPointF startPoint;
+        QPointF currentPoint;
+
 
         /* functions */
         void useTool(int tool);
