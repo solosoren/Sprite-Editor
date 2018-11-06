@@ -5,9 +5,7 @@ Canvas::Canvas(QObject *parent):
     QGraphicsScene (parent)
 {
     /* Initializations */
-
-    catchPixels = false;
-
+    setStickyFocus(true);
 
     // Qimage size is the size of the grid
     image = QImage(5, 5, QImage::Format_RGB32);
@@ -23,21 +21,21 @@ Canvas::Canvas(QObject *parent):
 }
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
-    catchPixels = true;
-    QPointF tPoint = convertToPoint(mouseEvent->scenePos());
-    qInfo() << "CANVAS: Clicked mouse at " << tPoint;
+    QPointF pointPressed = convertToPoint(mouseEvent->scenePos());
+    qInfo() << "CANVAS: Clicked mouse at " << mouseEvent->screenPos() << " which is "<< pointPressed;
+    emit mousePressed(pointPressed);
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent) {
-    if(catchPixels) {
-        // Record pixels into the set touchedPixels
-        qInfo() << "CANVAS: Mouse moved to " << convertToPoint(mouseEvent->scenePos());
-    }
+    QPointF pointMoved = convertToPoint(mouseEvent->screenPos());
+    qInfo() << "CANVAS: Mouse moved to " << mouseEvent->screenPos() << " which is " << pointMoved;
+    emit mouseMoved(pointMoved);
 }
 
 void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent) {
-    catchPixels = false;
-    qInfo() << "CANVAS: Released mouse at " << convertToPoint(mouseEvent->scenePos());
+    QPointF pointReleased = convertToPoint(mouseEvent->scenePos());
+    qInfo() << "CANVAS: Released mouse at " << pointReleased;
+    emit mouseReleased(pointReleased);
 }
 
 //void Canvas::setPixel(int x, int y, QRgb rgb)
@@ -49,14 +47,17 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent) {
 void Canvas::updatePixmap() {
     //Instead of scaling pixmap, scale qimage
     pixmap = convertImageToPixmap(image);
-    qInfo() << "Pixmap defined " << pixmap;
+    qInfo() << "CANVAS: Pixmap defined " << pixmap;
 
     this->addPixmap(pixmap);
 }
 
 QPointF Canvas::convertToPoint(QPointF scaledPos) {
-    int xPos =(int) (scaledPos.x() * 5) / windowSizeX;
-    int yPos = (int) (scaledPos.y() * 5) / windowSizeY;
+    int rX = scaledPos.x();
+    int rY = scaledPos.y();
+
+    int xPos =(int) (rX * gridX) / windowSizeX;
+    int yPos = (int) (rY * gridY) / windowSizeY;
     return QPointF(xPos, yPos);
 }
 

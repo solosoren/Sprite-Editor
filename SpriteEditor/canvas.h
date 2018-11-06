@@ -13,9 +13,12 @@ class Canvas  : public QGraphicsScene
 
     public:
         Canvas(QObject *parent = 0);
+
+        /* Mouse events*/
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
+
         // Removing setPixel, since canvas doesn't set indiviudal pixels
         // void setPixel(int x, int y, QRgb rgb);
         /**
@@ -24,11 +27,16 @@ class Canvas  : public QGraphicsScene
          */
         void setImage(QImage* image);
 
+    signals:
+        void mousePressed(QPointF point);
+        void mouseMoved(QPointF point);
+        void mouseReleased(QPointF point);
+
+    public slots:
+
     private:
         QPixmap pixmap;
         QImage image;
-        // Boolean for letting mouse events know when to start putting pixels in the set touchedPixels
-        bool catchPixels;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
         // Updates pixmap based on image by scaling it appropriately
