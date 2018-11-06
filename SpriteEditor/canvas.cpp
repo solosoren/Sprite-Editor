@@ -22,13 +22,13 @@ Canvas::Canvas(QObject *parent):
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
     QPointF pointPressed = convertToPoint(mouseEvent->scenePos());
-    qInfo() << "CANVAS: Clicked mouse at " << mouseEvent->screenPos() << " which is "<< pointPressed;
+    qInfo() << "CANVAS: Clicked mouse at " << pointPressed;
     emit mousePressed(pointPressed);
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent) {
-    QPointF pointMoved = convertToPoint(mouseEvent->screenPos());
-    qInfo() << "CANVAS: Mouse moved to " << mouseEvent->screenPos() << " which is " << pointMoved;
+    QPointF pointMoved = convertToPoint(mouseEvent->scenePos());
+    qInfo() << "CANVAS: Mouse moved to " << pointMoved;
     emit mouseMoved(pointMoved);
 }
 
@@ -58,6 +58,18 @@ QPointF Canvas::convertToPoint(QPointF scaledPos) {
 
     int xPos =(int) (rX * gridX) / windowSizeX;
     int yPos = (int) (rY * gridY) / windowSizeY;
+    if(xPos < 0) {
+        xPos = 0;
+    }
+    if(yPos < 0) {
+        yPos = 0;
+    }
+    if(xPos >= gridX) {
+        xPos= gridX - 1;
+    }
+    if(yPos >= gridY) {
+        yPos = gridY - 1;
+    }
     return QPointF(xPos, yPos);
 }
 
