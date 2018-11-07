@@ -5,8 +5,7 @@
 #include <QColor>
 #include <QPainter>
 #include <vector>
-
-#include "toollist.h"
+#include "global.h"
 
 /* only receive one Pos
  * only return one Qimage */

@@ -18,10 +18,10 @@ void Tools::endPos(QPointF end) {
 
 /* tools selection */
 void Tools::setTool(int tool) {
-    selectedTool = tool;
+    //selectedTool = tool;
 }
 void Tools::setColor(QColor color) {
-    selectedColor = color;
+    //selectedColor = color;
 }
 
 /* signals */
@@ -32,19 +32,19 @@ QImage Tools::sendImage() {
 void Tools::useTool(int tool) {
     switch(tool) {
         case PEN_TOOL:
-            penTool();
+            //penTool();
             break;
         case ERASER:
-            eraser();
+            //eraser();
             break;
         case LINE_TOOL:
-            lineTool();
+            //lineTool();
             break;
         case FILL_TOOL:
-            fillTool();
+            //fillTool();
             break;
         case BRUSH_TOOL:
-            brushTool();
+            //brushTool();
             break;
     }
 }

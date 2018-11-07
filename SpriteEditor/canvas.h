@@ -3,7 +3,7 @@
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
-#include "mainwindow.h"
+#include "global.h"
 
 using namespace GLOBAL;
 

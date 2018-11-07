@@ -9,14 +9,16 @@ class Project
 {
 public:
     Project();
+    ~Project();
     void setCurrentFrame(int frameNumber);
     void createNewFrame();
+    Canvas* getCanvas();
 private:
-    // KUNAAL: commented out for now, so project can compile
-//    SpriteAnimation animation;
+    //SpriteAnimation animation;
     std::vector<QImage*> frames;
     int currentFrame;
     Tools tools;
+    Canvas* canvas;
 
 friend class SpriteAnimation;
 };

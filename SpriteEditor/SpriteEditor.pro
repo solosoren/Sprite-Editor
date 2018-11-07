@@ -38,7 +38,7 @@ HEADERS += \
     project.h \
     tools.h \
     spriteanimation.h \
-    toollist.h
+    global.h
 
 FORMS += \
         mainwindow.ui
