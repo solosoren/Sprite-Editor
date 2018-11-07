@@ -24,6 +24,28 @@ namespace GLOBAL{
          return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
     }
 
+    static QPixmap convertImageToPixmapWithGridLines(QImage image) {
+        QPixmap scaledMap = QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
+        QImage scaledImage = scaledMap.toImage();
+
+        // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
+        for(int x = 0; x < windowSizeX; x++) {
+            // Vertical
+            if((x % (windowSizeX / gridX)) == 0) {
+                for(int y = 0; y < windowSizeY; y++) {
+                    scaledImage.setPixelColor(x, y, QColor(0, 0, 0));
+                }
+            }
+
+            // Horizontal
+            for(int y = 0; y < windowSizeY; y+=(windowSizeY/ gridY)) {
+                scaledImage.setPixelColor(x, y, QColor(0,0,0));
+            }
+        }
+
+        return QPixmap().fromImage(scaledImage);
+    }
+
     /* tmp NEED TO BE CHANGED*/
     const int PEN_TOOL = 0;
     const int ERASER = 1;

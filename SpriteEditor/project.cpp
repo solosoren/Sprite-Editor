@@ -37,7 +37,7 @@ void Project::setCurrentFrame(int frameNumber)
 
 void Project::createNewFrame()
 {
-    frames.push_back(new QImage());
+    frames.push_back(canvas->makeNewEmptyImage());
 }
 
 //SLOTS

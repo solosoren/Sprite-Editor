@@ -7,17 +7,7 @@ Canvas::Canvas(QObject *parent):
     /* Initializations */
     setStickyFocus(true);
 
-    // Qimage size is the size of the grid
-    image = QImage(gridX, gridY, QImage::Format_ARGB32);
-
-    // Initializes empty grid
-    for(int i = 0; i< gridX; i++) {
-        for(int j =0; j < gridY; j++) {
-            image.setPixelColor(i, j, QColor(0,0,0,0));
-        }
-    }
-
-    updatePixmap();
+    makeNewEmptyImage();
 }
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) {
@@ -38,15 +28,9 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     emit mouseReleased(pointReleased);
 }
 
-//void Canvas::setPixel(int x, int y, QRgb rgb)
-//{
-//    image.setPixel(x, y, rgb);
-//    updatePixmap();
-//}
-
 void Canvas::updatePixmap() {
     //Instead of scaling pixmap, scale qimage
-    pixmap = convertImageToPixmap(image);
+    pixmap = convertImageToPixmapWithGridLines(image->copy());
     qInfo() << "CANVAS: Pixmap defined " << pixmap;
 
     this->addPixmap(pixmap);
@@ -74,10 +58,26 @@ QPointF Canvas::convertToPoint(QPointF scaledPos) {
 }
 
 void Canvas::setImage(QImage* image) {
-    this->image = *image;
+    this->image = image;
     updatePixmap();
 }
 
 QImage* Canvas::getImage(){
-    return &image;
+    return image;
+}
+
+QImage* Canvas::makeNewEmptyImage() {
+    // Qimage size is the size of the grid
+    image = new QImage(gridX, gridY, QImage::Format_ARGB32);
+
+    // Initializes empty grid
+    for(int i = 0; i< gridX; i++) {
+        for(int j =0; j < gridY; j++) {
+            image->setPixelColor(i, j, QColor(0,0,0,0));
+        }
+    }
+
+    updatePixmap();
+
+    return image;
 }
