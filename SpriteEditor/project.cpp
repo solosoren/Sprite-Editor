@@ -18,6 +18,7 @@ Project::Project()
 Project::~Project()
 {
     delete canvas;
+    delete tools;
     for (QImage* image : frames)
     {
         delete image;
