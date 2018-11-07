@@ -49,9 +49,9 @@ private:
     void brushTool();
 
 public slots:
-    void handleMousePress(QPointF point);
-    void handleMouseMove(QPointF point);
-    void handleMouseRelease(QPointF point);
+    void handleMousePress(QPointF start);
+    void handleMouseMove(QPointF end);
+    void handleMouseRelease(QPointF end);
 
 };
 

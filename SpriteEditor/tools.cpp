@@ -54,8 +54,9 @@ void penTool() {
 
 }
 
-//SLOTS
+/* SLOTS */
 
+/* mouse pos */
 void Tools::handleMousePress(QPointF point)
 {
     qInfo() << "TOOLS: Handled Mouse Press at: " << point;
@@ -70,3 +71,7 @@ void Tools::handleMouseRelease(QPointF point)
 {
     qInfo() << "TOOLS: Handled Release Press at: " << point;
 }
+
+/* color */
+
+/* tool selection */
