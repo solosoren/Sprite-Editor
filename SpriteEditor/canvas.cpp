@@ -20,19 +20,19 @@ Canvas::Canvas(QObject *parent):
     updatePixmap();
 }
 
-void Canvas::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) {
+void Canvas::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointPressed = convertToPoint(mouseEvent->scenePos());
     qInfo() << "CANVAS: Clicked mouse at " << pointPressed;
     emit mousePressed(pointPressed);
 }
 
-void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent) {
+void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointMoved = convertToPoint(mouseEvent->scenePos());
     qInfo() << "CANVAS: Mouse moved to " << pointMoved;
     emit mouseMoved(pointMoved);
 }
 
-void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent) {
+void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointReleased = convertToPoint(mouseEvent->scenePos());
     qInfo() << "CANVAS: Released mouse at " << pointReleased;
     emit mouseReleased(pointReleased);

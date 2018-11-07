@@ -5,11 +5,13 @@
 #include "tools.h"
 #include "spriteanimation.h"
 
-class Project
+class Project: public QObject
 {
+    Q_OBJECT
+
 public:
     Project();
-    ~Project();
+    virtual ~Project();
     void setCurrentFrame(int frameNumber);
     void createNewFrame();
     Canvas* getCanvas();
@@ -19,6 +21,11 @@ private:
     int currentFrame;
     Tools tools;
     Canvas* canvas;
+
+private slots:
+    void handleMousePress(QPointF point);
+    void handleMouseMove(QPointF point);
+    void handleMouseRelease(QPointF point);
 
 friend class SpriteAnimation;
 };

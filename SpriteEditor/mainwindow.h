@@ -19,7 +19,7 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
     Project project;
 
 friend int main(int argc, char *argv[]);
