@@ -12,7 +12,7 @@ class Canvas  : public QGraphicsScene
     Q_OBJECT
 
     public:
-        Canvas(QObject *parent = 0);
+        Canvas(QImage& image, QObject *parent = 0);
 
         /* Mouse events*/
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
@@ -24,14 +24,13 @@ class Canvas  : public QGraphicsScene
          * @param image - QImage that needs to be displayed in the scene
          * @return - Pointer to QImage being displayed
          */
-        void setImage(QImage* image);
-        QImage* getImage();
+        void setImage(QImage& image);
 
         /**
-         * @brief makeNewEmptyImage - Makes new empty QImage and updates the scene with it
-         * @return - Pointer to newly made QImage
+         * @brief initializeEmptyImage - sets image alpha to 0
+         * @param image - image to be initialized
          */
-        QImage* makeNewEmptyImage();
+        void initializeEmptyImage(QImage& image);
 
     signals:
         void mousePressed(QPointF point);
@@ -42,7 +41,7 @@ class Canvas  : public QGraphicsScene
 
     private:
         QPixmap pixmap;
-        QImage* image;
+        QImage& image;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
         // Updates pixmap based on image by scaling it appropriately

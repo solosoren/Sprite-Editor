@@ -2,7 +2,8 @@
 
 Project::Project()
 {
-    canvas = new Canvas();
+    frames.push_back(new QImage(gridSizeX, gridSizeY, QImage::Format_ARGB32));
+    canvas = new Canvas(*frames[0]);
     tools = new Tools();
 
     QObject::connect(canvas, SIGNAL(mousePressed(QPointF)),
@@ -33,10 +34,11 @@ Canvas* Project::getCanvas()
 void Project::setCurrentFrame(int frameNumber)
 {
     currentFrame = frameNumber;
-    canvas->setImage(frames[frameNumber]);
+    canvas->setImage(*frames[frameNumber]);
 }
-
 void Project::createNewFrame()
 {
-    frames.push_back(canvas->makeNewEmptyImage());
+    QImage* image = new QImage(gridSizeX, gridSizeY, QImage::Format_ARGB32);
+    canvas->initializeEmptyImage(*image);
+    frames.push_back(image);
 }
