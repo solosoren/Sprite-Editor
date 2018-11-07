@@ -26,6 +26,9 @@
       <property name="text">
        <string>Toggle GridLines</string>
       </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
     <item>

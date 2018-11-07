@@ -2,8 +2,9 @@
 
 Project::Project()
 {
-    frames.push_back(QImage(gridSizeX, gridSizeY, QImage::Format_ARGB32));
+    frames.push_back(QImage(gridSizeX, gridSizeY, QImage:: QImage::Format_ARGB32));
     canvas = new Canvas(frames[0]);
+
     tools = new Tools();
 
     QObject::connect(canvas, SIGNAL(mousePressed(QPointF)),
