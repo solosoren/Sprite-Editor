@@ -16,3 +16,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_toggleGridlinesButton_clicked()
+{
+    project.handleGridlinesToggled();
+}

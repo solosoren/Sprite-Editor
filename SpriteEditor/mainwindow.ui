@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
+    <width>701</width>
     <height>650</height>
    </rect>
   </property>
@@ -21,6 +21,13 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="toggleGridlinesButton">
+      <property name="text">
+       <string>Toggle GridLines</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QGraphicsView" name="graphicsView">
       <property name="minimumSize">

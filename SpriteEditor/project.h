@@ -15,9 +15,11 @@ public:
     void setCurrentFrame(int frameNumber);
     void createNewFrame();
     Canvas* getCanvas();
+    void handleGridlinesToggled();
+
 private:
     //SpriteAnimation animation;
-    std::vector<QImage*> frames;
+    std::vector<QImage> frames;
     int currentFrame;
     Tools* tools;
     Canvas* canvas;

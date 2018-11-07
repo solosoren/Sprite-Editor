@@ -18,6 +18,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_toggleGridlinesButton_clicked();
+
 private:
     Ui::MainWindow* ui;
     Project project;
