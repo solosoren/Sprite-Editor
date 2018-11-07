@@ -28,22 +28,18 @@ namespace GLOBAL{
         QPixmap scaledMap = QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
         QImage scaledImage = scaledMap.toImage();
 
-        // pixel size = 75 (windowSizeX / gridX)
-        // Vertical
+        // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
         for(int x = 0; x < windowSizeX; x++) {
+            // Vertical
             if((x % (windowSizeX / gridX)) == 0) {
                 for(int y = 0; y < windowSizeY; y++) {
                     scaledImage.setPixelColor(x, y, QColor(0, 0, 0));
                 }
             }
-        }
 
-        // Horizontal
-        for(int y = 0; y < windowSizeY; y++) {
-            if((y % (windowSizeY / gridY)) == 0) {
-                for(int x = 0; x < windowSizeX; x++) {
-                    scaledImage.setPixelColor(x, y, QColor(0, 0, 0));
-                }
+            // Horizontal
+            for(int y = 0; y < windowSizeY; y+=(windowSizeY/ gridY)) {
+                scaledImage.setPixelColor(x, y, QColor(0,0,0));
             }
         }
 
