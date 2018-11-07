@@ -19,15 +19,9 @@ private:
     //SpriteAnimation animation;
     std::vector<QImage*> frames;
     int currentFrame;
-    Tools tools;
+    Tools* tools;
     Canvas* canvas;
 
-private slots:
-    void handleMousePress(QPointF point);
-    void handleMouseMove(QPointF point);
-    void handleMouseRelease(QPointF point);
-
-friend class SpriteAnimation;
 };
 
 #endif // PROJECT_H

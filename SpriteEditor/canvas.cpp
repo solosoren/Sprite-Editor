@@ -40,19 +40,19 @@ QPointF Canvas::convertToPoint(QPointF scaledPos) {
     int rX = scaledPos.x();
     int rY = scaledPos.y();
 
-    int xPos =(int) (rX * gridX) / windowSizeX;
-    int yPos = (int) (rY * gridY) / windowSizeY;
+    int xPos =(int) (rX * gridSizeX) / windowSizeX;
+    int yPos = (int) (rY * gridSizeY) / windowSizeY;
     if(xPos < 0) {
         xPos = 0;
     }
     if(yPos < 0) {
         yPos = 0;
     }
-    if(xPos >= gridX) {
-        xPos= gridX - 1;
+    if(xPos >= gridSizeX) {
+        xPos= gridSizeX - 1;
     }
-    if(yPos >= gridY) {
-        yPos = gridY - 1;
+    if(yPos >= gridSizeY) {
+        yPos = gridSizeY - 1;
     }
     return QPointF(xPos, yPos);
 }
@@ -67,12 +67,11 @@ QImage* Canvas::getImage(){
 }
 
 QImage* Canvas::makeNewEmptyImage() {
-    // Qimage size is the size of the grid
-    image = new QImage(gridX, gridY, QImage::Format_ARGB32);
+    image = new QImage(gridSizeX, gridSizeY, QImage::Format_ARGB32);
 
     // Initializes empty grid
-    for(int i = 0; i< gridX; i++) {
-        for(int j =0; j < gridY; j++) {
+    for(int i = 0; i< gridSizeX; i++) {
+        for(int j =0; j < gridSizeY; j++) {
             image->setPixelColor(i, j, QColor(0,0,0,0));
         }
     }

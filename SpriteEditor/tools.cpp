@@ -1,4 +1,5 @@
 #include "tools.h"
+#include <QDebug>
 
 Tools::Tools(){
 
@@ -51,4 +52,21 @@ void Tools::useTool(int tool) {
 
 void penTool() {
 
+}
+
+//SLOTS
+
+void Tools::handleMousePress(QPointF point)
+{
+    qInfo() << "TOOLS: Handled Mouse Press at: " << point;
+}
+
+void Tools::handleMouseMove(QPointF point)
+{
+    qInfo() << "TOOLS: Handled Move Press at: " << point;
+}
+
+void Tools::handleMouseRelease(QPointF point)
+{
+    qInfo() << "TOOLS: Handled Release Press at: " << point;
 }

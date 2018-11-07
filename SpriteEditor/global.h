@@ -17,8 +17,8 @@ namespace GLOBAL{
     static int windowSizeY = 600;
 
     // Grid sizes
-    static int gridX = 8;
-    static int gridY = 8;
+    static int gridSizeX = 8;
+    static int gridSizeY = 8;
 
     static QPixmap convertImageToPixmap(QImage image) {
          return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
@@ -31,14 +31,14 @@ namespace GLOBAL{
         // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
         for(int x = 0; x < windowSizeX; x++) {
             // Vertical
-            if((x % (windowSizeX / gridX)) == 0) {
+            if((x % (windowSizeX / gridSizeX)) == 0) {
                 for(int y = 0; y < windowSizeY; y++) {
                     scaledImage.setPixelColor(x, y, QColor(0, 0, 0));
                 }
             }
 
             // Horizontal
-            for(int y = 0; y < windowSizeY; y+=(windowSizeY/ gridY)) {
+            for(int y = 0; y < windowSizeY; y+=(windowSizeY/ gridSizeY)) {
                 scaledImage.setPixelColor(x, y, QColor(0,0,0));
             }
         }
