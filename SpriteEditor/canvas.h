@@ -19,14 +19,19 @@ class Canvas  : public QGraphicsScene
         virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
 
-        // Removing setPixel, since canvas doesn't set indiviudal pixels
-        // void setPixel(int x, int y, QRgb rgb);
         /**
          * @brief setImage - Displays passed image in the scene
          * @param image - QImage that needs to be displayed in the scene
+         * @return - Pointer to QImage being displayed
          */
         void setImage(QImage* image);
         QImage* getImage();
+
+        /**
+         * @brief makeNewEmptyImage - Makes new empty QImage and updates the scene with it
+         * @return - Pointer to newly made QImage
+         */
+        QImage* makeNewEmptyImage();
 
     signals:
         void mousePressed(QPointF point);
@@ -37,7 +42,7 @@ class Canvas  : public QGraphicsScene
 
     private:
         QPixmap pixmap;
-        QImage image;
+        QImage* image;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
         // Updates pixmap based on image by scaling it appropriately
