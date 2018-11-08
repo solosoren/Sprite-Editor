@@ -73,13 +73,13 @@ void Project::setColorLabel(ColorLabel* label) {
     QObject::connect(colorLabel, SIGNAL(colorChanged(QColor)),
                      this, SLOT(handleColorChanged(QColor)));
 
+    // Default starting color
     handleColorChanged(QColor(255, 0, 0));
 }
 
 void Project::handleColorChanged(QColor color) {
-    selectedColor = color.rgba();
-    tools->updateSelectedColor(selectedColor);
+    tools->setSelectedColor(color.rgba());
     QImage image(1, 1, QImage::Format_ARGB32);
-    image.setPixelColor(0, 0, selectedColor);
+    image.setPixelColor(0, 0, tools->getSelectedColor());
     colorLabel->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
 }

@@ -28,7 +28,8 @@ public:
     /* signals */
     QImage sendImage();
 
-    void updateSelectedColor(QColor newColor);
+    QColor getSelectedColor();
+    void setSelectedColor(QColor newColor);
 
 
 private:

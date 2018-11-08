@@ -74,10 +74,13 @@ void Tools::handleMouseRelease(QPointF point)
     qInfo() << "TOOLS: Handled Release Press at: " << point;
 }
 
-void Tools::updateSelectedColor(QColor newColor) {
+void Tools::setSelectedColor(QColor newColor) {
     selectedColor = newColor;
 }
 
+QColor Tools::getSelectedColor() {
+    return selectedColor;
+}
 /* color */
 
 /* tool selection */
