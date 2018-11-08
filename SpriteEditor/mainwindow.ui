@@ -71,7 +71,7 @@
            <x>0</x>
            <y>0</y>
            <width>598</width>
-           <height>164</height>
+           <height>170</height>
           </rect>
          </property>
         </widget>
@@ -183,7 +183,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="fpsLabel">
           <property name="text">
            <string>0</string>
           </property>

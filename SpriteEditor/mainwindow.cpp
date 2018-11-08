@@ -27,5 +27,6 @@ void MainWindow::on_toggleGridlinesButton_clicked()
 
 void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
+    ui->fpsLabel->setText(QString::number(value));
     project.handleAnimationSliderValueChanged(value);
 }
