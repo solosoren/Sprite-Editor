@@ -33,7 +33,6 @@ private:
     Tools* tools;
     Canvas* canvas;
     ColorLabel* colorLabel;
-    QColor selectedColor;
     void setColorLabelColor(QColor color);
 
 };
