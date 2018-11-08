@@ -17,6 +17,9 @@ public:
     Canvas* getCanvas();
     void handleGridlinesToggled();
 
+public slots:
+    void handleImageUpdate(QImage image);
+
 private:
     //SpriteAnimation animation;
     std::vector<QImage> frames;

@@ -15,7 +15,7 @@ class Tools : public QObject
     Q_OBJECT
 
 public:
-    Tools();
+    Tools(QImage image);
 
     /* slots */
     /* position */
@@ -42,11 +42,14 @@ private:
 
     /* functions */
     void useTool(int tool);
-    void penTool();
+    void penTool(int x, int y);
     void eraser();
     void lineTool();
     void fillTool();
     void brushTool();
+
+signals :
+    void updateImage(QImage);
 
 public slots:
     void handleMousePress(QPointF start);

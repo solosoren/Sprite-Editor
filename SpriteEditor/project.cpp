@@ -3,9 +3,10 @@
 Project::Project()
 {
     frames.push_back(QImage(gridSizeX, gridSizeY, QImage:: QImage::Format_ARGB32));
-    canvas = new Canvas(frames[0]);
+    currentFrame = 0;
+    canvas = new Canvas(frames[currentFrame]);
 
-    tools = new Tools();
+    tools = new Tools(frames[currentFrame]);
 
     QObject::connect(canvas, SIGNAL(mousePressed(QPointF)),
                      tools, SLOT(handleMousePress(QPointF)) );
@@ -15,6 +16,8 @@ Project::Project()
 
     QObject::connect(canvas, SIGNAL(mouseReleased(QPointF)),
                      tools, SLOT(handleMouseRelease(QPointF)) );
+    QObject::connect(tools, SIGNAL(updateImage(QImage)),
+                     this, SLOT(handleImageUpdate(QImage)) );
 }
 
 Project::~Project()
@@ -43,4 +46,10 @@ void Project::createNewFrame()
 void Project::handleGridlinesToggled()
 {
     canvas->toggleGridlines();
+}
+
+void Project::handleImageUpdate(QImage image) {
+
+    frames[currentFrame] = image;
+    canvas->setImage(image);
 }

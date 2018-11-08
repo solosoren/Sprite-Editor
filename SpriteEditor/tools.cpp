@@ -1,7 +1,8 @@
 #include "tools.h"
 #include <QDebug>
 
-Tools::Tools(){
+Tools::Tools(QImage image){
+    this->currentImage = image;
 
 }
 
@@ -50,8 +51,8 @@ void Tools::useTool(int tool) {
     }
 }
 
-void penTool() {
-
+void Tools::penTool(int x, int y) {
+    this->currentImage.setPixelColor(x, y, QColor(200, 150, 200).rgba());
 }
 
 /* SLOTS */
@@ -59,6 +60,8 @@ void penTool() {
 /* mouse pos */
 void Tools::handleMousePress(QPointF point)
 {
+    penTool(point.x(), point.y());
+    emit updateImage(currentImage);
     qInfo() << "TOOLS: Handled Mouse Press at: " << point;
 }
 
