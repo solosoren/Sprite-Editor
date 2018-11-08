@@ -28,11 +28,13 @@ public:
     /* signals */
     QImage sendImage();
 
+    void updateSelectedColor(QColor newColor);
+
 
 private:
     /* field */
     static int selectedTool;
-    static QColor selectedColor;
+    QColor selectedColor;
     QPainter doPaint;
     QImage tmpImage;
     QImage currentImage;
