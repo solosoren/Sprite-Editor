@@ -6,6 +6,8 @@ Canvas::Canvas(QImage& image, QObject *parent):
     QGraphicsScene (parent)
 {
     /* Initializations */
+    enableDebugging = false;
+    enableGridLines = false;
     setStickyFocus(true);
 
     initializeEmptyImage(image);
@@ -13,28 +15,38 @@ Canvas::Canvas(QImage& image, QObject *parent):
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointPressed = convertToPoint(mouseEvent->scenePos());
-    qInfo() << "CANVAS: Clicked mouse at " << pointPressed;
+    pointDebugMessage("Clicked mouse at ", pointPressed);
     emit mousePressed(pointPressed);
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointMoved = convertToPoint(mouseEvent->scenePos());
-    qInfo() << "CANVAS: Mouse moved to " << pointMoved;
+    pointDebugMessage("Mouse moved to ", pointMoved);
     emit mouseMoved(pointMoved);
 }
 
 void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointReleased = convertToPoint(mouseEvent->scenePos());
-    qInfo() << "CANVAS: Released mouse at " << pointReleased;
+    pointDebugMessage("Released mouse at ", pointReleased);
     emit mouseReleased(pointReleased);
 }
 
 void Canvas::updatePixmap() {
     //Instead of scaling pixmap, scale qimage
-    pixmap = convertImageToPixmapWithGridLines(image.copy());
-    qInfo() << "CANVAS: Pixmap defined " << pixmap;
+    if(enableGridLines) {
+        pixmap = convertImageToPixmapWithGridLines(image);
+    }
+    else {
+        pixmap = convertImageToPixmap(image);
+    }
 
     this->addPixmap(pixmap);
+}
+
+void Canvas::pointDebugMessage(QString message, QPointF point) {
+    if(enableDebugging) {
+         qInfo() << "CANVAS: "<< message << point;
+    }
 }
 
 QPointF Canvas::convertToPoint(QPointF scaledPos) {
@@ -69,9 +81,14 @@ void Canvas::initializeEmptyImage(QImage& image) {
     // Initializes empty grid
     for(int i = 0; i< gridSizeX; i++) {
         for(int j =0; j < gridSizeY; j++) {
-            this->image.setPixelColor(i, j, QColor(0,0,0,0));
+            this->image.setPixelColor(i, j, QColor(255,255,255,0).rgba());
         }
     }
 
+    updatePixmap();
+}
+
+void Canvas::toggleGridlines() {
+    enableGridLines = !enableGridLines;
     updatePixmap();
 }

@@ -25,21 +25,20 @@ namespace GLOBAL{
     }
 
     static QPixmap convertImageToPixmapWithGridLines(QImage image) {
-        QPixmap scaledMap = QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
-        QImage scaledImage = scaledMap.toImage();
+        QImage scaledImage = image.scaled(windowSizeX, windowSizeY);
 
         // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
         for(int x = 0; x < windowSizeX; x++) {
             // Vertical
             if((x % (windowSizeX / gridSizeX)) == 0) {
                 for(int y = 0; y < windowSizeY; y++) {
-                    scaledImage.setPixelColor(x, y, QColor(0, 0, 0));
+                    scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
                 }
             }
 
             // Horizontal
             for(int y = 0; y < windowSizeY; y+=(windowSizeY/ gridSizeY)) {
-                scaledImage.setPixelColor(x, y, QColor(0,0,0));
+                scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
             }
         }
 

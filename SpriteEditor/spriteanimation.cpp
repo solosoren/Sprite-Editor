@@ -1,33 +1,45 @@
 #include "spriteanimation.h"
 
-SpriteAnimation::SpriteAnimation(std::vector<QImage*>& images)
+SpriteAnimation::SpriteAnimation()
 {
-    images = images;
-    imagesDidChange = false;
+    this->images = nullptr;
     frameRate = 0;
 }
 
-void SpriteAnimation::imagesDidUpdate()
+void SpriteAnimation::setImages(std::vector<QImage*>* images)
 {
-    imagesDidChange = true;
+    this->images = images;
     animate();
 }
 
-// SetFrameRate Slot
+
+void SpriteAnimation::setFrameRate(int rate)
+{
+    int oldRate = frameRate;
+    frameRate = rate;
+    if (oldRate == 0)
+    {
+        animate();
+    }
+}
 
 void SpriteAnimation::animate()
 {
     int frameIndex = 0;
     int frameCount = 0;
-    while (!imagesDidChange && frameRate > 0 && images->size() > 0)
+    if (images == nullptr)
     {
-       QImage  image   = *((*images)[frameIndex]);
-       QPixmap pixmap  = convertImageToPixmap(image);
-       QTimer::singleShot(frameCount++ * (1000 / frameRate), this, SLOT(displayFrame(pixmap&)));
+        return;
+    }
+    while (frameRate > 0 && images->size() > 0)
+    {
+        QImage  image   = *((*images)[frameIndex++ % images->size()]);
+        QPixmap pixmap  = convertImageToPixmap(image);
+        QTimer::singleShot(frameCount++ * (1000 / frameRate), this, SLOT(displayFrame(pixmap)));
     }
 }
 
-void SpriteAnimation::displayFrame(QPixmap* pixmap)
+void SpriteAnimation::displayFrame(QPixmap pixmap)
 {
-
+    this->addPixmap(pixmap);
 }

@@ -32,6 +32,8 @@ class Canvas  : public QGraphicsScene
          */
         void initializeEmptyImage(QImage& image);
 
+        void toggleGridlines();
+
     signals:
         void mousePressed(QPointF point);
         void mouseMoved(QPointF point);
@@ -42,10 +44,13 @@ class Canvas  : public QGraphicsScene
     private:
         QPixmap pixmap;
         QImage& image;
+        bool enableDebugging;
+        bool enableGridLines;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
         // Updates pixmap based on image by scaling it appropriately
         void updatePixmap();
+        void pointDebugMessage(QString message, QPointF point);
 };
 
 #endif // CANVAS_H

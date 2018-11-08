@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QPixmap>
 //#include "project.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -8,8 +9,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->graphicsView->setScene(project.getCanvas());
+    project.setColorLabel(ui->colorSelectedLabel);
 
+    ui->graphicsView->setScene(project.getCanvas());
+    ui->animationView->setScene(project.getAnimation());
 }
 
 MainWindow::~MainWindow()
@@ -20,4 +23,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_toggleGridlinesButton_clicked()
 {
     project.handleGridlinesToggled();
+}
+
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    ui->fpsLabel->setText(QString::number(value));
+    project.handleAnimationSliderValueChanged(value);
 }
