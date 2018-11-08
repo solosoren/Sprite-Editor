@@ -41,5 +41,6 @@ void SpriteAnimation::animate()
 
 void SpriteAnimation::displayFrame(QPixmap pixmap)
 {
+    this->clear();
     this->addPixmap(pixmap);
 }
