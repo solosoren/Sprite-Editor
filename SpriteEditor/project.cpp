@@ -65,7 +65,9 @@ void Project::setColorLabel(ColorLabel* label) {
 }
 
 void Project::handleColorChanged(QColor color) {
+    selectedColor = color.rgba();
+    tools->updateSelectedColor(selectedColor);
     QImage image(1, 1, QImage::Format_ARGB32);
-    image.setPixelColor(0, 0, color.rgba());
+    image.setPixelColor(0, 0, selectedColor);
     colorLabel->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
 }

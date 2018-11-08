@@ -3,7 +3,6 @@
 
 Tools::Tools(QImage image){
     this->currentImage = image;
-
 }
 
 /* slots */
@@ -52,7 +51,7 @@ void Tools::useTool(int tool) {
 }
 
 void Tools::penTool(int x, int y) {
-    this->currentImage.setPixelColor(x, y, QColor(255, 0, 0).rgba());
+    this->currentImage.setPixelColor(x, y, selectedColor.rgba());
 }
 
 /* SLOTS */
@@ -73,6 +72,10 @@ void Tools::handleMouseMove(QPointF point)
 void Tools::handleMouseRelease(QPointF point)
 {
     qInfo() << "TOOLS: Handled Release Press at: " << point;
+}
+
+void Tools::updateSelectedColor(QColor newColor) {
+    selectedColor = newColor;
 }
 
 /* color */
