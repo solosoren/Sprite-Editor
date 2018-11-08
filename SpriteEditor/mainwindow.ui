@@ -62,6 +62,19 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="ColorLabel " name="colorSelectedLabel">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
@@ -151,7 +164,7 @@
            <x>0</x>
            <y>0</y>
            <width>598</width>
-           <height>170</height>
+           <height>164</height>
           </rect>
          </property>
         </widget>
@@ -171,6 +184,13 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ColorLabel </class>
+   <extends>QLabel</extends>
+   <header>colorlabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

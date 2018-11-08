@@ -52,7 +52,7 @@ void Tools::useTool(int tool) {
 }
 
 void Tools::penTool(int x, int y) {
-    this->currentImage.setPixelColor(x, y, QColor(200, 150, 200).rgba());
+    this->currentImage.setPixelColor(x, y, QColor(255, 0, 0).rgba());
 }
 
 /* SLOTS */

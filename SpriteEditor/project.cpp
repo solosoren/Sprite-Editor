@@ -16,6 +16,7 @@ Project::Project()
 
     QObject::connect(canvas, SIGNAL(mouseReleased(QPointF)),
                      tools, SLOT(handleMouseRelease(QPointF)) );
+
     QObject::connect(tools, SIGNAL(updateImage(QImage)),
                      this, SLOT(handleImageUpdate(QImage)) );
 }
@@ -52,4 +53,19 @@ void Project::handleImageUpdate(QImage image) {
 
     frames[currentFrame] = image;
     canvas->setImage(image);
+}
+
+void Project::setColorLabel(ColorLabel* label) {
+    colorLabel = label;
+
+    QObject::connect(colorLabel, SIGNAL(colorChanged(QColor)),
+                     this, SLOT(handleColorChanged(QColor)));
+
+    handleColorChanged(QColor(255, 0, 0));
+}
+
+void Project::handleColorChanged(QColor color) {
+    QImage image(1, 1, QImage::Format_ARGB32);
+    image.setPixelColor(0, 0, color.rgba());
+    colorLabel->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
 }
