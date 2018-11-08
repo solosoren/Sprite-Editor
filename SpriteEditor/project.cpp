@@ -7,13 +7,13 @@ Project::Project()
     tools = new Tools();
 
     QObject::connect(canvas, SIGNAL(mousePressed(QPointF)),
-                     tools, SLOT(handleMousePress(QPointF)) );
+                     tools,  SLOT(handleMousePress(QPointF)) );
 
     QObject::connect(canvas, SIGNAL(mouseMoved(QPointF)),
-                     tools, SLOT(handleMouseMove(QPointF)) );
+                     tools,  SLOT(handleMouseMove(QPointF)) );
 
     QObject::connect(canvas, SIGNAL(mouseReleased(QPointF)),
-                     tools, SLOT(handleMouseRelease(QPointF)) );
+                     tools,  SLOT(handleMouseRelease(QPointF)) );
 }
 
 Project::~Project()
