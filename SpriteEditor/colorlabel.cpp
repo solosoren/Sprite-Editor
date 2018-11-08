@@ -10,6 +10,5 @@ ColorLabel::ColorLabel(QWidget* parent):
 
 void ColorLabel::mousePressEvent(QMouseEvent* ev) {
     qInfo() << "Clicked label";
-    QColor color = QColorDialog::getColor();
-    emit colorChanged(color);
+    emit colorChanged(QColorDialog::getColor());
 }

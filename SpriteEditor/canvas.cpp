@@ -40,6 +40,7 @@ void Canvas::updatePixmap() {
         pixmap = convertImageToPixmap(image);
     }
 
+    this->clear();
     this->addPixmap(pixmap);
 }
 
