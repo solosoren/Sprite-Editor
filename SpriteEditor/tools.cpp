@@ -54,7 +54,7 @@ void Tools::useTool(QPointF point)
             penTool(point);
             break;
         case GLOBAL::ERASER:
-            //eraser();
+            eraser(point);
             break;
         case GLOBAL::LINE:
             //lineTool();
@@ -71,6 +71,10 @@ void Tools::useTool(QPointF point)
 void Tools::penTool(QPointF point)
 {
     currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), selectedColor.rgba());
+}
+
+void Tools::eraser(QPointF point) {
+    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), QColor(255,255,255).rgba());
 }
 
 
