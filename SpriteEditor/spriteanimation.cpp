@@ -13,6 +13,17 @@ void SpriteAnimation::setImages(std::vector<QImage*>* images)
 
 // SetFrameRate Slot
 
+void SpriteAnimation::setFrameRate(int rate)
+{
+    int oldRate = frameRate;
+    frameRate = rate;
+    if (oldRate == 0)
+    {
+        animate();
+    }
+    
+}
+
 void SpriteAnimation::animate()
 {
     int frameIndex = 0;

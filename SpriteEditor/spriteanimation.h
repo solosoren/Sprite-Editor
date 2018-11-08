@@ -22,6 +22,7 @@ private slots:
 public:
     SpriteAnimation();
     void setImages(std::vector<QImage*>* images);
+    void setFrameRate(int rate);
 };
 
 #endif // SPRITEANIMATION_H
