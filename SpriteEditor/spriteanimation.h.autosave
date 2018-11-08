@@ -3,7 +3,7 @@
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <QTimer>
-#include "global.h"
+#include "mainwindow.h"
 
 using namespace GLOBAL;
 
@@ -14,6 +14,7 @@ class SpriteAnimation: public QGraphicsScene
 private:
     std::vector<QImage*>* images;
     int frameRate;
+    bool imagesDidChange;
     void animate();
 
 private slots:
@@ -22,7 +23,6 @@ private slots:
 public:
     SpriteAnimation();
     void setImages(std::vector<QImage*>* images);
-    void setFrameRate(int rate);
 };
 
 #endif // SPRITEANIMATION_H
