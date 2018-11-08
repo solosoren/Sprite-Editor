@@ -30,6 +30,8 @@ public:
 
     void setColorLabel(ColorLabel* label);
 
+    void setActiveTool(int tool);
+
 public slots:
     void updateImage();
 

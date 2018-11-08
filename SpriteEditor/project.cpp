@@ -78,10 +78,15 @@ void Project::setColorLabel(ColorLabel* label)
     handleColorChanged(QColor(255, 0, 0));
 }
 
+void Project::setActiveTool(int tool)
+{
+    tools->setSelectedTool(tool);
+}
+
 void Project::handleColorChanged(QColor color)
 {
     tools->setSelectedColor(color.rgba());
     QImage image(1, 1, QImage::Format_ARGB32);
-    image.setPixelColor(0, 0, tools->getSelectedColor());
+    image.setPixelColor(0, 0, color);
     colorLabel->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
 }

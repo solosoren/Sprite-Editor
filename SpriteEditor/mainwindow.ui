@@ -71,7 +71,7 @@
            <x>0</x>
            <y>0</y>
            <width>598</width>
-           <height>170</height>
+           <height>178</height>
           </rect>
          </property>
         </widget>
@@ -86,37 +86,37 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="penToolButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Pen</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="eraserToolButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Eraser</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="brushToolButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Brush</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="lineToolButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Line</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="fillToolButton">
             <property name="text">
-             <string>PushButton</string>
+             <string>Fill</string>
             </property>
            </widget>
           </item>

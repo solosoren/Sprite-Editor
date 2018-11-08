@@ -6,62 +6,66 @@ Tools::Tools(QImage& image) : currentImage(image)
 
 }
 
-/* slots */
-/* position */
+void Tools::setImage(QImage& image)
+{
+    currentImage = image;
+}
+
+
 void Tools::startPos(QPointF start, QImage initImage){
     startPoint = start;
-    tmpImage = initImage;
+    tempImage = initImage;
     currentImage = initImage;
 }
 
-void Tools::endPos(QPointF end) {
+void Tools::endPos(QPointF end)
+{
     currentPoint = end;
 }
 
-/* tools selection */
-void Tools::setTool(int tool) {
-    //selectedTool = tool;
-}
-void Tools::setColor(QColor color) {
-    //selectedColor = color;
+void Tools::setSelectedTool(int tool)
+{
+    selectedTool = tool;
 }
 
-void Tools::useTool(int tool) {
-    switch(tool) {
-        case PEN_TOOL:
-            //penTool();
+void Tools::useTool(QPointF point)
+{
+    switch(selectedTool)
+    {
+        case GLOBAL::PEN:
+            penTool(point);
             break;
-        case ERASER:
+        case GLOBAL::ERASER:
             //eraser();
             break;
-        case LINE_TOOL:
+        case GLOBAL::LINE:
             //lineTool();
             break;
-        case FILL_TOOL:
+        case GLOBAL::FILL:
             //fillTool();
             break;
-        case BRUSH_TOOL:
+        case GLOBAL::BRUSH:
             //brushTool();
             break;
     }
 }
 
-void Tools::penTool(int x, int y) {
-    this->currentImage.setPixelColor(x, y, selectedColor.rgba());
+void Tools::penTool(QPointF point)
+{
+    this->currentImage.setPixelColor(point.x(), point.y(), selectedColor.rgba());
 }
 
 /* SLOTS */
 
-/* mouse pos */
 void Tools::handleMousePress(QPointF point)
 {
-    penTool(point.x(), point.y());
+    useTool(point);
     emit imageUpdated();
 }
 
 void Tools::handleMouseMove(QPointF point)
 {
-    penTool(point.x(), point.y());
+    useTool(point);
     emit imageUpdated();
 }
 
@@ -70,13 +74,7 @@ void Tools::handleMouseRelease(QPointF point)
     qInfo() << "TOOLS: Handled Release Press at: " << point;
 }
 
-void Tools::setSelectedColor(QColor newColor) {
-    selectedColor = newColor;
+void Tools::setSelectedColor(QColor color)
+{
+    selectedColor = color;
 }
-
-QColor Tools::getSelectedColor() {
-    return selectedColor;
-}
-/* color */
-
-/* tool selection */
