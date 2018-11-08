@@ -15,43 +15,43 @@ class Tools : public QObject
     Q_OBJECT
 
 public:
-    Tools();
+    Tools(QImage* image);
 
-    /* slots */
-    /* position */
+    void setImage(QImage* image);
+
     void startPos(QPointF start, QImage initImage);
     void endPos(QPointF end);
-    /* tools selection */
-    void setTool(int tool);
-    void setColor(QColor color);
 
-    /* signals */
-    QImage sendImage();
+    void setSelectedTool(int tool);
+    void setSelectedColor(QColor color);
 
 
 private:
     /* field */
-    static int selectedTool;
-    static QColor selectedColor;
-    QPainter doPaint;
-    QImage tmpImage;
-    QImage currentImage;
+    int selectedTool;
+    QColor selectedColor;
+    QPainter painter;
+    QImage tempImage;
+    QImage* currentImage;
     QPointF startPoint;
     QPointF currentPoint;
 
 
     /* functions */
-    void useTool(int tool);
-    void penTool();
-    void eraser();
-    void lineTool();
-    void fillTool();
-    void brushTool();
+    void useTool(QPointF point);
+    void penTool(QPointF point);
+    void eraser(QPointF point);
+    void lineTool(QPointF point);
+    void fillTool(QPointF point);
+    void brushTool(QPointF point);
+
+signals :
+    void imageUpdated();
 
 public slots:
-    void handleMousePress(QPointF start);
-    void handleMouseMove(QPointF end);
-    void handleMouseRelease(QPointF end);
+    void handleMousePress(QPointF point);
+    void handleMouseMove(QPointF point);
+    void handleMouseRelease(QPointF point);
 
 };
 

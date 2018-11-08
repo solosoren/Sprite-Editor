@@ -1,7 +1,7 @@
 #include "canvas.h"
 #include <QDebug>
 
-Canvas::Canvas(QImage& image, QObject *parent):
+Canvas::Canvas(QImage* image, QObject *parent):
     image(image),
     QGraphicsScene (parent)
 {
@@ -10,7 +10,7 @@ Canvas::Canvas(QImage& image, QObject *parent):
     enableGridLines = false;
     setStickyFocus(true);
 
-    initializeEmptyImage(image);
+    updatePixmap();
 }
 
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) {
@@ -34,12 +34,13 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent) {
 void Canvas::updatePixmap() {
     //Instead of scaling pixmap, scale qimage
     if(enableGridLines) {
-        pixmap = convertImageToPixmapWithGridLines(image);
+        pixmap = convertImageToPixmapWithGridLines(*image);
     }
     else {
-        pixmap = convertImageToPixmap(image);
+        pixmap = convertImageToPixmap(*image);
     }
 
+    this->clear();
     this->addPixmap(pixmap);
 }
 
@@ -70,21 +71,8 @@ QPointF Canvas::convertToPoint(QPointF scaledPos) {
     return QPointF(xPos, yPos);
 }
 
-void Canvas::setImage(QImage& image) {
+void Canvas::setImage(QImage* image) {
     this->image = image;
-    updatePixmap();
-}
-
-void Canvas::initializeEmptyImage(QImage& image) {
-    this->image = image;
-
-    // Initializes empty grid
-    for(int i = 0; i< gridSizeX; i++) {
-        for(int j =0; j < gridSizeY; j++) {
-            this->image.setPixelColor(i, j, QColor(255,255,255,0).rgba());
-        }
-    }
-
     updatePixmap();
 }
 

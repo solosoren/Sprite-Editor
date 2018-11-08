@@ -3,13 +3,6 @@
 
 #include <QPixmap>
 
-/* define tools */
-const int PEN_TOOL = 0;
-const int ERASER = 1;
-const int LINE_TOOL = 2;
-const int FILL_TOOL = 3;
-const int BRUSH_TOOL = 4;
-
 namespace GLOBAL{
 
     // Window sizes
@@ -45,12 +38,15 @@ namespace GLOBAL{
         return QPixmap().fromImage(scaledImage);
     }
 
+    const QString buttonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::green).name());
+    const QString buttonNonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::white).name());
+
     /* tmp NEED TO BE CHANGED*/
-    const int PEN_TOOL = 0;
+    const int PEN = 0;
     const int ERASER = 1;
-    const int LINE_TOOL = 2;
-    const int FILL_TOOL = 3;
-    const int BRUSH_TOOL = 4;
+    const int LINE = 2;
+    const int FILL = 3;
+    const int BRUSH = 4;
 }
 
 #endif // GLOBAL_H

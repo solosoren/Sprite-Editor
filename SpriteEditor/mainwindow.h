@@ -21,9 +21,26 @@ public:
 private slots:
     void on_toggleGridlinesButton_clicked();
 
+    void on_horizontalSlider_valueChanged(int value);
+
+    void on_penToolButton_clicked();
+
+    void on_eraserToolButton_clicked();
+
+    void on_brushToolButton_clicked();
+
+    void on_lineToolButton_clicked();
+
+    void on_fillToolButton_clicked();
+
+    void on_newFrameButton_clicked();
+
+    void on_nextFrame_clicked();
+
 private:
     Ui::MainWindow* ui;
     Project project;
+    void highlightButton(int button);
 
 friend int main(int argc, char *argv[]);
 };

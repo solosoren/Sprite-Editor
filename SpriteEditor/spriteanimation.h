@@ -1,29 +1,28 @@
 #ifndef SPRITEANIMATION_H
 #define SPRITEANIMATION_H
-#include <QObject>
+#include <QGraphicsScene>
 #include <QPixmap>
 #include <QTimer>
 #include "global.h"
 
 using namespace GLOBAL;
 
-class SpriteAnimation: public QObject
+class SpriteAnimation: public QGraphicsScene
 {
     Q_OBJECT
 
 private:
     std::vector<QImage*>* images;
     int frameRate;
-    bool imagesDidChange;
     void animate();
 
 private slots:
-    void displayFrame(QPixmap* pixmap);
+    void displayFrame(QPixmap pixmap);
 
 public:
-    SpriteAnimation(std::vector<QImage*>& images);
-    void imagesDidUpdate();
-
+    SpriteAnimation();
+    void setImages(std::vector<QImage*>* images);
+    void setFrameRate(int rate);
 };
 
 #endif // SPRITEANIMATION_H

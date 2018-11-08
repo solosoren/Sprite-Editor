@@ -1,70 +1,72 @@
 #include "tools.h"
 #include <QDebug>
 
-Tools::Tools(){
+Tools::Tools(QImage* image) : currentImage(image)
+{
 
 }
 
-/* slots */
-/* position */
+void Tools::setImage(QImage* image)
+{
+    currentImage = image;
+}
+
+
 void Tools::startPos(QPointF start, QImage initImage){
     startPoint = start;
-    tmpImage = initImage;
-    currentImage = initImage;
+    tempImage = initImage;
+    //currentImage = initImage;
 }
 
-void Tools::endPos(QPointF end) {
+void Tools::endPos(QPointF end)
+{
     currentPoint = end;
 }
 
-/* tools selection */
-void Tools::setTool(int tool) {
-    //selectedTool = tool;
-}
-void Tools::setColor(QColor color) {
-    //selectedColor = color;
+void Tools::setSelectedTool(int tool)
+{
+    selectedTool = tool;
 }
 
-/* signals */
-QImage Tools::sendImage() {
-    return currentImage;
-}
-
-void Tools::useTool(int tool) {
-    switch(tool) {
-        case PEN_TOOL:
-            //penTool();
+void Tools::useTool(QPointF point)
+{
+    switch(selectedTool)
+    {
+        case GLOBAL::PEN:
+            penTool(point);
             break;
-        case ERASER:
+        case GLOBAL::ERASER:
             //eraser();
             break;
-        case LINE_TOOL:
+        case GLOBAL::LINE:
             //lineTool();
             break;
-        case FILL_TOOL:
+        case GLOBAL::FILL:
             //fillTool();
             break;
-        case BRUSH_TOOL:
+        case GLOBAL::BRUSH:
             //brushTool();
             break;
     }
 }
 
-void penTool() {
-
+void Tools::penTool(QPointF point)
+{
+    currentImage->setPixelColor(point.x(), point.y(), selectedColor.rgba());
 }
 
 /* SLOTS */
 
-/* mouse pos */
 void Tools::handleMousePress(QPointF point)
 {
-    qInfo() << "TOOLS: Handled Mouse Press at: " << point;
+    useTool(point);
+    emit imageUpdated();
 }
 
 void Tools::handleMouseMove(QPointF point)
 {
-    qInfo() << "TOOLS: Handled Move Press at: " << point;
+    useTool(point);
+    emit imageUpdated();
 }
 
 void Tools::handleMouseRelease(QPointF point)
@@ -72,6 +74,7 @@ void Tools::handleMouseRelease(QPointF point)
     qInfo() << "TOOLS: Handled Release Press at: " << point;
 }
 
-/* color */
-
-/* tool selection */
+void Tools::setSelectedColor(QColor color)
+{
+    selectedColor = color;
+}

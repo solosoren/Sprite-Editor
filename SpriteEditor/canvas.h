@@ -12,7 +12,7 @@ class Canvas  : public QGraphicsScene
     Q_OBJECT
 
     public:
-        Canvas(QImage& image, QObject *parent = 0);
+        Canvas(QImage* image, QObject *parent = 0);
 
         /* Mouse events*/
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
@@ -24,13 +24,7 @@ class Canvas  : public QGraphicsScene
          * @param image - QImage that needs to be displayed in the scene
          * @return - Pointer to QImage being displayed
          */
-        void setImage(QImage& image);
-
-        /**
-         * @brief initializeEmptyImage - sets image alpha to 0
-         * @param image - image to be initialized
-         */
-        void initializeEmptyImage(QImage& image);
+        void setImage(QImage* image);
 
         void toggleGridlines();
 
@@ -43,7 +37,7 @@ class Canvas  : public QGraphicsScene
 
     private:
         QPixmap pixmap;
-        QImage& image;
+        QImage* image;
         bool enableDebugging;
         bool enableGridLines;
         // Converts and returns (non-scaled) grid coords

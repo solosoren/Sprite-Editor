@@ -30,7 +30,8 @@ SOURCES += \
     canvas.cpp \
     project.cpp \
     tools.cpp \
-    spriteanimation.cpp
+    spriteanimation.cpp \
+    colorlabel.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     project.h \
     tools.h \
     spriteanimation.h \
-    global.h
+    global.h \
+    colorlabel.h
 
 FORMS += \
         mainwindow.ui

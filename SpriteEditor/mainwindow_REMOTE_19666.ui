@@ -107,9 +107,6 @@
     </item>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_5">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
-      </property>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -175,12 +172,9 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Expanding</enum>
-        </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>250</width>
+          <width>40</width>
           <height>20</height>
          </size>
         </property>
