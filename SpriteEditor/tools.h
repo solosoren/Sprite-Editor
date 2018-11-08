@@ -14,28 +14,40 @@ class Tools : public QObject
 {
     Q_OBJECT
 
+    // PLEASE REQUEST THE PUBLIC FUNCTION OR SLOT HERE BEFORE EDIT
+    // SO THAT I CAN KEEP TRACK ALL THE PROGRESS
+    // LEAVE YOUR REQUEST HERE:
+    //
+
 public:
     Tools(QImage* image);
-
     void setImage(QImage* image);
 
-    void startPos(QPointF start, QImage initImage);
-    void endPos(QPointF end);
-
+    // LOOK AT THIS - MAY CHANGE THOS TO SLOTS
     void setSelectedTool(int tool);
     void setSelectedColor(QColor color);
+    void setBrushSize(int size); // NEW!
 
+public slots:
+    void handleMousePress(QPointF point);
+    void handleMouseMove(QPointF point);
+    void handleMouseRelease(QPointF point);
+
+signals :
+    void imageUpdated();
 
 private:
     /* field */
     int selectedTool;
     QColor selectedColor;
+    int selectedBrushSize;
+
     QPainter painter;
     QImage tempImage;
     QImage* currentImage;
+
     QPointF startPoint;
     QPointF currentPoint;
-
 
     /* functions */
     void useTool(QPointF point);
@@ -44,15 +56,6 @@ private:
     void lineTool(QPointF point);
     void fillTool(QPointF point);
     void brushTool(QPointF point);
-
-signals :
-    void imageUpdated();
-
-public slots:
-    void handleMousePress(QPointF point);
-    void handleMouseMove(QPointF point);
-    void handleMouseRelease(QPointF point);
-
 };
 
 #endif // TOOLS_H
