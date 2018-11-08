@@ -1,7 +1,7 @@
 #include "tools.h"
 #include <QDebug>
 
-Tools::Tools(QImage image){
+Tools::Tools(QImage& image){
     this->currentImage = image;
 }
 
@@ -66,7 +66,9 @@ void Tools::handleMousePress(QPointF point)
 
 void Tools::handleMouseMove(QPointF point)
 {
-    qInfo() << "TOOLS: Handled Move Press at: " << point;
+    penTool(point.x(), point.y());
+    emit updateImage(currentImage);
+    qInfo() << "TOOLS: Handled Mouse at: " << point;
 }
 
 void Tools::handleMouseRelease(QPointF point)

@@ -15,7 +15,7 @@ class Tools : public QObject
     Q_OBJECT
 
 public:
-    Tools(QImage image);
+    Tools(QImage& image);
 
     /* slots */
     /* position */
