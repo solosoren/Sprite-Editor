@@ -87,30 +87,17 @@
            <string>New Frame</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="frameOneButton">
+         <widget class="QPushButton" name="nextFrame">
           <property name="geometry">
            <rect>
-            <x>170</x>
-            <y>70</y>
+            <x>160</x>
+            <y>80</y>
             <width>80</width>
             <height>21</height>
            </rect>
           </property>
           <property name="text">
-           <string>Frame 1</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="frameTwoButton">
-          <property name="geometry">
-           <rect>
-            <x>260</x>
-            <y>70</y>
-            <width>80</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Frame 2</string>
+           <string>Next Frame</string>
           </property>
          </widget>
         </widget>

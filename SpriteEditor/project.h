@@ -18,11 +18,15 @@ public:
 
     void setCurrentFrame(int frameNumber);
 
+    void nextFrame();
+
     void createNewFrame();
 
-    Canvas* getCanvas();
+    void setActiveTool(int tool);
 
     SpriteAnimation* getAnimation();
+
+    Canvas* getCanvas();
 
     void handleGridlinesToggled();
 
@@ -30,7 +34,11 @@ public:
 
     void setColorLabel(ColorLabel* label);
 
-    void setActiveTool(int tool);
+    void save();
+
+    void load(QString filename);
+
+    void exportGIF(QString filename);
 
 public slots:
     void updateImage();

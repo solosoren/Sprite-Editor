@@ -34,21 +34,17 @@ Project::~Project()
     }
 }
 
-Canvas* Project::getCanvas()
-{
-    return canvas;
-}
-
-SpriteAnimation* Project::getAnimation()
-{
-    return animation;
-}
-
 void Project::setCurrentFrame(int frameNumber)
 {
     currentFrame = frameNumber;
-    canvas->setImage(frames[frameNumber]);
-    tools->setImage(frames[frameNumber]);
+    canvas->setImage(frames[currentFrame]);
+    tools->setImage(frames[currentFrame]);
+}
+
+void Project::nextFrame()
+{
+    int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
+    setCurrentFrame(frameNumber);
 }
 
 void Project::createNewFrame()
@@ -61,20 +57,30 @@ void Project::createNewFrame()
         }
     }
     frames.push_back(image);
-    //canvas->setImage(frames[currentFrame]);
-    //tools->setImage(frames[currentFrame]);
+}
+
+
+/*UI Helpers*/
+
+void Project::setActiveTool(int tool)
+{
+    tools->setSelectedTool(tool);
+}
+
+SpriteAnimation* Project::getAnimation()
+{
+    return animation;
+}
+
+Canvas* Project::getCanvas()
+{
+    return canvas;
 }
 
 void Project::handleGridlinesToggled()
 {
     canvas->toggleGridlines();
 }
-
-void Project::updateImage()
-{
-    canvas->setImage(frames[currentFrame]);
-}
-
 
 void Project::handleAnimationSliderValueChanged(int value)
 {
@@ -92,10 +98,9 @@ void Project::setColorLabel(ColorLabel* label)
     handleColorChanged(QColor(255, 0, 0));
 }
 
-void Project::setActiveTool(int tool)
-{
-    tools->setSelectedTool(tool);
-}
+
+/*Slots*/
+
 
 void Project::handleColorChanged(QColor color)
 {
@@ -103,4 +108,28 @@ void Project::handleColorChanged(QColor color)
     QImage image(1, 1, QImage::Format_ARGB32);
     image.setPixelColor(0, 0, color);
     colorLabel->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
+}
+
+void Project::updateImage()
+{
+    canvas->setImage(frames[currentFrame]);
+}
+
+
+/*File IO*/
+
+
+void Project::save()
+{
+
+}
+
+void Project::load(QString filename)
+{
+
+}
+
+void Project::exportGIF(QString filename)
+{
+
 }

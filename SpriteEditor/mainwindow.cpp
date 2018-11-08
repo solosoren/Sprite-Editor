@@ -122,12 +122,7 @@ void MainWindow::on_newFrameButton_clicked()
     //ui->verticalLayout_4->addWidget();
 }
 
-void MainWindow::on_frameOneButton_clicked()
+void MainWindow::on_nextFrame_clicked()
 {
-    project.setCurrentFrame(0);
-}
-
-void MainWindow::on_frameTwoButton_clicked()
-{
-    project.setCurrentFrame(1);
+    project.nextFrame();
 }

@@ -35,9 +35,7 @@ private slots:
 
     void on_newFrameButton_clicked();
 
-    void on_frameOneButton_clicked();
-
-    void on_frameTwoButton_clicked();
+    void on_nextFrame_clicked();
 
 private:
     Ui::MainWindow* ui;
