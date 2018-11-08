@@ -5,40 +5,56 @@
 #include <QColor>
 #include <QPainter>
 #include <vector>
+#include "global.h"
 
-#include "toollist.h"
-
-// KUNAAL: Needs to be static if it's outside the tools class. I don't see why this needs
-//         to be accessible to any other class.I think you should put this within the Tools class.
-static int selectedTool = 0;
-static QColor selectedColor;
-
+/* only receive one Pos
+ * only return one Qimage */
 
 class Tools : public QObject
 {
     Q_OBJECT
 
-    public:
-        Tools();
+public:
+    Tools(QImage image);
 
-        /* position */
-        std::vector<QImage> startPos(QPointF StartPos, QImage initImage);
-        std::vector<QImage> endPos(QPointF endPos);
+    /* slots */
+    /* position */
+    void startPos(QPointF start, QImage initImage);
+    void endPos(QPointF end);
+    /* tools selection */
+    void setTool(int tool);
+    void setColor(QColor color);
 
-        /* tools selection */
-        void setTool(int tool);
-        void setColor(QColor color);
-
-    private:
-        /* field */
-        QPainter doPaint;
-        QImage tmpImage;
-        QImage currentImage;
-
-        /* functions */
+    /* signals */
+    QImage sendImage();
 
 
+private:
+    /* field */
+    static int selectedTool;
+    static QColor selectedColor;
+    QPainter doPaint;
+    QImage tmpImage;
+    QImage currentImage;
+    QPointF startPoint;
+    QPointF currentPoint;
 
+
+    /* functions */
+    void useTool(int tool);
+    void penTool(int x, int y);
+    void eraser();
+    void lineTool();
+    void fillTool();
+    void brushTool();
+
+signals :
+    void updateImage(QImage);
+
+public slots:
+    void handleMousePress(QPointF start);
+    void handleMouseMove(QPointF end);
+    void handleMouseRelease(QPointF end);
 
 };
 

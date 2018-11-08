@@ -5,20 +5,28 @@
 #include "tools.h"
 #include "spriteanimation.h"
 
-class Project
+class Project: public QObject
 {
+    Q_OBJECT
+
 public:
     Project();
+    virtual ~Project();
     void setCurrentFrame(int frameNumber);
     void createNewFrame();
-private:
-    // KUNAAL: commented out for now, so project can compile
-//    SpriteAnimation animation;
-    std::vector<QImage*> frames;
-    int currentFrame;
-    Tools tools;
+    Canvas* getCanvas();
+    void handleGridlinesToggled();
 
-friend class SpriteAnimation;
+public slots:
+    void handleImageUpdate(QImage image);
+
+private:
+    //SpriteAnimation animation;
+    std::vector<QImage> frames;
+    int currentFrame;
+    Tools* tools;
+    Canvas* canvas;
+
 };
 
 #endif // PROJECT_H

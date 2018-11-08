@@ -3,7 +3,7 @@
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <QTimer>
-#include "mainwindow.h"
+#include "global.h"
 
 using namespace GLOBAL;
 

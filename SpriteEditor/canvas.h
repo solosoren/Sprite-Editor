@@ -3,7 +3,7 @@
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
-#include "mainwindow.h"
+#include "global.h"
 
 using namespace GLOBAL;
 
@@ -12,21 +12,27 @@ class Canvas  : public QGraphicsScene
     Q_OBJECT
 
     public:
-        Canvas(QObject *parent = 0);
+        Canvas(QImage& image, QObject *parent = 0);
 
         /* Mouse events*/
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
 
-        // Removing setPixel, since canvas doesn't set indiviudal pixels
-        // void setPixel(int x, int y, QRgb rgb);
         /**
          * @brief setImage - Displays passed image in the scene
          * @param image - QImage that needs to be displayed in the scene
+         * @return - Pointer to QImage being displayed
          */
-        void setImage(QImage* image);
-        QImage* getImage();
+        void setImage(QImage& image);
+
+        /**
+         * @brief initializeEmptyImage - sets image alpha to 0
+         * @param image - image to be initialized
+         */
+        void initializeEmptyImage(QImage& image);
+
+        void toggleGridlines();
 
     signals:
         void mousePressed(QPointF point);
@@ -37,11 +43,14 @@ class Canvas  : public QGraphicsScene
 
     private:
         QPixmap pixmap;
-        QImage image;
+        QImage& image;
+        bool enableDebugging;
+        bool enableGridLines;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
         // Updates pixmap based on image by scaling it appropriately
         void updatePixmap();
+        void pointDebugMessage(QString message, QPointF point);
 };
 
 #endif // CANVAS_H

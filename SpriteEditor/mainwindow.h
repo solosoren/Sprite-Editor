@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QPixmap>
+#include "project.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,25 +18,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_toggleGridlinesButton_clicked();
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
+    Project project;
 
 friend int main(int argc, char *argv[]);
 };
-
-namespace GLOBAL{
-
-    // Window sizes
-    static int windowSizeX = 600;
-    static int windowSizeY = 600;
-
-    // Grid sizes
-    static int gridX = 8;
-    static int gridY = 8;
-
-    static QPixmap convertImageToPixmap(QImage image) {
-         return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
-    }
-}
 
 #endif // MAINWINDOW_H
