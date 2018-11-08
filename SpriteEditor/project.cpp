@@ -18,8 +18,8 @@ Project::Project()
     QObject::connect(canvas, SIGNAL(mouseReleased(QPointF)),
                      tools,  SLOT(handleMouseRelease(QPointF)) );
 
-    QObject::connect(tools, SIGNAL(updateImage(QImage)),
-                     this,  SLOT(handleImageUpdate(QImage)) );
+    QObject::connect(tools, SIGNAL(imageUpdated()),
+                     this,  SLOT(updateImage()) );
 }
 
 Project::~Project()
@@ -56,11 +56,9 @@ void Project::handleGridlinesToggled()
     canvas->toggleGridlines();
 }
 
-void Project::handleImageUpdate(QImage image)
+void Project::updateImage()
 {
-
-    frames[currentFrame] = image;
-    canvas->setImage(image);
+    canvas->setImage(frames[currentFrame]);
 }
 
 

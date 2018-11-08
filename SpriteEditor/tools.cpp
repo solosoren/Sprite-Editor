@@ -1,8 +1,9 @@
 #include "tools.h"
 #include <QDebug>
 
-Tools::Tools(QImage& image){
-    this->currentImage = image;
+Tools::Tools(QImage& image) : currentImage(image)
+{
+
 }
 
 /* slots */
@@ -23,11 +24,6 @@ void Tools::setTool(int tool) {
 }
 void Tools::setColor(QColor color) {
     //selectedColor = color;
-}
-
-/* signals */
-QImage Tools::sendImage() {
-    return currentImage;
 }
 
 void Tools::useTool(int tool) {
@@ -60,15 +56,13 @@ void Tools::penTool(int x, int y) {
 void Tools::handleMousePress(QPointF point)
 {
     penTool(point.x(), point.y());
-    emit updateImage(currentImage);
-    qInfo() << "TOOLS: Handled Mouse Press at: " << point;
+    emit imageUpdated();
 }
 
 void Tools::handleMouseMove(QPointF point)
 {
     penTool(point.x(), point.y());
-    emit updateImage(currentImage);
-    qInfo() << "TOOLS: Handled Mouse at: " << point;
+    emit imageUpdated();
 }
 
 void Tools::handleMouseRelease(QPointF point)

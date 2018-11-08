@@ -13,25 +13,38 @@ class Project: public QObject
 
 public:
     Project();
+
     virtual ~Project();
+
     void setCurrentFrame(int frameNumber);
+
     void createNewFrame();
+
     Canvas* getCanvas();
+
     SpriteAnimation* getAnimation();
+
     void handleGridlinesToggled();
+
     void handleAnimationSliderValueChanged(int value);
+
     void setColorLabel(ColorLabel* label);
 
 public slots:
-    void handleImageUpdate(QImage image);
+    void updateImage();
+
     void handleColorChanged(QColor color);
 
 private:
-    SpriteAnimation* animation;
     std::vector<QImage> frames;
     int currentFrame;
+
+    SpriteAnimation* animation;
+
     Tools* tools;
+
     Canvas* canvas;
+
     ColorLabel* colorLabel;
     void setColorLabelColor(QColor color);
 

@@ -38,7 +38,7 @@ private:
     QColor selectedColor;
     QPainter doPaint;
     QImage tmpImage;
-    QImage currentImage;
+    QImage& currentImage;
     QPointF startPoint;
     QPointF currentPoint;
 
@@ -52,7 +52,7 @@ private:
     void brushTool();
 
 signals :
-    void updateImage(QImage);
+    void imageUpdated();
 
 public slots:
     void handleMousePress(QPointF start);
