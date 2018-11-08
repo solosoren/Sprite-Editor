@@ -71,7 +71,7 @@
            <x>0</x>
            <y>0</y>
            <width>598</width>
-           <height>170</height>
+           <height>164</height>
           </rect>
          </property>
         </widget>
@@ -117,6 +117,13 @@
            <widget class="QPushButton" name="pushButton_4">
             <property name="text">
              <string>PushButton</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ColorLabel " name="colorSelectedLabel">
+            <property name="text">
+             <string>TextLabel</string>
             </property>
            </widget>
           </item>
@@ -215,6 +222,13 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ColorLabel </class>
+   <extends>QLabel</extends>
+   <header>colorlabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QPixmap>
 //#include "project.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -7,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    project.setColorLabel(ui->colorSelectedLabel);
 
     ui->graphicsView->setScene(project.getCanvas());
     ui->animationView->setScene(project.getAnimation());

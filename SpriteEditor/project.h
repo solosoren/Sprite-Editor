@@ -1,9 +1,11 @@
 #ifndef PROJECT_H
 #define PROJECT_H
 #include <QPixmap>
+#include <QLabel>
 #include "canvas.h"
 #include "tools.h"
 #include "spriteanimation.h"
+#include "colorlabel.h"
 
 class Project: public QObject
 {
@@ -18,9 +20,11 @@ public:
     SpriteAnimation* getAnimation();
     void handleGridlinesToggled();
     void handleAnimationSliderValueChanged(int value);
+    void setColorLabel(ColorLabel* label);
 
 public slots:
     void handleImageUpdate(QImage image);
+    void handleColorChanged(QColor color);
 
 private:
     SpriteAnimation* animation;
@@ -28,6 +32,8 @@ private:
     int currentFrame;
     Tools* tools;
     Canvas* canvas;
+    ColorLabel* colorLabel;
+    void setColorLabelColor(QColor color);
 
 };
 
