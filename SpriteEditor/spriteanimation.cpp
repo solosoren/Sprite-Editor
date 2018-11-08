@@ -2,14 +2,12 @@
 
 SpriteAnimation::SpriteAnimation()
 {
-    imagesDidChange = false;
     frameRate = 0;
 }
 
 void SpriteAnimation::setImages(std::vector<QImage*>* images)
 {
     images = images;
-    imagesDidChange = true;
     animate();
 }
 
@@ -19,9 +17,9 @@ void SpriteAnimation::animate()
 {
     int frameIndex = 0;
     int frameCount = 0;
-    while (true)
+    while (frameRate > 0)
     {
-        if (frameRate > 0 && images->size() > 0)
+        if (images->size() > 0)
         {
             QImage  image   = *((*images)[frameIndex++ % images->size()]);
             QPixmap pixmap  = convertImageToPixmap(image);
