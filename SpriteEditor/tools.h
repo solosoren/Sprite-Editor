@@ -25,9 +25,6 @@ public:
     void setTool(int tool);
     void setColor(QColor color);
 
-    /* signals */
-    QImage sendImage();
-
     QColor getSelectedColor();
     void setSelectedColor(QColor newColor);
 
