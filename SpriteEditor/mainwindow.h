@@ -21,6 +21,8 @@ public:
 private slots:
     void on_toggleGridlinesButton_clicked();
 
+    void on_horizontalSlider_valueChanged(int value);
+
 private:
     Ui::MainWindow* ui;
     Project project;

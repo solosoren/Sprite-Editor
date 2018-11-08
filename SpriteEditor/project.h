@@ -15,13 +15,15 @@ public:
     void setCurrentFrame(int frameNumber);
     void createNewFrame();
     Canvas* getCanvas();
+    SpriteAnimation* getAnimation();
     void handleGridlinesToggled();
+    void handleAnimationSliderValueChanged(int value);
 
 public slots:
     void handleImageUpdate(QImage image);
 
 private:
-    //SpriteAnimation animation;
+    SpriteAnimation* animation;
     std::vector<QImage> frames;
     int currentFrame;
     Tools* tools;

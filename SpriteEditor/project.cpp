@@ -5,6 +5,7 @@ Project::Project()
     frames.push_back(QImage(gridSizeX, gridSizeY, QImage:: QImage::Format_ARGB32));
     currentFrame = 0;
     canvas = new Canvas(frames[currentFrame]);
+    animation = new SpriteAnimation();
 
     tools = new Tools(frames[currentFrame]);
 
@@ -31,6 +32,11 @@ Canvas* Project::getCanvas()
     return canvas;
 }
 
+SpriteAnimation* Project::getAnimation()
+{
+    return animation;
+}
+
 void Project::setCurrentFrame(int frameNumber)
 {
     currentFrame = frameNumber;
@@ -52,4 +58,9 @@ void Project::handleImageUpdate(QImage image) {
 
     frames[currentFrame] = image;
     canvas->setImage(image);
+}
+
+void Project::handleAnimationSliderValueChanged(int value)
+{
+    animation->setFrameRate(value);
 }

@@ -2,16 +2,16 @@
 
 SpriteAnimation::SpriteAnimation()
 {
+    this->images = nullptr;
     frameRate = 0;
 }
 
 void SpriteAnimation::setImages(std::vector<QImage*>* images)
 {
-    images = images;
+    this->images = images;
     animate();
 }
 
-// SetFrameRate Slot
 
 void SpriteAnimation::setFrameRate(int rate)
 {
@@ -21,21 +21,21 @@ void SpriteAnimation::setFrameRate(int rate)
     {
         animate();
     }
-    
 }
 
 void SpriteAnimation::animate()
 {
     int frameIndex = 0;
     int frameCount = 0;
-    while (frameRate > 0)
+    if (images == nullptr)
     {
-        if (images->size() > 0)
-        {
-            QImage  image   = *((*images)[frameIndex++ % images->size()]);
-            QPixmap pixmap  = convertImageToPixmap(image);
-            QTimer::singleShot(frameCount++ * (1000 / frameRate), this, SLOT(displayFrame(pixmap)));
-        }
+        return;
+    }
+    while (frameRate > 0 && images->size() > 0)
+    {
+        QImage  image   = *((*images)[frameIndex++ % images->size()]);
+        QPixmap pixmap  = convertImageToPixmap(image);
+        QTimer::singleShot(frameCount++ * (1000 / frameRate), this, SLOT(displayFrame(pixmap)));
     }
 }
 
