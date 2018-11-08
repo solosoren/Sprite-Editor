@@ -33,6 +33,12 @@ private slots:
 
     void on_fillToolButton_clicked();
 
+    void on_newFrameButton_clicked();
+
+    void on_frameOneButton_clicked();
+
+    void on_frameTwoButton_clicked();
+
 private:
     Ui::MainWindow* ui;
     Project project;

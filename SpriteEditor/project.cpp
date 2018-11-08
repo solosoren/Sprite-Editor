@@ -1,8 +1,10 @@
 #include "project.h"
+#include <QDebug>
 
 Project::Project()
 {
-    frames.push_back(QImage(gridSizeX, gridSizeY, QImage:: QImage::Format_ARGB32));
+    //frames.push_back(QImage(gridSizeX, gridSizeY, QImage:: QImage::Format_ARGB32));
+    createNewFrame();
     currentFrame = 0;
 
     canvas = new Canvas(frames[currentFrame]);
@@ -26,6 +28,10 @@ Project::~Project()
 {
     delete canvas;
     delete tools;
+    for (QImage* image : frames)
+    {
+        delete image;
+    }
 }
 
 Canvas* Project::getCanvas()
@@ -42,13 +48,21 @@ void Project::setCurrentFrame(int frameNumber)
 {
     currentFrame = frameNumber;
     canvas->setImage(frames[frameNumber]);
+    tools->setImage(frames[frameNumber]);
 }
 
 void Project::createNewFrame()
 {
-    QImage image(gridSizeX, gridSizeY, QImage::Format_ARGB32);
-    canvas->initializeEmptyImage(image);
+    QImage* image = new QImage(gridSizeX, gridSizeY, QImage::Format_ARGB32);
+    // Initializes empty grid
+    for(int i = 0; i< gridSizeX; i++) {
+        for(int j =0; j < gridSizeY; j++) {
+            image->setPixelColor(i, j, QColor(255,255,255,0).rgba());
+        }
+    }
     frames.push_back(image);
+    //canvas->setImage(frames[currentFrame]);
+    //tools->setImage(frames[currentFrame]);
 }
 
 void Project::handleGridlinesToggled()

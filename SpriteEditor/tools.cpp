@@ -1,12 +1,12 @@
 #include "tools.h"
 #include <QDebug>
 
-Tools::Tools(QImage& image) : currentImage(image)
+Tools::Tools(QImage* image) : currentImage(image)
 {
 
 }
 
-void Tools::setImage(QImage& image)
+void Tools::setImage(QImage* image)
 {
     currentImage = image;
 }
@@ -15,7 +15,7 @@ void Tools::setImage(QImage& image)
 void Tools::startPos(QPointF start, QImage initImage){
     startPoint = start;
     tempImage = initImage;
-    currentImage = initImage;
+    //currentImage = initImage;
 }
 
 void Tools::endPos(QPointF end)
@@ -52,7 +52,7 @@ void Tools::useTool(QPointF point)
 
 void Tools::penTool(QPointF point)
 {
-    this->currentImage.setPixelColor(point.x(), point.y(), selectedColor.rgba());
+    currentImage->setPixelColor(point.x(), point.y(), selectedColor.rgba());
 }
 
 /* SLOTS */

@@ -15,9 +15,9 @@ class Tools : public QObject
     Q_OBJECT
 
 public:
-    Tools(QImage& image);
+    Tools(QImage* image);
 
-    void setImage(QImage& image);
+    void setImage(QImage* image);
 
     void startPos(QPointF start, QImage initImage);
     void endPos(QPointF end);
@@ -32,7 +32,7 @@ private:
     QColor selectedColor;
     QPainter painter;
     QImage tempImage;
-    QImage& currentImage;
+    QImage* currentImage;
     QPointF startPoint;
     QPointF currentPoint;
 

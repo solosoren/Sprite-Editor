@@ -38,7 +38,7 @@ public slots:
     void handleColorChanged(QColor color);
 
 private:
-    std::vector<QImage> frames;
+    std::vector<QImage*> frames;
     int currentFrame;
 
     SpriteAnimation* animation;

@@ -1,12 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPixmap>
+#include <QDialogButtonBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //FlowLayout* flowLayout = new FlowLayout;
 
     project.setColorLabel(ui->colorSelectedLabel);
 
@@ -110,4 +113,21 @@ void MainWindow::on_fillToolButton_clicked()
 {
     project.setActiveTool(GLOBAL::FILL);
     highlightButton(GLOBAL::FILL);
+}
+
+void MainWindow::on_newFrameButton_clicked()
+{
+    project.createNewFrame();
+    //QDialogButtonBox button = new QDialogButtonBox(this);
+    //ui->verticalLayout_4->addWidget();
+}
+
+void MainWindow::on_frameOneButton_clicked()
+{
+    project.setCurrentFrame(0);
+}
+
+void MainWindow::on_frameTwoButton_clicked()
+{
+    project.setCurrentFrame(1);
 }
