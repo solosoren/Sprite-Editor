@@ -74,7 +74,7 @@ void Tools::penTool(QPointF point)
 }
 
 void Tools::eraser(QPointF point) {
-    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), QColor(255,255,255).rgba());
+    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), QColor(255,255,255,0).rgba());
 }
 
 
