@@ -42,8 +42,8 @@ private:
     QColor selectedColor;
     int selectedBrushSize;
 
-    QPainter painter;
-    QImage tempImage;
+    QPainter* painter;
+    QImage* tempImage;
     QImage* currentImage;
 
     QPointF startPoint;

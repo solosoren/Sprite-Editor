@@ -2,7 +2,9 @@
 #include <QDebug>
 
 /* PUBLIC */
-Tools::Tools(QImage* image) : currentImage(image){}
+Tools::Tools(QImage* image) : currentImage(image){
+    painter = new QPainter(image);
+}
 
 void Tools::setImage(QImage* image)
 {
@@ -28,6 +30,7 @@ void Tools::setBrushSize(int size)
 
 void Tools::handleMousePress(QPointF point)
 {
+    startPoint = point;
     useTool(point);
     emit imageUpdated();
 }
@@ -57,7 +60,7 @@ void Tools::useTool(QPointF point)
             eraser(point);
             break;
         case GLOBAL::LINE:
-            //lineTool();
+            lineTool(point);
             break;
         case GLOBAL::FILL:
             //fillTool();
@@ -70,11 +73,23 @@ void Tools::useTool(QPointF point)
 
 void Tools::penTool(QPointF point)
 {
-    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), selectedColor.rgba());
+    QPen pen;
+    pen.setColor(selectedColor.rgba());
+    painter->setPen(pen);
+    painter->drawPoint(point.x(), point.y());
 }
 
 void Tools::eraser(QPointF point) {
-    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), QColor(255,255,255,0).rgba());
+    QPen pen;
+    pen.setColor(QColor(255,255,255,0).rgba());
+    painter->setPen(pen);
+    painter->drawPoint(point.x(), point.y());
 }
 
+void Tools::lineTool(QPointF point) {
+    QPen pen;
+    pen.setColor(selectedColor.rgba());
+    painter->setPen(pen);
+    painter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
+}
 

@@ -95,7 +95,7 @@ void Project::setColorLabel(ColorLabel* label)
                      this, SLOT(handleColorChanged(QColor)));
 
     // Default starting color
-    handleColorChanged(QColor(255, 0, 0));
+    handleColorChanged(QColor(0, 0, 0));
 }
 
 
