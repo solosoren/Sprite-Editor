@@ -38,6 +38,7 @@ signals :
     void imageUpdated();
 
 private:
+    enum class MouseEventType { press, move, release };
     /* field */
     Global::Tool selectedTool;
     int selectedBrushSize;
@@ -52,6 +53,8 @@ private:
     QPointF currentPoint;
 
     /* functions */
+    void useTool(QPointF point, MouseEventType met);
+    void setButton(int button);
     void penTool(QPointF point);
     void eraser(QPointF point);
     void lineTool(QPointF point);

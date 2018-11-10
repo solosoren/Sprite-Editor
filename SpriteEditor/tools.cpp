@@ -45,82 +45,55 @@ void Tools::setBrushSize(int size)
 
 void Tools::handleMousePress(int button, QPointF point)
 {
-    if (button == Qt::RightButton) { painter->setPen(rightPen); }
-    if (button == Qt::LeftButton) { painter->setPen(leftPen); }
-    switch(selectedTool)
-    {
-        case Global::Tool::pen:
-            penTool(point);
-            break;
-        case Global::Tool::eraser:
-            eraser(point);
-            break;
-        case Global::Tool::line:
-            startPoint = point;
-            break;
-        case Global::Tool::fill:
-            //fillTool();
-            break;
-        case Global::Tool::brush:
-            //brushTool();
-            break;
-    }
-    emit imageUpdated();
+    setButton(button);
+    useTool(point, MouseEventType::press);
 }
 
 void Tools::handleMouseMove(int button, QPointF point)
 {
-    if (button == Qt::RightButton) { painter->setPen(rightPen); }
-    if (button == Qt::LeftButton) { painter->setPen(leftPen); }
-    switch(selectedTool)
-    {
-        case Global::Tool::pen:
-            penTool(point);
-            break;
-        case Global::Tool::eraser:
-            eraser(point);
-            break;
-        case Global::Tool::line:
-            //startPoint = point;
-            break;
-        case Global::Tool::fill:
-            //fillTool();
-            break;
-        case Global::Tool::brush:
-            //brushTool();
-            break;
-    }
-    emit imageUpdated();
+    setButton(button);
+    useTool(point, MouseEventType::move);
 }
 
 void Tools::handleMouseRelease(int button, QPointF point)
 {
-    if (button == Qt::RightButton) { painter->setPen(rightPen); }
-    if (button == Qt::LeftButton) { painter->setPen(leftPen); }
-    switch(selectedTool)
-    {
-        case Global::Tool::pen:
-            penTool(point);
-            break;
-        case Global::Tool::eraser:
-            eraser(point);
-            break;
-        case Global::Tool::line:
-            lineTool(point);
-            break;
-        case Global::Tool::fill:
-            //fillTool();
-            break;
-        case Global::Tool::brush:
-            //brushTool();
-            break;
-    }
-    emit imageUpdated();
+    setButton(button);
+    useTool(point, MouseEventType::release);
 }
 
 
 /* PRIVATE */
 
+
+void Tools::setButton(int button)
+{
+    if (button == Qt::RightButton) { painter->setPen(rightPen); }
+    else if (button == Qt::LeftButton) { painter->setPen(leftPen); }
+}
+
+void Tools::useTool(QPointF point, MouseEventType mouseEventType)
+{
+    switch(selectedTool)
+    {
+        case Global::Tool::pen:
+            penTool(point);
+            break;
+        case Global::Tool::eraser:
+            eraser(point);
+            break;
+        case Global::Tool::line:
+            if (mouseEventType == MouseEventType::press) { startPoint = point;}
+            else if (mouseEventType == MouseEventType::release) { lineTool(point); }
+            break;
+        case Global::Tool::fill:
+            //fillTool();
+            break;
+        case Global::Tool::brush:
+            //brushTool();
+            break;
+    }
+    emit imageUpdated();
+}
 
 void Tools::penTool(QPointF point)
 {
