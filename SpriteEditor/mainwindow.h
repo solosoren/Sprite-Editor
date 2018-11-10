@@ -39,6 +39,12 @@ private slots:
 
     void on_nextFrame_clicked();
 
+    void on_actionSave_triggered();
+
+    void on_actionLoad_triggered();
+
+    void on_actionExport_triggered();
+
 private:
     Ui::MainWindow* ui;
     Project project;

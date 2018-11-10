@@ -124,3 +124,21 @@ void MainWindow::on_nextFrame_clicked()
 {
     project.nextFrame();
 }
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Save file", QDir::homePath());
+    project.save(filename);
+}
+
+void MainWindow::on_actionLoad_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open a file", QDir::homePath());
+    project.load(filename);
+}
+
+void MainWindow::on_actionExport_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Choose Export Path", QDir::homePath());
+    project.exportGIF(filename);
+}

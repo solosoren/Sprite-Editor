@@ -1,4 +1,5 @@
 #include "project.h"
+#include <QDebug>
 
 
 Project::Project()
@@ -146,17 +147,17 @@ void Project::updatePreviewImage()
 /*File IO*/
 
 
-void Project::save()
+void Project::save(QString filename)
 {
-
+    qInfo() << filename;
 }
 
 void Project::load(QString filename)
 {
-
+    qInfo() << filename;
 }
 
 void Project::exportGIF(QString filename)
 {
-
+    qInfo() << filename;
 }
