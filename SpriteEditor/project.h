@@ -22,7 +22,9 @@ public:
 
     void nextFrame();
 
-    void createNewFrame();
+    QImage* createNewFrame();
+
+    void addNewFrame();
 
     void setActiveTool(Global::Tool tool);
 
@@ -47,8 +49,11 @@ public slots:
 
     void handleColorChanged(QColor color, ColorLabel* label);
 
+    void updatePreviewImage();
+
 private:
     std::vector<QImage*> frames;
+    QImage* previewImage;
     int currentFrame;
 
     SpriteAnimation* animation;

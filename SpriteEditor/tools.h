@@ -18,7 +18,7 @@ class Tools : public QObject
     //
 
 public:
-    Tools(QImage* image);
+    Tools(QImage* image, QImage* previewImage);
     ~Tools();
     void setImage(QImage* image);
 
@@ -36,6 +36,7 @@ public slots:
 
 signals :
     void imageUpdated();
+    void previewImageUpdated();
 
 private:
     enum class MouseEventType { press, move, release };
@@ -44,15 +45,18 @@ private:
     int selectedBrushSize;
 
     QPainter* painter;
+    QPainter* previewPainter;
     QPen leftPen;
     QPen rightPen;
-    QImage* tempImage;
+    QPen activePen;
+    QImage* previewImage;
     QImage* currentImage;
 
     QPointF startPoint;
     QPointF currentPoint;
 
     /* functions */
+    void createLinePreview(QPointF point);
     void useTool(QPointF point, MouseEventType met);
     void setButton(int button);
     void penTool(QPointF point);

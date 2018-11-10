@@ -2,9 +2,12 @@
 
 
 /* PUBLIC */
-Tools::Tools(QImage* image) : currentImage(image)
+Tools::Tools(QImage* image, QImage* previewImage) :
+    currentImage(image),
+    previewImage(previewImage)
 {
     painter = new QPainter(image);
+    previewPainter = new QPainter(previewImage);
 }
 
 Tools::~Tools()
@@ -65,25 +68,50 @@ void Tools::handleMouseRelease(int button, QPointF point)
 /* PRIVATE */
 
 
+void Tools::createLinePreview(QPointF point)
+{
+    previewImage = new QImage();
+    QPoint paintPos(0,0);
+    previewPainter->setPen(activePen); //for some reason this needs to be reset here, to work correctly.
+    previewPainter->drawImage(paintPos, *currentImage); //draw the current image to the preview image.
+    previewPainter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
+}
+
 void Tools::setButton(int button)
 {
-    if (button == Qt::RightButton) { painter->setPen(rightPen); }
-    else if (button == Qt::LeftButton) { painter->setPen(leftPen); }
+    if (button == Qt::RightButton) { activePen = rightPen; }
+    else if (button == Qt::LeftButton) { activePen = leftPen; }
 }
 
 void Tools::useTool(QPointF point, MouseEventType mouseEventType)
 {
+    painter->setPen(activePen);
     switch(selectedTool)
     {
         case Global::Tool::pen:
             penTool(point);
+            emit imageUpdated();
             break;
         case Global::Tool::eraser:
             eraser(point);
+            emit imageUpdated();
             break;
         case Global::Tool::line:
-            if (mouseEventType == MouseEventType::press) { startPoint = point;}
-            else if (mouseEventType == MouseEventType::release) { lineTool(point); }
+            if (mouseEventType == MouseEventType::press)
+            {
+                startPoint = point;
+                emit imageUpdated();
+            }
+            else if (mouseEventType == MouseEventType::move)
+            {
+                createLinePreview(point);
+                emit previewImageUpdated();
+            }
+            else if (mouseEventType == MouseEventType::release)
+            {
+                lineTool(point);
+                emit imageUpdated();
+            }
             break;
         case Global::Tool::fill:
             //fillTool();
@@ -92,7 +120,6 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             //brushTool();
             break;
     }
-    emit imageUpdated();
 }
 
 void Tools::penTool(QPointF point)

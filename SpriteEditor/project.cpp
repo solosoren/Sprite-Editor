@@ -3,13 +3,14 @@
 
 Project::Project()
 {
-    createNewFrame();
+    addNewFrame();
+    previewImage = createNewFrame();
     currentFrame = 0;
 
     canvas = new Canvas(frames[currentFrame]);
     animation = new SpriteAnimation();
     //animation->setImages(&frames);
-    tools = new Tools(frames[currentFrame]);
+    tools = new Tools(frames[currentFrame], previewImage);
 
     QObject::connect(canvas, SIGNAL(mousePressed(int, QPointF)),
                      tools,  SLOT(handleMousePress(int, QPointF)) );
@@ -22,6 +23,9 @@ Project::Project()
 
     QObject::connect(tools, SIGNAL(imageUpdated()),
                      this,  SLOT(updateImage()) );
+
+    QObject::connect(tools, SIGNAL(previewImageUpdated()),
+                     this,  SLOT(updatePreviewImage()) );
 }
 
 Project::~Project()
@@ -44,7 +48,7 @@ void Project::nextFrame()
     setCurrentFrame(frameNumber);
 }
 
-void Project::createNewFrame()
+QImage* Project::createNewFrame()
 {
     QImage* image = new QImage(Global::gridSizeX, Global::gridSizeY, QImage::Format_ARGB32);
     // Initializes empty grid
@@ -55,7 +59,12 @@ void Project::createNewFrame()
             image->setPixelColor(i, j, QColor(255,255,255,0).rgba());
         }
     }
-    frames.push_back(image);
+    return image;
+}
+
+void Project::addNewFrame()
+{
+    frames.push_back(createNewFrame());
 }
 
 
@@ -126,6 +135,11 @@ void Project::handleColorChanged(QColor color, ColorLabel* label)
 void Project::updateImage()
 {
     canvas->setImage(frames[currentFrame]);
+}
+
+void Project::updatePreviewImage()
+{
+    canvas->setImage(previewImage);
 }
 
 
