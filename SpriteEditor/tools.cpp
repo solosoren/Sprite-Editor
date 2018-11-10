@@ -2,7 +2,8 @@
 
 
 /* PUBLIC */
-Tools::Tools(QImage* image) : currentImage(image){
+Tools::Tools(QImage* image) : currentImage(image)
+{
     painter = new QPainter(image);
 }
 
@@ -25,13 +26,11 @@ void Tools::setSelectedTool(Global::Tool tool)
 
 void Tools::setLeftSelectedColor(QColor color)
 {
-    leftSelectedColor = color;
     leftPen.setColor(color.rgba());
 }
 
 void Tools::setRightSelectedColor(QColor color)
 {
-    rightSelectedColor = color;
     rightPen.setColor(color.rgba());
 }
 

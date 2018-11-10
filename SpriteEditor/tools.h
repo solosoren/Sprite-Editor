@@ -40,8 +40,6 @@ signals :
 private:
     /* field */
     Global::Tool selectedTool;
-    QColor leftSelectedColor;
-    QColor rightSelectedColor;
     int selectedBrushSize;
 
     QPainter* painter;
