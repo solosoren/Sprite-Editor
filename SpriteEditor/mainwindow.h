@@ -7,7 +7,8 @@
 #include "project.h"
 
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
