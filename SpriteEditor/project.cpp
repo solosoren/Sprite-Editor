@@ -1,4 +1,5 @@
 #include "project.h"
+#include <QDebug>
 
 
 Project::Project()
@@ -55,6 +56,7 @@ void Project::setCurrentFrame(int frameNumber)
 void Project::nextFrame()
 {
     int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
+    qInfo() << frameNumber;
     setCurrentFrame(frameNumber);
 }
 
@@ -156,17 +158,17 @@ void Project::updatePreviewImage()
 /*File IO*/
 
 
-void Project::save()
+void Project::save(QString filename)
 {
-
+    qInfo() << filename;
 }
 
 void Project::load(QString filename)
 {
-
+    qInfo() << filename;
 }
 
 void Project::exportGIF(QString filename)
 {
-
+    qInfo() << filename;
 }

@@ -4,6 +4,7 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QThread>
+#include <QFileDialog>
 #include "canvas.h"
 #include "tools.h"
 #include "spriteanimation.h"
@@ -39,7 +40,7 @@ public:
 
     void setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel);
 
-    void save();
+    void save(QString filename);
 
     void load(QString filename);
 

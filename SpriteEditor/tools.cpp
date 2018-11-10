@@ -114,7 +114,8 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             }
             break;
         case Global::Tool::fill:
-            //fillTool();
+            fillTool();
+            emit imageUpdated();
             break;
         case Global::Tool::brush:
             //brushTool();
@@ -137,3 +138,8 @@ void Tools::lineTool(QPointF point)
     painter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
 }
 
+void Tools::fillTool()
+{
+    QRectF space(0,0,Global::gridSizeX, Global::gridSizeY);
+    painter->fillRect(space, activePen.color());
+}
