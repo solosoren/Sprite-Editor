@@ -115,7 +115,7 @@ void MainWindow::on_fillToolButton_clicked()
 
 void MainWindow::on_newFrameButton_clicked()
 {
-    project.createNewFrame();
+    project.addNewFrame();
     //QDialogButtonBox button = new QDialogButtonBox(this);
     //ui->verticalLayout_4->addWidget();
 }

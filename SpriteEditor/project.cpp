@@ -46,6 +46,7 @@ void Project::setCurrentFrame(int frameNumber)
 void Project::nextFrame()
 {
     int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
+    qInfo() << frameNumber;
     setCurrentFrame(frameNumber);
 }
 
