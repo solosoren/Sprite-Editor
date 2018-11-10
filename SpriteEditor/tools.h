@@ -63,6 +63,7 @@ private:
     void eraser(QPointF point);
     void lineTool(QPointF point);
     void fillTool(QPointF point);
+    void fillTool();
     void brushTool(QPointF point);
 };
 
