@@ -16,27 +16,19 @@ Canvas::Canvas(QImage* image, QObject *parent):
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
 {
     QPointF pointPressed = convertToPoint(mouseEvent->scenePos());
-
-    if (mouseEvent->button() == Qt::LeftButton)
-    {
-        emit mouseLeftPressed(pointPressed);
-    }
-    else if (mouseEvent->button() == Qt::RightButton)
-    {
-        emit mouseRightPressed(pointPressed);
-    }
+    emit mousePressed(mouseEvent->button(), pointPressed);
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent)
 {
     QPointF pointMoved = convertToPoint(mouseEvent->scenePos());
-    emit mouseMoved(pointMoved);
+    emit mouseMoved(mouseEvent->button(), pointMoved);
 }
 
 void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent)
 {
     QPointF pointReleased = convertToPoint(mouseEvent->scenePos());
-    emit mouseReleased(pointReleased);
+    emit mouseReleased(mouseEvent->button(),pointReleased);
 }
 
 void Canvas::updatePixmap()

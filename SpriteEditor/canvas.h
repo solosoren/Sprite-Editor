@@ -29,10 +29,9 @@ class Canvas  : public QGraphicsScene
         void toggleGridlines();
 
     signals:
-        void mouseLeftPressed(QPointF point);
-        void mouseRightPressed(QPointF point);
-        void mouseMoved(QPointF point);
-        void mouseReleased(QPointF point);
+        void mousePressed(int button, QPointF point);
+        void mouseMoved(int button, QPointF point);
+        void mouseReleased(int button, QPointF point);
 
     public slots:
 

@@ -11,14 +11,14 @@ Project::Project()
     //animation->setImages(&frames);
     tools = new Tools(frames[currentFrame]);
 
-    QObject::connect(canvas, SIGNAL(mouseLeftPressed(QPointF)),
-                     tools,  SLOT(handleMousePress(QPointF)) );
+    QObject::connect(canvas, SIGNAL(mousePressed(int, QPointF)),
+                     tools,  SLOT(handleMousePress(int, QPointF)) );
 
-    QObject::connect(canvas, SIGNAL(mouseMoved(QPointF)),
-                     tools,  SLOT(handleMouseMove(QPointF)) );
+    QObject::connect(canvas, SIGNAL(mouseMoved(int, QPointF)),
+                     tools,  SLOT(handleMouseMove(int, QPointF)) );
 
-    QObject::connect(canvas, SIGNAL(mouseReleased(QPointF)),
-                     tools,  SLOT(handleMouseRelease(QPointF)) );
+    QObject::connect(canvas, SIGNAL(mouseReleased(int, QPointF)),
+                     tools,  SLOT(handleMouseRelease(int, QPointF)) );
 
     QObject::connect(tools, SIGNAL(imageUpdated()),
                      this,  SLOT(updateImage()) );

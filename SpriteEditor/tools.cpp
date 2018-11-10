@@ -44,8 +44,10 @@ void Tools::setBrushSize(int size)
 /* slots */
 
 
-void Tools::handleMousePress(QPointF point)
+void Tools::handleMousePress(int button, QPointF point)
 {
+    if (button == Qt::RightButton) { painter->setPen(rightPen); }
+    if (button == Qt::LeftButton) { painter->setPen(leftPen); }
     switch(selectedTool)
     {
         case Global::Tool::pen:
@@ -67,8 +69,10 @@ void Tools::handleMousePress(QPointF point)
     emit imageUpdated();
 }
 
-void Tools::handleMouseMove(QPointF point)
+void Tools::handleMouseMove(int button, QPointF point)
 {
+    if (button == Qt::RightButton) { painter->setPen(rightPen); }
+    if (button == Qt::LeftButton) { painter->setPen(leftPen); }
     switch(selectedTool)
     {
         case Global::Tool::pen:
@@ -90,8 +94,10 @@ void Tools::handleMouseMove(QPointF point)
     emit imageUpdated();
 }
 
-void Tools::handleMouseRelease(QPointF point)
+void Tools::handleMouseRelease(int button, QPointF point)
 {
+    if (button == Qt::RightButton) { painter->setPen(rightPen); }
+    if (button == Qt::LeftButton) { painter->setPen(leftPen); }
     switch(selectedTool)
     {
         case Global::Tool::pen:
@@ -119,19 +125,16 @@ void Tools::handleMouseRelease(QPointF point)
 
 void Tools::penTool(QPointF point)
 {
-    painter->setPen(leftPen);
     painter->drawPoint(point.x(), point.y());
 }
 
 void Tools::eraser(QPointF point)
 {
-    painter->setPen(leftPen);
     painter->drawPoint(point.x(), point.y());
 }
 
 void Tools::lineTool(QPointF point)
 {
-    painter->setPen(leftPen);
     painter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
 }
 

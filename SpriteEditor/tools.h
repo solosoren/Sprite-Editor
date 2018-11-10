@@ -30,9 +30,9 @@ public:
     void setBrushSize(int size); // NEW!
 
 public slots:
-    void handleMousePress(QPointF point);
-    void handleMouseMove(QPointF point);
-    void handleMouseRelease(QPointF point);
+    void handleMousePress(int button, QPointF point);
+    void handleMouseMove(int button, QPointF point);
+    void handleMouseRelease(int button, QPointF point);
 
 signals :
     void imageUpdated();
