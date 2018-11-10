@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QThread>
 #include <QFileDialog>
+#include <QTextStream>
 #include "canvas.h"
 #include "tools.h"
 #include "spriteanimation.h"
