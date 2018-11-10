@@ -11,7 +11,7 @@ Project::Project()
     animation = new SpriteAnimation();
     tools = new Tools(frames[currentFrame]);
 
-    QObject::connect(canvas, SIGNAL(mousePressed(QPointF)),
+    QObject::connect(canvas, SIGNAL(mouseLeftPressed(QPointF)),
                      tools,  SLOT(handleMousePress(QPointF)) );
 
     QObject::connect(canvas, SIGNAL(mouseMoved(QPointF)),
@@ -87,27 +87,38 @@ void Project::handleAnimationSliderValueChanged(int value)
     animation->setFrameRate(value);
 }
 
-void Project::setColorLabel(ColorLabel* label)
+void Project::setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel)
 {
-    colorLabel = label;
+    this->leftColorLabel = leftLabel;
+    this->rightColorLabel = rightLabel;
 
-    QObject::connect(colorLabel, SIGNAL(colorChanged(QColor)),
-                     this, SLOT(handleColorChanged(QColor)));
+    QObject::connect(leftColorLabel, SIGNAL(colorChanged(QColor, ColorLabel*)),
+                     this, SLOT(handleColorChanged(QColor, ColorLabel*)));
+
+    QObject::connect(rightColorLabel, SIGNAL(colorChanged(QColor, ColorLabel*)),
+                     this, SLOT(handleColorChanged(QColor, ColorLabel*)));
 
     // Default starting color
-    handleColorChanged(QColor(0, 0, 0));
+    handleColorChanged(QColor(0, 0, 0), leftColorLabel);
+    handleColorChanged(QColor(255, 255, 255), rightColorLabel);
 }
 
 
 /*Slots*/
 
 
-void Project::handleColorChanged(QColor color)
+void Project::handleColorChanged(QColor color, ColorLabel* label)
 {
-    tools->setSelectedColor(color.rgba());
+    if(label == leftColorLabel) {
+        tools->setLeftSelectedColor(color.rgba());
+    }
+    if(label == rightColorLabel) {
+        tools->setRightSelectedColor(color.rgba());
+    }
+
     QImage image(1, 1, QImage::Format_ARGB32);
     image.setPixelColor(0, 0, color);
-    colorLabel->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
+    label->setPixmap(QPixmap().fromImage(image.scaled(150, 50)));
 }
 
 void Project::updateImage()

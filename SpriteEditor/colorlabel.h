@@ -10,7 +10,7 @@ public:
     ColorLabel(QWidget *parent = 0);
 
 signals:
-    void colorChanged(QColor color);
+    void colorChanged(QColor color, ColorLabel* label);
 
 protected:
     void mousePressEvent(QMouseEvent* event);

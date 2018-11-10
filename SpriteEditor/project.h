@@ -32,7 +32,7 @@ public:
 
     void handleAnimationSliderValueChanged(int value);
 
-    void setColorLabel(ColorLabel* label);
+    void setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel);
 
     void save();
 
@@ -43,7 +43,7 @@ public:
 public slots:
     void updateImage();
 
-    void handleColorChanged(QColor color);
+    void handleColorChanged(QColor color, ColorLabel* label);
 
 private:
     std::vector<QImage*> frames;
@@ -55,7 +55,9 @@ private:
 
     Canvas* canvas;
 
-    ColorLabel* colorLabel;
+    ColorLabel* leftColorLabel;
+    ColorLabel* rightColorLabel;
+
     void setColorLabelColor(QColor color);
 
 };

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //FlowLayout* flowLayout = new FlowLayout;
 
-    project.setColorLabel(ui->colorSelectedLabel);
+    project.setColorLabel(ui->leftColorSelectedLabel, ui->rightColorSelectedLabel);
 
     on_penToolButton_clicked();
 

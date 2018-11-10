@@ -13,6 +13,6 @@ void ColorLabel::mousePressEvent(QMouseEvent* ev) {
     QColorDialog colorDialog;
     QColor color = colorDialog.getColor();
     if(color != QColor::Invalid) {
-        emit colorChanged(color);
+        emit colorChanged(color, this);
     }
 }

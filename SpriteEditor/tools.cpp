@@ -16,9 +16,14 @@ void Tools::setSelectedTool(int tool)
     selectedTool = tool;
 }
 
-void Tools::setSelectedColor(QColor color)
+void Tools::setLeftSelectedColor(QColor color)
 {
-    selectedColor = color;
+    leftSelectedColor = color;
+}
+
+void Tools::setRightSelectedColor(QColor color)
+{
+    rightSelectedColor = color;
 }
 
 void Tools::setBrushSize(int size)
@@ -74,7 +79,7 @@ void Tools::useTool(QPointF point)
 void Tools::penTool(QPointF point)
 {
     QPen pen;
-    pen.setColor(selectedColor.rgba());
+    pen.setColor(leftSelectedColor.rgba());
     painter->setPen(pen);
     painter->drawPoint(point.x(), point.y());
 }
@@ -88,7 +93,7 @@ void Tools::eraser(QPointF point) {
 
 void Tools::lineTool(QPointF point) {
     QPen pen;
-    pen.setColor(selectedColor.rgba());
+    pen.setColor(leftSelectedColor.rgba());
     painter->setPen(pen);
     painter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
 }

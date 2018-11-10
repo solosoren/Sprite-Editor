@@ -16,7 +16,13 @@ Canvas::Canvas(QImage* image, QObject *parent):
 void Canvas::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) {
     QPointF pointPressed = convertToPoint(mouseEvent->scenePos());
     pointDebugMessage("Clicked mouse at ", pointPressed);
-    emit mousePressed(pointPressed);
+
+    if(mouseEvent->button() == Qt::LeftButton) {
+        emit mouseLeftPressed(pointPressed);
+    }
+    else if(mouseEvent->button() == Qt::RightButton) {
+        emit mouseRightPressed(pointPressed);
+    }
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent* mouseEvent) {

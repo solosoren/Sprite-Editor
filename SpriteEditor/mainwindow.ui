@@ -21,115 +21,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <widget class="QGraphicsView" name="graphicsView">
-        <property name="minimumSize">
-         <size>
-          <width>600</width>
-          <height>600</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>600</width>
-          <height>600</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
-        </property>
-        <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOff</enum>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QScrollArea" name="frameSelectionDisplay">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>600</width>
-          <height>100</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>100</height>
-         </size>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="frameScrollDisplay">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>600</width>
-           <height>98</height>
-          </rect>
-         </property>
-         <widget class="QPushButton" name="newFrameButton">
-          <property name="geometry">
-           <rect>
-            <x>9</x>
-            <y>10</y>
-            <width>111</width>
-            <height>161</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>New Frame</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="nextFrame">
-          <property name="geometry">
-           <rect>
-            <x>160</x>
-            <y>80</y>
-            <width>80</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Next Frame</string>
-          </property>
-         </widget>
-        </widget>
-       </widget>
-      </item>
-     </layout>
-    </item>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <property name="sizeConstraint">
@@ -175,11 +66,25 @@
            </widget>
           </item>
           <item>
-           <widget class="ColorLabel " name="colorSelectedLabel">
-            <property name="text">
-             <string>TextLabel</string>
+           <layout class="QHBoxLayout" name="colorSelectedLayout">
+            <property name="topMargin">
+             <number>50</number>
             </property>
-           </widget>
+            <item>
+             <widget class="ColorLabel " name="leftColorSelectedLabel">
+              <property name="text">
+               <string>Left Color</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="ColorLabel " name="rightColorSelectedLabel">
+              <property name="text">
+               <string>Right Color</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -292,6 +197,115 @@
           <height>300</height>
          </size>
         </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QGraphicsView" name="graphicsView">
+        <property name="minimumSize">
+         <size>
+          <width>600</width>
+          <height>600</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>600</width>
+          <height>600</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="frameSelectionDisplay">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>600</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="frameScrollDisplay">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>598</width>
+           <height>98</height>
+          </rect>
+         </property>
+         <widget class="QPushButton" name="newFrameButton">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>10</y>
+            <width>111</width>
+            <height>161</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>New Frame</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="nextFrame">
+          <property name="geometry">
+           <rect>
+            <x>160</x>
+            <y>80</y>
+            <width>80</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Next Frame</string>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </item>
      </layout>

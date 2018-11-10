@@ -10,8 +10,8 @@ namespace GLOBAL{
     static int windowSizeY = 600;
 
     // Grid sizes
-    static int gridSizeX = 16;
-    static int gridSizeY = 16;
+    static int gridSizeX = 8;
+    static int gridSizeY = 8;
 
     static QPixmap convertImageToPixmap(QImage image) {
          return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));

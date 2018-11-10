@@ -25,7 +25,9 @@ public:
 
     // LOOK AT THIS - MAY CHANGE THOS TO SLOTS
     void setSelectedTool(int tool);
-    void setSelectedColor(QColor color);
+    void setLeftSelectedColor(QColor color);
+    void setRightSelectedColor(QColor color);
+
     void setBrushSize(int size); // NEW!
 
 public slots:
@@ -39,7 +41,8 @@ signals :
 private:
     /* field */
     int selectedTool;
-    QColor selectedColor;
+    QColor leftSelectedColor;
+    QColor rightSelectedColor;
     int selectedBrushSize;
 
     QPainter* painter;
