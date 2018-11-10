@@ -17,26 +17,34 @@ void SpriteAnimation::setFrameRate(int rate)
 {
     int oldRate = frameRate;
     frameRate = rate;
-    if (oldRate == 0) { startAnimation(); }
+    frameIndex = 0;
+    if (oldRate == 0)
+    {
+        QTimer::singleShot(0, this, SLOT(startAnimation()));
+    }
 }
 
 void SpriteAnimation::startAnimation()
 {
-    int frameIndex = 0;
-    int frameCount = 0;
-    if (images != nullptr)
+    if (images != nullptr && frameRate > 0 && images->size() > 0)
     {
-        while (frameRate > 0 && images->size() > 0)
-        {
-            QImage  image   = *((*images)[frameIndex++ % images->size()]);
-            QPixmap pixmap  = Global::convertImageToPixmap(image);
-            QTimer::singleShot(frameCount++ * (1000 / frameRate), this, SLOT(displayFrame(pixmap)));
-        }
+       QTimer::singleShot((1000 / frameRate)/2, this, SLOT(displayFrame()));
     }
 }
 
-void SpriteAnimation::displayFrame(QPixmap pixmap)
+void SpriteAnimation::displayFrame()
 {
+    QImage  image   = *((*images)[frameIndex++ % images->size()]);
+    QPixmap pixmap  = Global::convertImageToPixmap(image);
+
     this->clear();
     this->addPixmap(pixmap);
+
+    QTimer::singleShot((1000 / frameRate)/2, this, SLOT(startAnimation()));
 }
+
+
+
+
+
+

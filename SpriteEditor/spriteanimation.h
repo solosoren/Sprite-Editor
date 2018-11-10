@@ -13,10 +13,11 @@ class SpriteAnimation: public QGraphicsScene
 private:
     std::vector<QImage*>* images;
     int frameRate;
-    void startAnimation();
+    int frameIndex;
 
 private slots:
-    void displayFrame(QPixmap pixmap);
+    void displayFrame();
+    void startAnimation();
 
 public:
     SpriteAnimation();

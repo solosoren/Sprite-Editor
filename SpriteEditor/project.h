@@ -3,6 +3,7 @@
 
 #include <QPixmap>
 #include <QLabel>
+#include <QThread>
 #include "canvas.h"
 #include "tools.h"
 #include "spriteanimation.h"
@@ -57,6 +58,7 @@ private:
     int currentFrame;
 
     SpriteAnimation* animation;
+    QThread* animationThread;
 
     Tools* tools;
 

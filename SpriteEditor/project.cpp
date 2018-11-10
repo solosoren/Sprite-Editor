@@ -9,8 +9,14 @@ Project::Project()
 
     canvas = new Canvas(frames[currentFrame]);
     animation = new SpriteAnimation();
-    //animation->setImages(&frames);
+    animation->setImages(&frames);
+    //animationThread = new QThread();
+   //animation->moveToThread(animationThread);
+    //animationThread->start();
+
     tools = new Tools(frames[currentFrame], previewImage);
+
+
 
     QObject::connect(canvas, SIGNAL(mousePressed(int, QPointF)),
                      tools,  SLOT(handleMousePress(int, QPointF)) );
@@ -33,6 +39,10 @@ Project::~Project()
     delete canvas;
     delete tools;
     for (QImage* image : frames) { delete image; }
+
+   // animationThread->wait();
+   // delete animationThread;
+    delete animation;
 }
 
 void Project::setCurrentFrame(int frameNumber)
