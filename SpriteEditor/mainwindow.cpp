@@ -127,18 +127,18 @@ void MainWindow::on_nextFrame_clicked()
 
 void MainWindow::on_actionSave_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, "Save file", QDir::homePath());
+    QString filename = QFileDialog::getSaveFileName(this, "Save file", QDir::homePath(), "*.ssp");
     project.save(filename);
 }
 
 void MainWindow::on_actionLoad_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open a file", QDir::homePath());
+    QString filename = QFileDialog::getOpenFileName(this, "Open a file", QDir::homePath(), "*.ssp");
     project.load(filename);
 }
 
 void MainWindow::on_actionExport_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, "Choose Export Path", QDir::homePath());
+    QString filename = QFileDialog::getSaveFileName(this, "Choose Export Path", QDir::homePath(), "*.gif");
     project.exportGIF(filename);
 }

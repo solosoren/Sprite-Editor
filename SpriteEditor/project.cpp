@@ -152,6 +152,7 @@ void Project::updatePreviewImage()
 
 void Project::save(QString filename)
 {
+    if ( ! filename.contains(".ssp")) {filename = filename.append(".ssp");}
     QFile saveFile(filename);
     saveFile.open((QIODevice::WriteOnly | QIODevice::Text));
     QTextStream writer(&saveFile);
