@@ -40,7 +40,7 @@ void Canvas::updatePixmap()
     }
     else
     {
-        pixmap = Global::convertImageToPixmap(*image);
+        pixmap = Global::convertImageToPixmap(*image, true);
     }
 
     this->clear();

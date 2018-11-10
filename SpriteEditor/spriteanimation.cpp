@@ -35,12 +35,15 @@ void SpriteAnimation::startAnimation()
 void SpriteAnimation::displayFrame()
 {
     QImage  image   = *((*images)[frameIndex++ % images->size()]);
-    QPixmap pixmap  = Global::convertImageToPixmap(image);
+    QPixmap pixmap  = Global::convertImageToPixmap(image, false);
 
     this->clear();
     this->addPixmap(pixmap);
 
-    QTimer::singleShot((1000 / frameRate)/2, this, SLOT(startAnimation()));
+    if (frameRate > 0)
+    {
+        QTimer::singleShot((1000 / frameRate)/2, this, SLOT(startAnimation()));
+    }
 }
 
 

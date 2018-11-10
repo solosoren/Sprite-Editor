@@ -10,14 +10,20 @@ namespace Global
     // Window sizes
     static int windowSizeX = 600;
     static int windowSizeY = 600;
+    static int animationWindowSizeX = 295;
+    static int animationWindowSizeY = 295;
 
     // Grid sizes
     static int gridSizeX = 100;
     static int gridSizeY = 100;
 
-    static QPixmap convertImageToPixmap(QImage image)
+    static QPixmap convertImageToPixmap(QImage image, bool isMainCanvas)
     {
-         return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
+        if (isMainCanvas)
+        {
+            return QPixmap().fromImage(image.scaled(windowSizeX,windowSizeY));
+        }
+        return QPixmap().fromImage(image.scaled(animationWindowSizeX,animationWindowSizeY));
     }
 
     static QPixmap convertImageToPixmapWithGridLines(QImage image)
