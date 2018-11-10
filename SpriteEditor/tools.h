@@ -7,8 +7,6 @@
 #include <vector>
 #include "global.h"
 
-/* only receive one Pos
- * only return one Qimage */
 
 class Tools : public QObject
 {
@@ -21,10 +19,11 @@ class Tools : public QObject
 
 public:
     Tools(QImage* image);
+    ~Tools();
     void setImage(QImage* image);
 
     // LOOK AT THIS - MAY CHANGE THOS TO SLOTS
-    void setSelectedTool(int tool);
+    void setSelectedTool(Global::Tool tool);
     void setLeftSelectedColor(QColor color);
     void setRightSelectedColor(QColor color);
 
@@ -40,12 +39,14 @@ signals :
 
 private:
     /* field */
-    int selectedTool;
+    Global::Tool selectedTool;
     QColor leftSelectedColor;
     QColor rightSelectedColor;
     int selectedBrushSize;
 
     QPainter* painter;
+    QPen leftPen;
+    QPen rightPen;
     QImage* tempImage;
     QImage* currentImage;
 
@@ -53,7 +54,6 @@ private:
     QPointF currentPoint;
 
     /* functions */
-    void useTool(QPointF point);
     void penTool(QPointF point);
     void eraser(QPointF point);
     void lineTool(QPointF point);

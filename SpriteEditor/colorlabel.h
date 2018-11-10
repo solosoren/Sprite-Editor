@@ -3,6 +3,7 @@
 
 #include <QLabel>
 
+
 class ColorLabel : public QLabel
 {
     Q_OBJECT

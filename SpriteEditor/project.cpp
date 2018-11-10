@@ -1,14 +1,14 @@
 #include "project.h"
-#include <QDebug>
+
 
 Project::Project()
 {
-    //frames.push_back(QImage(gridSizeX, gridSizeY, QImage:: QImage::Format_ARGB32));
     createNewFrame();
     currentFrame = 0;
 
     canvas = new Canvas(frames[currentFrame]);
     animation = new SpriteAnimation();
+    //animation->setImages(&frames);
     tools = new Tools(frames[currentFrame]);
 
     QObject::connect(canvas, SIGNAL(mouseLeftPressed(QPointF)),
@@ -28,10 +28,7 @@ Project::~Project()
 {
     delete canvas;
     delete tools;
-    for (QImage* image : frames)
-    {
-        delete image;
-    }
+    for (QImage* image : frames) { delete image; }
 }
 
 void Project::setCurrentFrame(int frameNumber)
@@ -49,10 +46,12 @@ void Project::nextFrame()
 
 void Project::createNewFrame()
 {
-    QImage* image = new QImage(gridSizeX, gridSizeY, QImage::Format_ARGB32);
+    QImage* image = new QImage(Global::gridSizeX, Global::gridSizeY, QImage::Format_ARGB32);
     // Initializes empty grid
-    for(int i = 0; i< gridSizeX; i++) {
-        for(int j =0; j < gridSizeY; j++) {
+    for(int i = 0; i< Global::gridSizeX; i++)
+    {
+        for(int j =0; j < Global::gridSizeY; j++)
+        {
             image->setPixelColor(i, j, QColor(255,255,255,0).rgba());
         }
     }
@@ -62,7 +61,8 @@ void Project::createNewFrame()
 
 /*UI Helpers*/
 
-void Project::setActiveTool(int tool)
+
+void Project::setActiveTool(Global::Tool tool)
 {
     tools->setSelectedTool(tool);
 }
@@ -109,10 +109,12 @@ void Project::setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel)
 
 void Project::handleColorChanged(QColor color, ColorLabel* label)
 {
-    if(label == leftColorLabel) {
+    if(label == leftColorLabel)
+    {
         tools->setLeftSelectedColor(color.rgba());
     }
-    if(label == rightColorLabel) {
+    if(label == rightColorLabel)
+    {
         tools->setRightSelectedColor(color.rgba());
     }
 

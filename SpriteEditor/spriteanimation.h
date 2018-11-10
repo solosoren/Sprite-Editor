@@ -1,11 +1,10 @@
 #ifndef SPRITEANIMATION_H
 #define SPRITEANIMATION_H
+
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <QTimer>
 #include "global.h"
-
-using namespace GLOBAL;
 
 class SpriteAnimation: public QGraphicsScene
 {
@@ -14,7 +13,7 @@ class SpriteAnimation: public QGraphicsScene
 private:
     std::vector<QImage*>* images;
     int frameRate;
-    void animate();
+    void startAnimation();
 
 private slots:
     void displayFrame(QPixmap pixmap);

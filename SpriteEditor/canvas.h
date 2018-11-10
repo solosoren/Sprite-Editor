@@ -1,11 +1,11 @@
 #ifndef CANVAS_H
 #define CANVAS_H
+
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include "global.h"
 
-using namespace GLOBAL;
 
 class Canvas  : public QGraphicsScene
 {

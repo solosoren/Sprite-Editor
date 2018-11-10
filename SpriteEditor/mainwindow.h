@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include "project.h"
 
+
 namespace Ui {
 class MainWindow;
 }
@@ -40,7 +41,7 @@ private slots:
 private:
     Ui::MainWindow* ui;
     Project project;
-    void highlightButton(int button);
+    void highlightButton(Global::Tool tool);
 
 friend int main(int argc, char *argv[]);
 };

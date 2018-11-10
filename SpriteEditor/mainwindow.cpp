@@ -9,11 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //FlowLayout* flowLayout = new FlowLayout;
-
     project.setColorLabel(ui->leftColorSelectedLabel, ui->rightColorSelectedLabel);
 
-    on_penToolButton_clicked();
+    on_penToolButton_clicked(); //set pen tool as initially selected
 
     ui->graphicsView->setScene(project.getCanvas());
     ui->animationView->setScene(project.getAnimation());
@@ -24,49 +22,49 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::highlightButton(int button)
+void MainWindow::highlightButton(Global::Tool tool)
 {
-    switch(button)
+    switch(tool)
     {
-     case GLOBAL::PEN:
-        ui->penToolButton->setStyleSheet(GLOBAL::buttonHighlightFormat);
+     case Global::Tool::pen:
+        ui->penToolButton->setStyleSheet(Global::buttonHighlightFormat);
 
-        ui->brushToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->lineToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->fillToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->eraserToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
+        ui->brushToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->lineToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->fillToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->eraserToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         break;
-     case GLOBAL::BRUSH:
-        ui->brushToolButton->setStyleSheet(GLOBAL::buttonHighlightFormat);
+     case Global::Tool::brush:
+        ui->brushToolButton->setStyleSheet(Global::buttonHighlightFormat);
 
-        ui->penToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->lineToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->fillToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->eraserToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
+        ui->penToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->lineToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->fillToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->eraserToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         break;
-    case GLOBAL::LINE:
-        ui->lineToolButton->setStyleSheet(GLOBAL::buttonHighlightFormat);
+    case Global::Tool::line:
+        ui->lineToolButton->setStyleSheet(Global::buttonHighlightFormat);
 
-        ui->penToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->brushToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->fillToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->eraserToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
+        ui->penToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->brushToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->fillToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->eraserToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         break;
-    case GLOBAL::FILL:
-        ui->fillToolButton->setStyleSheet(GLOBAL::buttonHighlightFormat);
+    case Global::Tool::fill:
+        ui->fillToolButton->setStyleSheet(Global::buttonHighlightFormat);
 
-        ui->penToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->brushToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->lineToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->eraserToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
+        ui->penToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->brushToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->lineToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->eraserToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         break;
-    case GLOBAL::ERASER:
-        ui->eraserToolButton->setStyleSheet(GLOBAL::buttonHighlightFormat);
+    case Global::Tool::eraser:
+        ui->eraserToolButton->setStyleSheet(Global::buttonHighlightFormat);
 
-        ui->penToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->brushToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->lineToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
-        ui->fillToolButton->setStyleSheet(GLOBAL::buttonNonHighlightFormat);
+        ui->penToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->brushToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->lineToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
+        ui->fillToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         break;
     }
 }
@@ -84,35 +82,35 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
 
 void MainWindow::on_penToolButton_clicked()
 {
-    project.setActiveTool(GLOBAL::PEN);
-    highlightButton(GLOBAL::PEN);
+    project.setActiveTool(Global::Tool::pen);
+    highlightButton(Global::Tool::pen);
 }
 
 void MainWindow::on_eraserToolButton_clicked()
 {
-    project.setActiveTool(GLOBAL::ERASER);
-    highlightButton(GLOBAL::ERASER);
+    project.setActiveTool(Global::Tool::eraser);
+    highlightButton(Global::Tool::eraser);
 }
 
 
 void MainWindow::on_brushToolButton_clicked()
 {
-    project.setActiveTool(GLOBAL::BRUSH);
-    highlightButton(GLOBAL::BRUSH);
+    project.setActiveTool(Global::Tool::brush);
+    highlightButton(Global::Tool::brush);
 }
 
 
 void MainWindow::on_lineToolButton_clicked()
 {
-    project.setActiveTool(GLOBAL::LINE);
-    highlightButton(GLOBAL::LINE);
+    project.setActiveTool(Global::Tool::line);
+    highlightButton(Global::Tool::line);
 }
 
 
 void MainWindow::on_fillToolButton_clicked()
 {
-    project.setActiveTool(GLOBAL::FILL);
-    highlightButton(GLOBAL::FILL);
+    project.setActiveTool(Global::Tool::fill);
+    highlightButton(Global::Tool::fill);
 }
 
 void MainWindow::on_newFrameButton_clicked()

@@ -1,11 +1,13 @@
 #ifndef PROJECT_H
 #define PROJECT_H
+
 #include <QPixmap>
 #include <QLabel>
 #include "canvas.h"
 #include "tools.h"
 #include "spriteanimation.h"
 #include "colorlabel.h"
+
 
 class Project: public QObject
 {
@@ -22,7 +24,7 @@ public:
 
     void createNewFrame();
 
-    void setActiveTool(int tool);
+    void setActiveTool(Global::Tool tool);
 
     SpriteAnimation* getAnimation();
 
