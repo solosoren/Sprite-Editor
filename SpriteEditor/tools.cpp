@@ -90,12 +90,18 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
     switch(selectedTool)
     {
         case Global::Tool::pen:
-            penTool(point);
+            if (mouseEventType == MouseEventType::press || mouseEventType == MouseEventType::move)
+            {
+                penTool(point);
+            }
             emit imageUpdated();
             break;
 
         case Global::Tool::eraser:
-            eraser(point);
+            if (mouseEventType == MouseEventType::press || mouseEventType == MouseEventType::move)
+            {
+                eraser(point);
+            }
             emit imageUpdated();
             break;
 
@@ -118,7 +124,10 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             break;
 
         case Global::Tool::fill:
-            fillTool(point);
+            if (mouseEventType == MouseEventType::press)
+            {
+                fillTool(point);
+            }
             emit imageUpdated();
             break;
 
