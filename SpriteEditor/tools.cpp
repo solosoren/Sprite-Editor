@@ -91,16 +91,16 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             if (mouseEventType == MouseEventType::press || mouseEventType == MouseEventType::move)
             {
                 penTool(point);
+                emit imageUpdated();
             }
-            emit imageUpdated();
             break;
 
         case Global::Tool::eraser:
             if (mouseEventType == MouseEventType::press || mouseEventType == MouseEventType::move)
             {
                 eraser(point);
+                emit imageUpdated();
             }
-            emit imageUpdated();
             break;
 
         case Global::Tool::line:
@@ -125,12 +125,16 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             if (mouseEventType == MouseEventType::press)
             {
                 fillTool(point);
+                emit imageUpdated();
             }
-            emit imageUpdated();
             break;
 
         case Global::Tool::brush:
-            //brushTool();
+            if (mouseEventType == MouseEventType::press || mouseEventType == MouseEventType::move)
+            {
+                brushTool(point);
+                emit imageUpdated();
+            }
             break;
     }
 }
@@ -179,4 +183,16 @@ void Tools::floodFill(int x, int y, QColor prevColor)
     floodFill(x-1, y, prevColor);
     floodFill(x, y+1, prevColor);
     floodFill(x, y-1, prevColor);
+}
+
+void Tools::brushTool(QPointF point)
+{
+    painter->drawPoint(static_cast<int>(point.x()), static_cast<int>(point.y()));
+    double size = 3; // can be change later
+    for(int i = 1; i < (size/2); i++) {
+        painter->drawPoint(static_cast<int>(point.x())+i, static_cast<int>(point.y())+i);
+    }
+    for(int i = 1; i < (size/2); i++) {
+        painter->drawPoint(static_cast<int>(point.x())-i, static_cast<int>(point.y())-i);
+    }
 }
