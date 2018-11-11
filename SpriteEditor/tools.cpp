@@ -8,6 +8,8 @@ Tools::Tools(QImage* image, QImage* previewImage) :
 {
     painter = new QPainter(image);
     previewPainter = new QPainter(previewImage);
+
+    eraserPen.setColor(QColor(255,255,255,0).rgba()); // I don't think this is a good design
 }
 
 Tools::~Tools()
@@ -130,6 +132,7 @@ void Tools::penTool(QPointF point)
 
 void Tools::eraser(QPointF point)
 {
+    painter->setPen(eraserPen);
     painter->drawPoint(point.x(), point.y());
 }
 

@@ -40,7 +40,7 @@ signals :
 
 private:
     enum class MouseEventType { press, move, release };
-    /* field */
+    /* fields */
     Global::Tool selectedTool;
     int selectedBrushSize;
 
@@ -49,6 +49,7 @@ private:
     QPen leftPen;
     QPen rightPen;
     QPen activePen;
+    QPen eraserPen;
     QImage* previewImage;
     QImage* currentImage;
 
