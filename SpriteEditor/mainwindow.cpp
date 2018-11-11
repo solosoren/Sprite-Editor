@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "frameview.h"
 #include <QPixmap>
 #include <QDialogButtonBox>
 
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->graphicsView->setScene(project.getCanvas());
     ui->animationView->setScene(project.getAnimation());
+    project.setFrameView(ui->frameTableWidget);
 }
 
 MainWindow::~MainWindow()
@@ -113,17 +115,17 @@ void MainWindow::on_fillToolButton_clicked()
     highlightButton(Global::Tool::fill);
 }
 
-void MainWindow::on_newFrameButton_clicked()
-{
-    project.addNewFrame();
-    //QDialogButtonBox button = new QDialogButtonBox(this);
-    //ui->verticalLayout_4->addWidget();
-}
+//void MainWindow::on_newFrameButton_clicked()
+//{
+//
+//    //QDialogButtonBox button = new QDialogButtonBox(this);
+//    //ui->verticalLayout_4->addWidget();
+//}
 
-void MainWindow::on_nextFrame_clicked()
-{
-    project.nextFrame();
-}
+//void MainWindow::on_nextFrame_clicked()
+//{
+//    project.nextFrame();
+//}
 
 void MainWindow::on_actionSave_triggered()
 {
@@ -141,4 +143,16 @@ void MainWindow::on_actionExport_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, "Choose Export Path", QDir::homePath());
     project.exportGIF(filename);
+}
+
+void MainWindow::on_frameTableWidget_cellClicked(int row, int column)
+{
+    if (column == 0)
+    {
+        project.addNewFrame();
+    }
+    else
+    {
+        project.setCurrentFrame(column - 1);
+    }
 }

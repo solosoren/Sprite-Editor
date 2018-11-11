@@ -44,21 +44,28 @@ Project::~Project()
    // animationThread->wait();
    // delete animationThread;
     delete animation;
+    delete frameView;
+}
+
+void Project::setFrameView(QTableWidget* widget)
+{
+    this->frameView = new FrameView(widget, &frames);
 }
 
 void Project::setCurrentFrame(int frameNumber)
 {
+    frameView->updateFrame(currentFrame);
     currentFrame = frameNumber;
     canvas->setImage(frames[currentFrame]);
     tools->setImage(frames[currentFrame]);
 }
 
-void Project::nextFrame()
-{
-    int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
-    qInfo() << frameNumber;
-    setCurrentFrame(frameNumber);
-}
+//void Project::nextFrame()
+//{
+//    int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
+//    qInfo() << frameNumber;
+//    setCurrentFrame(frameNumber);
+//}
 
 QImage* Project::createNewFrame()
 {
@@ -77,6 +84,11 @@ QImage* Project::createNewFrame()
 void Project::addNewFrame()
 {
     frames.push_back(createNewFrame());
+    if (frames.size() > 1)
+    {
+        setCurrentFrame(frames.size() - 1);
+        frameView->addFrame();
+    }
 }
 
 

@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QPixmap>
 #include "project.h"
+#include "frameview.h"
 
 
 namespace Ui
@@ -35,15 +36,17 @@ private slots:
 
     void on_fillToolButton_clicked();
 
-    void on_newFrameButton_clicked();
+   // void on_newFrameButton_clicked();
 
-    void on_nextFrame_clicked();
+   // void on_nextFrame_clicked();
 
     void on_actionSave_triggered();
 
     void on_actionLoad_triggered();
 
     void on_actionExport_triggered();
+
+    void on_frameTableWidget_cellClicked(int row, int column);
 
 private:
     Ui::MainWindow* ui;

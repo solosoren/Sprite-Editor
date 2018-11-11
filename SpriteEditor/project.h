@@ -9,6 +9,7 @@
 #include "tools.h"
 #include "spriteanimation.h"
 #include "colorlabel.h"
+#include "frameview.h"
 
 
 class Project: public QObject
@@ -19,6 +20,8 @@ public:
     Project();
 
     virtual ~Project();
+
+    void setFrameView(QTableWidget* tableWidget);
 
     void setCurrentFrame(int frameNumber);
 
@@ -60,6 +63,8 @@ private:
 
     SpriteAnimation* animation;
     QThread* animationThread;
+
+    FrameView* frameView;
 
     Tools* tools;
 
