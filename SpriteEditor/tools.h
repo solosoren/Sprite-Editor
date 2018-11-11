@@ -58,7 +58,7 @@ private:
     void eraser(QPointF point);
     void lineTool(QPointF point);
     void fillTool(QPointF point);
-    void floodFill(QPoint currentPos, QColor prevColor);
+    void floodFill(int x, int y, QColor prevColor);
     void brushTool(QPointF point);
 };
 

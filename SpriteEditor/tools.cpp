@@ -1,5 +1,4 @@
 #include "tools.h"
- #include <QDebug>
 
 /* PUBLIC */
 Tools::Tools(QImage* image, QImage* previewImage) :
@@ -147,43 +146,31 @@ void Tools::lineTool(QPointF point)
 
 void Tools::fillTool(QPointF point)
 {
-    QPoint inputPos = point.toPoint();
-    QColor tmpFillColor = currentImage->pixelColor(inputPos);
-    qDebug() <<  "fill Color tt:" <<tmpFillColor;
-    floodFill(inputPos, tmpFillColor);
-    qDebug() << "fill Tool still alive";
+    int x = static_cast<int>(point.x());
+    int y = static_cast<int>(point.y());
 
+    QColor tmpFillColor = currentImage->pixelColor(x, y);
+    floodFill(x, y, tmpFillColor);
 }
 
-void Tools::floodFill(QPoint currentPos, QColor prevColor)
+void Tools::floodFill(int x, int y, QColor prevColor)
 {
-    //qDebug() << "flood Fill still alive";
+    /* base check */
+    if (x < 0 || x >= currentImage->width() || y < 0 || y >= currentImage->height()){
+        return;
+    }
 
     /* check color equal */
-    if(!((currentImage->pixelColor(currentPos)) == prevColor)) {
-        //qDebug() << "current Color:" << prevColor;
-        //qDebug() << "current Color:" << currentImage->pixelColor(currentPos);
-        //qDebug() << "pixelColor still alive";
+    if(!((currentImage->pixelColor(x,y)) == prevColor)) {
         return;
     }
 
     /* replace Color */
-    painter->drawPoint(static_cast<int>(currentPos.x()), static_cast<int>(currentPos.y()));
-
-    /* check in boundry */
-    if(currentPos.x() == 0 || currentPos.x() == currentImage->width() || currentPos.y() == 0 || currentPos.y() == currentImage->height()) {
-        // qDebug() << "poscheck still alive";
-        return;
-    }
+    painter->drawPoint(x, y);
 
     /* fill all four pos */
-    QPoint westPos(currentPos.x() + 1, currentPos.y());
-    QPoint eastPos(currentPos.x() - 1, currentPos.y());
-    QPoint northPos(currentPos.x(), currentPos.y() + 1);
-    QPoint southPos(currentPos.x(), currentPos.y() - 1);
-
-    floodFill(westPos, prevColor);
-    floodFill(eastPos, prevColor);
-    floodFill(northPos, prevColor);
-    floodFill(southPos, prevColor);
+    floodFill(x+1, y, prevColor);
+    floodFill(x-1, y, prevColor);
+    floodFill(x, y+1, prevColor);
+    floodFill(x, y-1, prevColor);
 }
