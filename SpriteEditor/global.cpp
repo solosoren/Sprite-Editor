@@ -1,7 +1,5 @@
 #include <global.h>
 
-int gridSizeX = 8;
-int gridSizeY = 8;
+int gridSize = 8;
 
-extern int windowSizeX = 600;
-extern int windowSizeY = 600;
+extern int windowSize = 600;

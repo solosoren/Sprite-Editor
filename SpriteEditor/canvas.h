@@ -12,7 +12,7 @@ class Canvas  : public QGraphicsScene
     Q_OBJECT
 
     public:
-        Canvas(int frameSizeX, int frameSizeY, QImage* image, QObject *parent = 0);
+        Canvas(int frameSize, QImage* image, QObject *parent = 0);
 
         /* Mouse events*/
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
@@ -40,8 +40,7 @@ class Canvas  : public QGraphicsScene
         QImage* image;
         bool enableDebugging;
         bool enableGridLines;
-        int framePixelSizeX;
-        int framePixelSizeY;
+        int framePixelSize;
         // Converts and returns (non-scaled) grid coords
         QPointF convertToPoint(QPointF scaledPos);
         // Updates pixmap based on image by scaling it appropriately

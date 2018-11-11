@@ -10,12 +10,6 @@
     <height>815</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>650</width>
-    <height>650</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Sprite Editor</string>
   </property>
@@ -230,7 +224,16 @@
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
+         <enum>QAbstractScrollArea::AdjustIgnored</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+        <property name="renderHints">
+         <set>QPainter::SmoothPixmapTransform</set>
+        </property>
+        <property name="cacheMode">
+         <set>QGraphicsView::CacheNone</set>
         </property>
        </widget>
       </item>
@@ -315,8 +318,8 @@
      <rect>
       <x>344</x>
       <y>96</y>
-      <width>159</width>
-      <height>125</height>
+      <width>127</width>
+      <height>103</height>
      </rect>
     </property>
     <property name="title">

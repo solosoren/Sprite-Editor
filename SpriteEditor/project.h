@@ -18,7 +18,7 @@ class Project: public QObject
     Q_OBJECT
 
 public:
-    Project(int frameSizeX, int frameSizeY);
+    Project(int frameSize);
 
     virtual ~Project();
 
@@ -63,8 +63,7 @@ private:
     SpriteAnimation* animation;
     QThread* animationThread;
 
-    int framePixelSizeX;
-    int framePixelSizeY;
+    int framePixelSize;
 
     FrameView* frameView;
 

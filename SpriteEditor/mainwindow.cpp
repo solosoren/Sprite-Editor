@@ -16,6 +16,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
+    ui->graphicsView->setMaximumHeight(windowSize);
+    ui->graphicsView->setMaximumWidth(windowSize);
+    ui->graphicsView->setMinimumHeight(windowSize);
+    ui->graphicsView->setMinimumWidth(windowSize);
+
     initializeProject();
 }
 
@@ -27,7 +32,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initializeProject()
 {
-    project = new Project(gridSizeX, gridSizeY);
+    project = new Project(gridSize);
 
     project->setColorLabel(ui->leftColorSelectedLabel, ui->rightColorSelectedLabel);
     project->setFrameView(ui->frameTableWidget);

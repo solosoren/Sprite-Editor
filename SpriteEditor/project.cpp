@@ -1,18 +1,16 @@
 #include "project.h"
 
 
-Project::Project(int frameSizeX, int frameSizeY):
-    framePixelSizeX(frameSizeX),
-    framePixelSizeY(frameSizeY)
+Project::Project(int frameSize):
+    framePixelSize(frameSize)
 {
     currentFrame = 0;
     addNewFrame();
     previewImage = createNewFrame();
 
-    canvas = new Canvas(frameSizeX, frameSizeY, frames[currentFrame]);
+    canvas = new Canvas(frameSize, frames[currentFrame]);
     animation = new SpriteAnimation(&frames);
     tools = new Tools(frames[currentFrame], previewImage);
-
 
 
     QObject::connect(canvas, SIGNAL(mousePressed(int, QPointF)),
@@ -55,11 +53,11 @@ void Project::setCurrentFrame(int frameNumber)
 
 QImage* Project::createNewFrame()
 {
-    QImage* image = new QImage(framePixelSizeX, framePixelSizeY, QImage::Format_ARGB32);
+    QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
     // Initializes empty grid
-    for(int i = 0; i< framePixelSizeX; i++)
+    for(int i = 0; i< framePixelSize; i++)
     {
-        for(int j =0; j < framePixelSizeY; j++)
+        for(int j =0; j < framePixelSize; j++)
         {
             image->setPixelColor(i, j, QColor(255,255,255,255).rgba());
         }
@@ -164,14 +162,14 @@ void Project::save(QString filename)
     saveFile.open((QIODevice::WriteOnly | QIODevice::Text));
     QTextStream writer(&saveFile);
 
-    writer << framePixelSizeX << " " << framePixelSizeY << '\n';
+    writer << framePixelSize << " " << framePixelSize << '\n';
     writer << frames.size() << '\n';
 
     for (QImage* image : frames)
     {
-        for (int y = 0; y < framePixelSizeY; y++)
+        for (int y = 0; y < framePixelSize; y++)
         {
-            for (int x = 0; x < framePixelSizeX; x++)
+            for (int x = 0; x < framePixelSize; x++)
             {
                 QColor color = image->pixelColor(x,y);
                 writer << color.red() << " " << color.green() << " "

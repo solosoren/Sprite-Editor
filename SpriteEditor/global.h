@@ -2,16 +2,14 @@
 #define GLOBAL_H
 
 #include <QPixmap>
-
+#include<QtDebug>
 
 
 // Window sizes
-extern int windowSizeX;
-extern int windowSizeY;
+extern int windowSize;
 
 // Grid sizes
-extern int gridSizeX;
-extern int gridSizeY;
+extern int gridSize;
 
 namespace Global
 {
@@ -24,7 +22,7 @@ namespace Global
     {
         if (window == 0)
         {
-            return QPixmap().fromImage(image.scaled(windowSizeX, windowSizeY));
+            return QPixmap().fromImage(image.scaled(windowSize, windowSize));
         }
         else if (window == 1)
         {
@@ -35,30 +33,30 @@ namespace Global
     }
 
     static QPixmap convertImageToPixmapWithGridLines(QImage image)
-    {
-        QImage scaledImage = image.scaled(windowSizeX, windowSizeY);
+       {
+           QImage scaledImage = image.scaled(windowSize, windowSize);
 
-        // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
-        for(int x = 0; x < windowSizeX; x++)
-        {
-            // Vertical
-            if((x % (windowSizeX / gridSizeX)) == 0)
-            {
-                for(int y = 0; y < windowSizeY; y++)
-                {
-                    scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
-                }
-            }
+           // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
+           for(int x = 0; x < windowSize; x++)
+           {
+               // Vertical
+               if((x % (windowSize / gridSize)) == 0)
+               {
+                   for(int y = 0; y < windowSize; y++)
+                   {
+                       scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
+                   }
+               }
 
-            // Horizontal
-            for(int y = 0; y < windowSizeY; y+=(windowSizeY/ gridSizeY))
-            {
-                scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
-            }
-        }
+               // Horizontal
+               for(int y = 0; y < windowSize; y+=(windowSize/ gridSize))
+               {
+                   scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
+               }
+           }
 
-        return QPixmap().fromImage(scaledImage);
-    }
+           return QPixmap().fromImage(scaledImage);
+       }
 
     const QString buttonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::green).name());
     const QString buttonNonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::black).name());

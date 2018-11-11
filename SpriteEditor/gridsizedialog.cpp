@@ -1,6 +1,7 @@
 #include "gridsizedialog.h"
 #include "ui_gridsizedialog.h"
 #include <global.h>
+#include <cmath>
 
 GridSizeDialog::GridSizeDialog(QWidget *parent) :
     QDialog(parent),
@@ -17,8 +18,9 @@ GridSizeDialog::~GridSizeDialog()
 void GridSizeDialog::on_gridSizeSlider_valueChanged(int value)
 {
     ui->gridSizeLabel->setText(QString::number(value));
-    gridSizeX = value;
-    gridSizeY = value;
+    gridSize = value;
+    int windowSizeFactor = std::ceil(600/value);
+    windowSize = value*windowSizeFactor;
 }
 
 void GridSizeDialog::on_okButton_clicked()
