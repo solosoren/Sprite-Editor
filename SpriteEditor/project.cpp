@@ -53,19 +53,6 @@ void Project::setCurrentFrame(int frameNumber)
     tools->setImage(frames[currentFrame]);
 }
 
-//void Project::nextFrame()
-//{
-//    int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
-//    qInfo() << frameNumber;
-//    setCurrentFrame(frameNumber);
-//}
-
-void Project::nextFrame()
-{
-    int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
-    setCurrentFrame(frameNumber);
-}
-
 QImage* Project::createNewFrame()
 {
     QImage* image = new QImage(Global::gridSizeX, Global::gridSizeY, QImage::Format_ARGB32);
@@ -158,6 +145,7 @@ void Project::handleColorChanged(QColor color, ColorLabel* label)
 void Project::updateImage()
 {
     canvas->setImage(frames[currentFrame]);
+    frameView->updateFrame(currentFrame);
 }
 
 void Project::updatePreviewImage()

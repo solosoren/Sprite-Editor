@@ -115,18 +115,6 @@ void MainWindow::on_fillToolButton_clicked()
     highlightButton(Global::Tool::fill);
 }
 
-//void MainWindow::on_newFrameButton_clicked()
-//{
-//
-//    //QDialogButtonBox button = new QDialogButtonBox(this);
-//    //ui->verticalLayout_4->addWidget();
-//}
-
-//void MainWindow::on_nextFrame_clicked()
-//{
-//    project.nextFrame();
-//}
-
 void MainWindow::on_actionSave_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, "Save file", QDir::homePath(), "*.ssp");

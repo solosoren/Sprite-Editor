@@ -26,8 +26,6 @@ public:
 
     void setCurrentFrame(int frameNumber);
 
-    void nextFrame();
-
     QImage* createNewFrame();
 
     void addNewFrame();
