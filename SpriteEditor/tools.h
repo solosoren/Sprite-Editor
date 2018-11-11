@@ -50,8 +50,8 @@ private:
     QPen rightPen;
     QPen activePen;
     QPen eraserPen;
-    QImage* previewImage;
     QImage* currentImage;
+    QImage* previewImage;
 
     QPointF startPoint;
     QPointF currentPoint;
@@ -64,7 +64,6 @@ private:
     void eraser(QPointF point);
     void lineTool(QPointF point);
     void fillTool(QPointF point);
-    void fillTool();
     void brushTool(QPointF point);
 };
 
