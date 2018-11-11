@@ -55,13 +55,7 @@ QImage* Project::createNewFrame()
 {
     QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
     // Initializes empty grid
-    for(int i = 0; i< framePixelSize; i++)
-    {
-        for(int j =0; j < framePixelSize; j++)
-        {
-            image->setPixelColor(i, j, QColor(255,255,255,255).rgba());
-        }
-    }
+    image->fill(Qt::transparent);
     return image;
 }
 

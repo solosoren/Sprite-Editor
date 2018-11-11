@@ -43,7 +43,6 @@ private:
     QPen leftPen;
     QPen rightPen;
     QPen activePen;
-    QPen eraserPen;
     QImage* currentImage;
     QImage* previewImage;
 
