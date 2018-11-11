@@ -32,7 +32,9 @@ SOURCES += \
     tools.cpp \
     spriteanimation.cpp \
     colorlabel.cpp \
-    frameview.cpp
+    frameview.cpp \
+    global.cpp \
+    gridsizedialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,10 +44,12 @@ HEADERS += \
     spriteanimation.h \
     global.h \
     colorlabel.h \
-    frameview.h
+    frameview.h \
+    gridsizedialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    gridsizedialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

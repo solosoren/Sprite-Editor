@@ -4,18 +4,21 @@
 #include <QPixmap>
 
 
+
+// Window sizes
+extern int windowSizeX;
+extern int windowSizeY;
+
+// Grid sizes
+extern int gridSizeX;
+extern int gridSizeY;
+
 namespace Global
 {
 
-    // Window sizes
-    static int windowSizeX = 600;
-    static int windowSizeY = 600;
+    // Animation window sizes
     static int animationWindowSize = 295;
     static int frameWindowSize = 150;
-
-    // Grid sizes
-    static int gridSizeX = 32;
-    static int gridSizeY = 32;
 
     static QPixmap convertImageToPixmap(QImage image, int window)
     {
@@ -58,7 +61,7 @@ namespace Global
     }
 
     const QString buttonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::green).name());
-    const QString buttonNonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::white).name());
+    const QString buttonNonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::black).name());
 
     enum class Tool
     {

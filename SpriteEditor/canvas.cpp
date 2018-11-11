@@ -54,8 +54,8 @@ QPointF Canvas::convertToPoint(QPointF scaledPos)
     int rX = scaledPos.x();
     int rY = scaledPos.y();
 
-    int xPos =(int) (rX * framePixelSizeX) / Global::windowSizeX;
-    int yPos = (int) (rY * framePixelSizeY) / Global::windowSizeY;
+    int xPos =(int) (rX * framePixelSizeX) / windowSizeX;
+    int yPos = (int) (rY * framePixelSizeY) / windowSizeY;
 
     if (xPos < 0) { xPos = 0; }
     if (yPos < 0) { yPos = 0; }

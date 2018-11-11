@@ -3,11 +3,17 @@
 #include "frameview.h"
 #include <QPixmap>
 #include <QDialogButtonBox>
+#include <gridsizedialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    // Open grid size dialog
+    GridSizeDialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+
     ui->setupUi(this);
 
     initializeProject();
@@ -21,7 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initializeProject()
 {
-    project = new Project(Global::gridSizeX, Global::gridSizeY);
+    project = new Project(gridSizeX, gridSizeY);
 
     project->setColorLabel(ui->leftColorSelectedLabel, ui->rightColorSelectedLabel);
     project->setFrameView(ui->frameTableWidget);
