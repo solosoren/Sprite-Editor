@@ -31,7 +31,8 @@ SOURCES += \
     project.cpp \
     tools.cpp \
     spriteanimation.cpp \
-    colorlabel.cpp
+    colorlabel.cpp \
+    frameview.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     tools.h \
     spriteanimation.h \
     global.h \
-    colorlabel.h
+    colorlabel.h \
+    frameview.h
 
 FORMS += \
         mainwindow.ui
@@ -49,3 +51,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

@@ -1,17 +1,11 @@
 #include "spriteanimation.h"
 
 
-SpriteAnimation::SpriteAnimation()
-{
-    this->images = nullptr;
-    frameRate = 0;
-}
-
-void SpriteAnimation::setImages(std::vector<QImage*>* images)
+SpriteAnimation::SpriteAnimation(std::vector<QImage*>* images)
 {
     this->images = images;
+    frameRate = 0;
 }
-
 
 void SpriteAnimation::setFrameRate(int rate)
 {
@@ -35,7 +29,7 @@ void SpriteAnimation::startAnimation()
 void SpriteAnimation::displayFrame()
 {
     QImage  image   = *((*images)[frameIndex++ % images->size()]);
-    QPixmap pixmap  = Global::convertImageToPixmap(image, false);
+    QPixmap pixmap  = Global::convertImageToPixmap(image, 1);
 
     this->clear();
     this->addPixmap(pixmap);

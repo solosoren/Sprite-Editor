@@ -20,8 +20,7 @@ private slots:
     void startAnimation();
 
 public:
-    SpriteAnimation();
-    void setImages(std::vector<QImage*>* images);
+    SpriteAnimation(std::vector<QImage*>* images);
     void setFrameRate(int rate);
 };
 

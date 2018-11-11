@@ -9,7 +9,7 @@ Tools::Tools(QImage* image, QImage* previewImage) :
     painter = new QPainter(image);
     previewPainter = new QPainter(previewImage);
 
-    eraserPen.setColor(QColor(255,255,255,0).rgba()); // I don't think this is a good design
+    eraserPen.setColor(QColor(255,255,255,0).rgba());
 }
 
 Tools::~Tools()
@@ -94,10 +94,12 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             penTool(point);
             emit imageUpdated();
             break;
+
         case Global::Tool::eraser:
             eraser(point);
             emit imageUpdated();
             break;
+
         case Global::Tool::line:
             if (mouseEventType == MouseEventType::press)
             {
@@ -115,10 +117,12 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
                 emit imageUpdated();
             }
             break;
+
         case Global::Tool::fill:
             fillTool(point);
             emit imageUpdated();
             break;
+
         case Global::Tool::brush:
             //brushTool();
             break;

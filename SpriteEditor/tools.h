@@ -12,22 +12,16 @@ class Tools : public QObject
 {
     Q_OBJECT
 
-    // PLEASE REQUEST THE PUBLIC FUNCTION OR SLOT HERE BEFORE EDIT
-    // SO THAT I CAN KEEP TRACK ALL THE PROGRESS
-    // LEAVE YOUR REQUEST HERE:
-    //
-
 public:
     Tools(QImage* image, QImage* previewImage);
     ~Tools();
     void setImage(QImage* image);
 
-    // LOOK AT THIS - MAY CHANGE THOS TO SLOTS
     void setSelectedTool(Global::Tool tool);
     void setLeftSelectedColor(QColor color);
     void setRightSelectedColor(QColor color);
 
-    void setBrushSize(int size); // NEW!
+    void setBrushSize(int size);
 
 public slots:
     void handleMousePress(int button, QPointF point);
