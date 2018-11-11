@@ -1,7 +1,9 @@
 #include "canvas.h"
 
 
-Canvas::Canvas(QImage* image, QObject *parent):
+Canvas::Canvas(int frameSizeX, int frameSizeY, QImage* image, QObject *parent):
+    framePixelSizeX(frameSizeX),
+    framePixelSizeY(frameSizeY),
     image(image),
     QGraphicsScene (parent)
 {
@@ -52,13 +54,13 @@ QPointF Canvas::convertToPoint(QPointF scaledPos)
     int rX = scaledPos.x();
     int rY = scaledPos.y();
 
-    int xPos =(int) (rX * Global::gridSizeX) / Global::windowSizeX;
-    int yPos = (int) (rY * Global::gridSizeY) / Global::windowSizeY;
+    int xPos =(int) (rX * framePixelSizeX) / Global::windowSizeX;
+    int yPos = (int) (rY * framePixelSizeY) / Global::windowSizeY;
 
     if (xPos < 0) { xPos = 0; }
     if (yPos < 0) { yPos = 0; }
-    if (xPos >= Global::gridSizeX) { xPos = Global::gridSizeX - 1; }
-    if (yPos >= Global::gridSizeY) { yPos = Global::gridSizeY - 1; }
+    if (xPos >= framePixelSizeX) { xPos = framePixelSizeX - 1; }
+    if (yPos >= framePixelSizeY) { yPos = framePixelSizeY - 1; }
 
     return QPointF(xPos, yPos);
 }

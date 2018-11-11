@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initializeProject()
 {
-    project = new Project();
+    project = new Project(Global::gridSizeX, Global::gridSizeY);
 
     project->setColorLabel(ui->leftColorSelectedLabel, ui->rightColorSelectedLabel);
     project->setFrameView(ui->frameTableWidget);

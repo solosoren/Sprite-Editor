@@ -1,15 +1,10 @@
 #include "spriteanimation.h"
 
 
-SpriteAnimation::SpriteAnimation()
-{
-    this->images = nullptr;
-    frameRate = 0;
-}
-
-void SpriteAnimation::setImages(std::vector<QImage*>* images)
+SpriteAnimation::SpriteAnimation(std::vector<QImage*>* images)
 {
     this->images = images;
+    frameRate = 0;
 }
 
 void SpriteAnimation::setFrameRate(int rate)
