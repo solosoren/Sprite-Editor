@@ -76,7 +76,7 @@ void Tools::createLinePreview(QPointF point)
     QPoint paintPos(0,0);
     previewPainter->setPen(activePen); //for some reason this needs to be reset here, to work correctly.
     previewPainter->drawImage(paintPos, *currentImage); //draw the current image to the preview image.
-    previewPainter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
+    previewPainter->drawLine(static_cast<int>(startPoint.x()), static_cast<int>(startPoint.y()), static_cast<int>(point.x()), static_cast<int>(point.y()));
 }
 
 void Tools::setButton(int button)
@@ -145,6 +145,7 @@ void Tools::fillTool(QPointF point)
 {
     QPoint inputPos = point.toPoint();
     QColor tmpFillColor = currentImage->pixelColor(inputPos);
+    qDebug() <<  "fill Color tt:" <<tmpFillColor;
     floodFill(inputPos, tmpFillColor);
     qDebug() << "fill Tool still alive";
 
@@ -152,20 +153,24 @@ void Tools::fillTool(QPointF point)
 
 void Tools::floodFill(QPoint currentPos, QColor prevColor)
 {
-    qDebug() << "flood Fill still alive";
+    //qDebug() << "flood Fill still alive";
 
-    /* base check */
-    if(currentPos.x() < 0 || currentPos.x() > currentImage->width() || currentPos.y() < 0 || currentPos.y() > currentImage->height()) {
-        qDebug() << "poscheck still alive";
-        return;
-    }
+    /* check color equal */
     if(!((currentImage->pixelColor(currentPos)) == prevColor)) {
-        qDebug() << "pixelColor still alive";
+        //qDebug() << "current Color:" << prevColor;
+        //qDebug() << "current Color:" << currentImage->pixelColor(currentPos);
+        //qDebug() << "pixelColor still alive";
         return;
     }
 
     /* replace Color */
     painter->drawPoint(static_cast<int>(currentPos.x()), static_cast<int>(currentPos.y()));
+
+    /* check in boundry */
+    if(currentPos.x() == 0 || currentPos.x() == currentImage->width() || currentPos.y() == 0 || currentPos.y() == currentImage->height()) {
+        // qDebug() << "poscheck still alive";
+        return;
+    }
 
     /* fill all four pos */
     QPoint westPos(currentPos.x() + 1, currentPos.y());
