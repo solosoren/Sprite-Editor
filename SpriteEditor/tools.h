@@ -58,7 +58,7 @@ private:
     void eraser(QPointF point);
     void lineTool(QPointF point);
     void fillTool(QPointF point);
-    void fillTool();
+    void recursiveFill(int x, int y);
     void brushTool(QPointF point);
 };
 

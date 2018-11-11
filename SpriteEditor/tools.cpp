@@ -94,10 +94,12 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             penTool(point);
             emit imageUpdated();
             break;
+
         case Global::Tool::eraser:
             eraser(point);
             emit imageUpdated();
             break;
+
         case Global::Tool::line:
             if (mouseEventType == MouseEventType::press)
             {
@@ -115,10 +117,12 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
                 emit imageUpdated();
             }
             break;
+
         case Global::Tool::fill:
-            fillTool();
+            fillTool(point);
             emit imageUpdated();
             break;
+
         case Global::Tool::brush:
             //brushTool();
             break;
@@ -141,8 +145,22 @@ void Tools::lineTool(QPointF point)
     painter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
 }
 
-void Tools::fillTool()
+void Tools::fillTool(QPointF point)
 {
-    QRectF space(0,0,Global::gridSizeX, Global::gridSizeY);
-    painter->fillRect(space, activePen.color());
+    //QRectF space(0,0,Global::gridSizeX, Global::gridSizeY);
+    //painter->fillRect(space, activePen.color());
+    recursiveFill(point.x(), point.y());
+}
+
+void Tools::recursiveFill(int x,  int y)
+{
+    if (currentImage->pixelColor(x,y) != activePen.color())
+    {
+        currentImage->setPixelColor(x,y, activePen.color());
+
+        if (x+1 < currentImage->width()) { recursiveFill(x+1, y); }
+        if (x-1 > 0) { recursiveFill(x-1, y); }
+        if (y+1 < currentImage->height()) { recursiveFill(x, y+1); }
+        if (y-1 > 0) { recursiveFill(x, y-1); }
+    }
 }
