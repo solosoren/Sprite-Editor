@@ -160,8 +160,8 @@ void Tools::recursiveFill(int x,  int y)
         currentImage->setPixelColor(x,y, activePen.color());
 
         if (x+1 < currentImage->width()) { recursiveFill(x+1, y); }
-        if (x-1 > 0) { recursiveFill(x-1, y); }
+        if (x-1 >= 0) { recursiveFill(x-1, y); }
         if (y+1 < currentImage->height()) { recursiveFill(x, y+1); }
-        if (y-1 > 0) { recursiveFill(x, y-1); }
+        if (y-1 >= 0) { recursiveFill(x, y-1); }
     }
 }
