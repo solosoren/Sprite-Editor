@@ -59,7 +59,7 @@ namespace Global
        }
 
     const QString buttonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::green).name());
-    const QString buttonNonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::black).name());
+    const QString buttonNonHighlightFormat = QString("background-color: %1; color: %2;").arg(QColor(Qt::black).name(), QColor(Qt::white).name());
 
     enum class Tool
     {

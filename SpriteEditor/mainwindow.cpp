@@ -57,7 +57,6 @@ void MainWindow::highlightButton(Global::Tool tool)
         break;
      case Global::Tool::brush:
         ui->brushToolButton->setStyleSheet(Global::buttonHighlightFormat);
-
         ui->penToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         ui->lineToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
         ui->fillToolButton->setStyleSheet(Global::buttonNonHighlightFormat);
