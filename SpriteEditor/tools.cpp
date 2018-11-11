@@ -119,7 +119,10 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
             break;
 
         case Global::Tool::fill:
-            fillTool(point);
+            if (mouseEventType == MouseEventType::press)
+            {
+                fillTool(point);
+            }
             emit imageUpdated();
             break;
 
@@ -147,8 +150,6 @@ void Tools::lineTool(QPointF point)
 
 void Tools::fillTool(QPointF point)
 {
-    //QRectF space(0,0,Global::gridSizeX, Global::gridSizeY);
-    //painter->fillRect(space, activePen.color());
     recursiveFill(point.x(), point.y());
 }
 
