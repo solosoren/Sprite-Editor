@@ -36,9 +36,7 @@ private slots:
 
     void on_fillToolButton_clicked();
 
-   // void on_newFrameButton_clicked();
-
-   // void on_nextFrame_clicked();
+    void initializeProject();
 
     void on_actionSave_triggered();
 
@@ -50,7 +48,7 @@ private slots:
 
 private:
     Ui::MainWindow* ui;
-    Project project;
+    Project* project;
     void highlightButton(Global::Tool tool);
 
 friend int main(int argc, char *argv[]);
