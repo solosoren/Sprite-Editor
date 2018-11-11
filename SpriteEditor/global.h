@@ -14,8 +14,8 @@ namespace Global
     static int frameWindowSize = 150;
 
     // Grid sizes
-    static int gridSizeX = 100;
-    static int gridSizeY = 100;
+    static int gridSizeX = 32;
+    static int gridSizeY = 32;
 
     static QPixmap convertImageToPixmap(QImage image, int window)
     {

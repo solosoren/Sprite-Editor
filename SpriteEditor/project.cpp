@@ -1,5 +1,4 @@
 #include "project.h"
-#include <QDebug>
 
 
 Project::Project()
@@ -11,9 +10,6 @@ Project::Project()
     canvas = new Canvas(frames[currentFrame]);
     animation = new SpriteAnimation();
     animation->setImages(&frames);
-    //animationThread = new QThread();
-   //animation->moveToThread(animationThread);
-    //animationThread->start();
 
     tools = new Tools(frames[currentFrame], previewImage);
 
@@ -40,9 +36,6 @@ Project::~Project()
     delete canvas;
     delete tools;
     for (QImage* image : frames) { delete image; }
-
-   // animationThread->wait();
-   // delete animationThread;
     delete animation;
     delete frameView;
 }
@@ -67,6 +60,12 @@ void Project::setCurrentFrame(int frameNumber)
 //    setCurrentFrame(frameNumber);
 //}
 
+void Project::nextFrame()
+{
+    int frameNumber = currentFrame < frames.size()-1 ? currentFrame+1 : 0;
+    setCurrentFrame(frameNumber);
+}
+
 QImage* Project::createNewFrame()
 {
     QImage* image = new QImage(Global::gridSizeX, Global::gridSizeY, QImage::Format_ARGB32);
@@ -75,7 +74,7 @@ QImage* Project::createNewFrame()
     {
         for(int j =0; j < Global::gridSizeY; j++)
         {
-            image->setPixelColor(i, j, QColor(255,255,255,0).rgba());
+            image->setPixelColor(i, j, QColor(255,255,255,255).rgba());
         }
     }
     return image;
@@ -172,15 +171,40 @@ void Project::updatePreviewImage()
 
 void Project::save(QString filename)
 {
-    qInfo() << filename;
+    if ( ! filename.contains(".ssp")) {filename = filename.append(".ssp");}
+    QFile saveFile(filename);
+    saveFile.open((QIODevice::WriteOnly | QIODevice::Text));
+    QTextStream writer(&saveFile);
+
+    writer << Global::gridSizeX << " " << Global::gridSizeY << '\n';
+    writer << frames.size() << '\n';
+
+    for (QImage* image : frames)
+    {
+        for (int y = 0; y < Global::gridSizeY; y++)
+        {
+            for (int x = 0; x < Global::gridSizeX; x++)
+            {
+                QColor color = image->pixelColor(x,y);
+                writer << color.red() << " " << color.green() << " "
+                       << color.blue() << " " << color.alpha() << " ";
+
+            }
+            writer << '\n';
+        }
+    }
+    saveFile.close();
 }
 
 void Project::load(QString filename)
 {
-    qInfo() << filename;
+    QFile loadFile(filename);
+    loadFile.open((QIODevice::ReadOnly | QIODevice::Text));
+    QTextStream reader(&loadFile);
+    loadFile.close();
 }
 
 void Project::exportGIF(QString filename)
 {
-    qInfo() << filename;
+    //
 }
