@@ -1,5 +1,5 @@
 #include "tools.h"
-
+ #include <QDebug>
 
 /* PUBLIC */
 Tools::Tools(QImage* image, QImage* previewImage) :
@@ -127,23 +127,54 @@ void Tools::useTool(QPointF point, MouseEventType mouseEventType)
 
 void Tools::penTool(QPointF point)
 {
-    painter->drawPoint(point.x(), point.y());
+    painter->drawPoint(static_cast<int>(point.x()), static_cast<int>(point.y()));
 }
 
 void Tools::eraser(QPointF point)
 {
     painter->setPen(eraserPen);
-    painter->drawPoint(point.x(), point.y());
+    painter->drawPoint(static_cast<int>(point.x()), static_cast<int>(point.y()));
 }
 
 void Tools::lineTool(QPointF point)
 {
-    painter->drawLine(startPoint.x(), startPoint.y(), point.x(), point.y());
+    painter->drawLine(static_cast<int>(startPoint.x()), static_cast<int>(startPoint.y()), static_cast<int>(point.x()), static_cast<int>(point.y()));
 }
 
 void Tools::fillTool(QPointF point)
 {
-    QColor tmpFillColor = currentImage->pixel(point.toPoint());
-    QRectF space(0,0,Global::gridSizeX, Global::gridSizeY);
-    painter->fillRect(space, activePen.color());
+    QPoint inputPos = point.toPoint();
+    QColor tmpFillColor = currentImage->pixelColor(inputPos);
+    floodFill(inputPos, tmpFillColor);
+    qDebug() << "fill Tool still alive";
+
+}
+
+void Tools::floodFill(QPoint currentPos, QColor prevColor)
+{
+    qDebug() << "flood Fill still alive";
+
+    /* base check */
+    if(currentPos.x() < 0 || currentPos.x() > currentImage->width() || currentPos.y() < 0 || currentPos.y() > currentImage->height()) {
+        qDebug() << "poscheck still alive";
+        return;
+    }
+    if(!((currentImage->pixelColor(currentPos)) == prevColor)) {
+        qDebug() << "pixelColor still alive";
+        return;
+    }
+
+    /* replace Color */
+    painter->drawPoint(static_cast<int>(currentPos.x()), static_cast<int>(currentPos.y()));
+
+    /* fill all four pos */
+    QPoint westPos(currentPos.x() + 1, currentPos.y());
+    QPoint eastPos(currentPos.x() - 1, currentPos.y());
+    QPoint northPos(currentPos.x(), currentPos.y() + 1);
+    QPoint southPos(currentPos.x(), currentPos.y() - 1);
+
+    floodFill(westPos, prevColor);
+    floodFill(eastPos, prevColor);
+    floodFill(northPos, prevColor);
+    floodFill(southPos, prevColor);
 }
