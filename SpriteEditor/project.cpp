@@ -103,6 +103,10 @@ void Project::handleBrushSizeChanged(int value){
     tools->setBrushSize(value);
 }
 
+void Project::handleEraserSizeChanged(int value) {
+    tools->setEraserSize(value);
+}
+
 void Project::setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel)
 {
     this->leftColorLabel = leftLabel;

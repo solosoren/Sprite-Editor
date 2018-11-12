@@ -41,6 +41,10 @@ void Tools::setBrushSize(int size)
     selectedBrushSize = size;
 }
 
+void Tools::setEraserSize(int size) {
+    selectedEraserSize = size;
+}
+
 
 /* slots */
 
@@ -147,6 +151,26 @@ void Tools::penTool(QPointF point)
 void Tools::eraser(QPointF point)
 {
     currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), Qt::transparent);
+
+    switch(selectedEraserSize) {
+        case 4:
+            currentImage->setPixelColor(static_cast<int>(point.x()) + 2, static_cast<int>(point.y()), Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()) - 2, static_cast<int>(point.y()), Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) + 2, Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) - 2, Qt::transparent);
+        case 3:
+            currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()) + 1, Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()) - 1, Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()) + 1, Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()) - 1, Qt::transparent);
+        case 2:
+            currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()), Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()), Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) + 1, Qt::transparent);
+            currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) - 1, Qt::transparent);
+        case 1:
+            break;
+    }
 }
 
 void Tools::lineTool(QPointF point)

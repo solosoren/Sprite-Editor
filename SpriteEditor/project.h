@@ -42,6 +42,8 @@ public:
 
     void handleBrushSizeChanged(int value);
 
+    void handleEraserSizeChanged(int value);
+
     void setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel);
 
     void save(QString filename);

@@ -22,6 +22,7 @@ public:
     void setRightSelectedColor(QColor color);
 
     void setBrushSize(int size);
+    void setEraserSize(int size);
 
 public slots:
     void handleMousePress(int button, QPointF point);
@@ -37,6 +38,7 @@ private:
     /* fields */
     Global::Tool selectedTool;
     int selectedBrushSize;
+    int selectedEraserSize;
 
     QPainter* painter;
     QPainter* previewPainter;

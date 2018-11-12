@@ -167,3 +167,8 @@ void MainWindow::on_brushSizeSpinBox_valueChanged(int value)
 {
     project->handleBrushSizeChanged(value);
 }
+
+void MainWindow::on_eraserSizeSpinBox_valueChanged(int value)
+{
+    project->handleEraserSizeChanged(value);
+}

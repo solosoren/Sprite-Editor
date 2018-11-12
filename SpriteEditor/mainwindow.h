@@ -48,6 +48,8 @@ private slots:
 
     void on_brushSizeSpinBox_valueChanged(int value);
 
+    void on_eraserSizeSpinBox_valueChanged(int value);
+
 private:
     Ui::MainWindow* ui;
     Project* project;
