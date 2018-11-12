@@ -1,4 +1,5 @@
 #include "project.h"
+#include <3rdParty/qtgifimage/src/gifimage/qgifimage.h>
 
 
 Project::Project(int frameSize):
@@ -219,7 +220,29 @@ void Project::load(QString filename)
 
 void Project::exportGIF(QString filename)
 {
-    //
+      QGifImage gif(QSize(windowSize, windowSize));
+
+      QVector<QRgb> ctable;
+        ctable << qRgb(255, 255, 255)
+               << qRgb(0, 0, 0)
+               << qRgb(255, 0, 0)
+               << qRgb(0, 255, 0)
+               << qRgb(0, 0, 255)
+               << qRgb(255, 255, 0)
+               << qRgb(0, 255, 255)
+               << qRgb(255, 0, 255);
+
+        gif.setGlobalColorTable(ctable, Qt::black);
+
+        gif.setDefaultTransparentColor(Qt::black);
+        gif.setDefaultDelay(500);
+
+         for(int i = 0; i < frames.size(); i++) {
+             gif.addFrame(frames[i]->convertToFormat(QImage::Format_RGB32).scaled(windowSize,windowSize), QPoint(0, 0));
+         }
+
+         gif.save(filename);
+
 }
 
 void Project::setNewFrameSize(int frameSize)

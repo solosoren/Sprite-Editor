@@ -6,7 +6,10 @@
 
 QT       += core gui
 
+include(3rdparty/qtgifimage/src/gifimage/qtgifimage.pri)
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 
 TARGET = SpriteEditor
 TEMPLATE = app
