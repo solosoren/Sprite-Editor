@@ -17,7 +17,7 @@ Project::Project(int frameSize):
     QObject::connect(canvas, SIGNAL(mousePressed(int, QPointF)),
                      tools,  SLOT(handleMousePress(int, QPointF)) );
 
-    QObject::connect(canvas, SIGNAL(mrouseMoved(int, QPointF)),
+    QObject::connect(canvas, SIGNAL(mouseMoved(int, QPointF)),
                      tools,  SLOT(handleMouseMove(int, QPointF)) );
 
     QObject::connect(canvas, SIGNAL(mouseReleased(int, QPointF)),
