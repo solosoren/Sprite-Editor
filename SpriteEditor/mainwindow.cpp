@@ -162,3 +162,8 @@ void MainWindow::on_frameTableWidget_cellClicked(int row, int column)
         project->setCurrentFrame(column - 1);
     }
 }
+
+void MainWindow::on_brushSizeSpinBox_valueChanged(int value)
+{
+    project->handleBrushSizeChanged(value);
+}

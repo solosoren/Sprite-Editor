@@ -46,6 +46,8 @@ private slots:
 
     void on_frameTableWidget_cellClicked(int row, int column);
 
+    void on_brushSizeSpinBox_valueChanged(int value);
+
 private:
     Ui::MainWindow* ui;
     Project* project;

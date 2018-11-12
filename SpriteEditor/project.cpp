@@ -99,6 +99,10 @@ void Project::handleAnimationSliderValueChanged(int value)
     animation->setFrameRate(value);
 }
 
+void Project::handleBrushSizeChanged(int value){
+    tools->setBrushSize(value);
+}
+
 void Project::setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel)
 {
     this->leftColorLabel = leftLabel;
