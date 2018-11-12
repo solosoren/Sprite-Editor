@@ -20,7 +20,7 @@ void FrameView::createNewFrameButton()
 {
     tableWidget->setColumnCount(++columnCount);
     tableWidget->setColumnWidth(columnCount - 1, 150);
-    setFrame(0, new QImage(":/resources/add.png"));
+    setFrame(0, new QImage(":/src/src/add.png"));
 }
 
 void FrameView::initialAddFrame()

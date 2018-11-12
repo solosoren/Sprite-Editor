@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Sprite Editor</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/src/src/icon.png</normaloff>:/src/src/icon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -48,7 +52,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spinBox">
+             <widget class="QSpinBox" name="brushSizeSpinBox">
               <property name="maximumSize">
                <size>
                 <width>70</width>
@@ -347,7 +351,7 @@
      <rect>
       <x>344</x>
       <y>96</y>
-      <width>159</width>
+      <width>156</width>
       <height>125</height>
      </rect>
     </property>
@@ -384,6 +388,8 @@
    <header>colorlabel.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

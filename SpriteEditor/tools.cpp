@@ -191,7 +191,7 @@ void Tools::floodFill(int x, int y, QColor prevColor)
 void Tools::brushTool(QPointF point)
 {
     painter->drawPoint(static_cast<int>(point.x()), static_cast<int>(point.y()));
-    double size = 3; // can be change later
+    double size = selectedBrushSize; // can be change later
     for(int i = 1; i < (size/2); i++) {
         painter->drawPoint(static_cast<int>(point.x())+i, static_cast<int>(point.y())+i);
     }
