@@ -188,7 +188,7 @@ void Project::load(QString filename)
     {
         frames.clear();
         QTextStream reader(&loadFile);
-        int framePixelSize = reader.readLine().split(" ")[0].toInt();
+        setNewFrameSize(reader.readLine().split(" ")[0].toInt());
         int numFrames = reader.readLine().split(" ")[0].toInt();
 
         for (int i = 0; i < numFrames; i++)
@@ -220,4 +220,10 @@ void Project::load(QString filename)
 void Project::exportGIF(QString filename)
 {
     //
+}
+
+void Project::setNewFrameSize(int frameSize)
+{
+    framePixelSize = frameSize;
+    canvas->setNewFrameSize(frameSize);
 }

@@ -28,6 +28,8 @@ class Canvas  : public QGraphicsScene
 
         void toggleGridlines();
 
+        void setNewFrameSize(int frameSize);
+
     signals:
         void mousePressed(int button, QPointF point);
         void mouseMoved(int button, QPointF point);

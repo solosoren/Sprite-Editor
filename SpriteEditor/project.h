@@ -75,6 +75,7 @@ private:
     ColorLabel* rightColorLabel;
 
     void setColorLabelColor(QColor color);
+    void setNewFrameSize(int frameSize);
 
 };
 

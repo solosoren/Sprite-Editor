@@ -48,6 +48,11 @@ void Canvas::updatePixmap()
     this->addPixmap(pixmap);
 }
 
+void Canvas::setNewFrameSize(int frameSize)
+{
+    framePixelSize = frameSize;
+}
+
 QPointF Canvas::convertToPoint(QPointF scaledPos)
 {
     int rX = scaledPos.x();
