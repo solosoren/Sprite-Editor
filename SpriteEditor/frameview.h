@@ -10,6 +10,7 @@ class FrameView
 {
 public:
     FrameView(QTableWidget* tableWidget, std::vector<QImage*>* images);
+    void loadFrames();
     void addFrame();
     void updateFrame(int frame);
 

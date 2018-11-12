@@ -56,4 +56,12 @@ void FrameView::updateFrame(int frame)
     setFrame(frame + 1, images->at(frame));
 }
 
+void FrameView::loadFrames()
+{
+    columnCount = 1;
+    for (int i = 0; i < images->size(); i++)
+    {
+        initialAddFrame();
+    }
+}
 

@@ -179,9 +179,42 @@ void Project::save(QString filename)
 void Project::load(QString filename)
 {
     QFile loadFile(filename);
-    loadFile.open((QIODevice::ReadOnly | QIODevice::Text));
-    QTextStream reader(&loadFile);
-    loadFile.close();
+    if (!loadFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Opening file failed!";
+        // fix this
+    }
+    else
+    {
+        frames.clear();
+        QTextStream reader(&loadFile);
+        int framePixelSize = reader.readLine().split(" ")[0].toInt();
+        int numFrames = reader.readLine().split(" ")[0].toInt();
+
+        for (int i = 0; i < numFrames; i++)
+        {
+            QImage* frame = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
+
+            for (int y = 0; y < framePixelSize; y++)
+            {
+                QString line = reader.readLine();
+
+                for (int x = 0; x < framePixelSize; x++)
+                {
+                    QStringList lineArr = line.split(" ");
+                    int r = lineArr[x * 4].toInt();
+                    int g = lineArr[x * 4 + 1].toInt();
+                    int b = lineArr[x * 4 + 2].toInt();
+                    int a = lineArr[x * 4 + 3].toInt();
+                    frame->setPixelColor(QPoint(x, y), QColor(r, g, b, a));
+                }
+            }
+            frames.push_back(frame);
+        }
+        frameView->loadFrames();
+        setCurrentFrame(frames.size() - 1);
+        loadFile.close();
+    }
 }
 
 void Project::exportGIF(QString filename)

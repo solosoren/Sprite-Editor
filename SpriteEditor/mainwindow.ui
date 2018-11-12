@@ -279,6 +279,9 @@
         <property name="editTriggers">
          <set>QAbstractItemView::NoEditTriggers</set>
         </property>
+        <property name="alternatingRowColors">
+         <bool>false</bool>
+        </property>
         <property name="iconSize">
          <size>
           <width>150</width>
@@ -286,7 +289,7 @@
          </size>
         </property>
         <property name="showGrid">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="rowCount">
          <number>1</number>
@@ -330,8 +333,8 @@
      <rect>
       <x>344</x>
       <y>96</y>
-      <width>127</width>
-      <height>103</height>
+      <width>159</width>
+      <height>125</height>
      </rect>
     </property>
     <property name="title">
