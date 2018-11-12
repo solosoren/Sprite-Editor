@@ -39,11 +39,25 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="brushToolButton">
-            <property name="text">
-             <string>Brush</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="brushToolButton">
+              <property name="text">
+               <string>Brush</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBox">
+              <property name="maximumSize">
+               <size>
+                <width>70</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="QPushButton" name="lineToolButton">
@@ -330,8 +344,8 @@
      <rect>
       <x>344</x>
       <y>96</y>
-      <width>127</width>
-      <height>103</height>
+      <width>156</width>
+      <height>125</height>
      </rect>
     </property>
     <property name="title">
