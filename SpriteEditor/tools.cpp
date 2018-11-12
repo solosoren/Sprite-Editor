@@ -160,6 +160,9 @@ void Tools::fillTool(QPointF point)
     int y = static_cast<int>(point.y());
 
     QColor tmpFillColor = currentImage->pixelColor(x, y);
+    if(tmpFillColor == activePen.color()) {
+        return;
+    }
     floodFill(x, y, tmpFillColor);
 }
 
@@ -171,7 +174,7 @@ void Tools::floodFill(int x, int y, QColor prevColor)
     }
 
     /* check color equal */
-    if(!((currentImage->pixelColor(x,y)) == prevColor)) {
+    if(!(currentImage->pixelColor(x,y) == prevColor)) {
         return;
     }
 
