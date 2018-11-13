@@ -7,7 +7,7 @@ Project::Project(int frameSize):
 {
     currentFrame = 0;
     addNewFrame();
-    previewImage = createNewFrame();
+    previewImage = createPreviewFrame();
 
     canvas = new Canvas(frameSize, frames[currentFrame]);
     animation = new SpriteAnimation(&frames);
@@ -57,6 +57,19 @@ QImage* Project::createNewFrame()
     QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
     // Initializes empty grid
     image->fill(Qt::transparent);
+    return image;
+}
+
+QImage* Project::createPreviewFrame()
+{
+    QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
+    for(int i = 0; i< framePixelSize; i++)
+    {
+        for(int j =0; j < framePixelSize; j++)
+        {
+            image->setPixelColor(i, j, QColor(255,255,255,255).rgba());
+        }
+    }
     return image;
 }
 
