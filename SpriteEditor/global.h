@@ -10,6 +10,7 @@ extern int windowSize;
 
 // Grid sizes
 extern int gridSize;
+extern int frameRate;
 
 namespace Global
 {

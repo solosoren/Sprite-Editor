@@ -12,7 +12,6 @@ class SpriteAnimation: public QGraphicsScene
 
 private:
     std::vector<QImage*>* images;
-    int frameRate;
     int frameIndex;
 
 private slots:
