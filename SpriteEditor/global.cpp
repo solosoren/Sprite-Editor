@@ -2,4 +2,6 @@
 
 int gridSize = 8;
 
-extern int windowSize = 600;
+int windowSize = 600;
+
+extern int frameRate = 0;

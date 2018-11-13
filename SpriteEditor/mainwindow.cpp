@@ -21,6 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setMinimumHeight(windowSize);
     ui->graphicsView->setMinimumWidth(windowSize);
 
+    QPalette p;
+    p.setColor(QPalette::Text, QColor(0, 0, 0));
+
+    ui->eraserSizeSpinBox->setPalette(p);
+    ui->brushSizeSpinBox->setPalette(p);
+
     initializeProject();
 }
 
