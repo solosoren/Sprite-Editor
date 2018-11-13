@@ -233,26 +233,36 @@ void Project::exportGIF(QString filename)
       QGifImage gif(QSize(windowSize, windowSize));
 
       QVector<QRgb> ctable;
-        ctable << qRgb(255, 255, 255)
-               << qRgb(0, 0, 0)
-               << qRgb(255, 0, 0)
-               << qRgb(0, 255, 0)
-               << qRgb(0, 0, 255)
-               << qRgb(255, 255, 0)
-               << qRgb(0, 255, 255)
-               << qRgb(255, 0, 255);
 
-        gif.setGlobalColorTable(ctable, Qt::black);
+      QFile file(":src/src/black-body-table-byte-0128.csv");
 
-        gif.setDefaultTransparentColor(Qt::black);
-        gif.setDefaultDelay(1000/frameRate);
+      if(!file.open(QIODevice::ReadOnly))
+      {
 
-         for(int i = 0; i < frames.size(); i++)
-         {
-             gif.addFrame(frames[i]->convertToFormat(QImage::Format_RGB32).scaled(windowSize,windowSize), QPoint(0, 0));
-         }
+      }
 
-         gif.save(filename);
+      QTextStream in(&file);
+
+      while(!in.atEnd())
+      {
+          QString line = in.readLine();
+          QStringList values = line.split(",");
+          ctable.append(qRgb(values[1].toInt(), values[2].toInt(), values[3].toInt()));
+      }
+
+      file.close();
+
+    gif.setGlobalColorTable(ctable, Qt::white);
+    gif.setDefaultTransparentColor(Qt::white);
+
+    gif.setDefaultDelay(1000/frameRate);
+
+     for(int i = 0; i < frames.size(); i++)
+     {
+         gif.addFrame(frames[i]->scaled(windowSize,windowSize), QPoint(0, 0));
+     }
+
+     gif.save(filename);
 }
 
 void Project::setNewFrameSize(int frameSize)
