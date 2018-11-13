@@ -37,7 +37,7 @@ void Canvas::updatePixmap()
     //Instead of scaling pixmap, scale qimage
     if( enableGridLines)
     {
-        pixmap = Global::convertImageToPixmapWithGridLines(*image);
+        pixmap = Global::convertImageToPixmapWithGridLines(*image, framePixelSize);
     }
     else
     {
@@ -51,6 +51,7 @@ void Canvas::updatePixmap()
 void Canvas::setNewFrameSize(int frameSize)
 {
     framePixelSize = frameSize;
+    updatePixmap();
 }
 
 QPointF Canvas::convertToPoint(QPointF scaledPos)
@@ -72,7 +73,10 @@ QPointF Canvas::convertToPoint(QPointF scaledPos)
 void Canvas::setImage(QImage* image)
 {
     this->image = image;
-    updatePixmap();
+    pixmap = Global::convertImageToPixmap(*image, 0);
+    this->clear();
+    this->addPixmap(pixmap);
+    //updatePixmap();
 }
 
 void Canvas::toggleGridlines()

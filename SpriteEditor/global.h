@@ -32,7 +32,7 @@ namespace Global
 
     }
 
-    static QPixmap convertImageToPixmapWithGridLines(QImage image)
+    static QPixmap convertImageToPixmapWithGridLines(QImage image, int gridPixelSize = gridSize)
        {
            QImage scaledImage = image.scaled(windowSize, windowSize);
 
@@ -40,7 +40,7 @@ namespace Global
            for(int x = 0; x < windowSize; x++)
            {
                // Vertical
-               if((x % (windowSize / gridSize)) == 0)
+               if((x % (windowSize / gridPixelSize)) == 0)
                {
                    for(int y = 0; y < windowSize; y++)
                    {
@@ -49,7 +49,7 @@ namespace Global
                }
 
                // Horizontal
-               for(int y = 0; y < windowSize; y+=(windowSize/ gridSize))
+               for(int y = 0; y < windowSize; y+=(windowSize/ gridPixelSize))
                {
                    scaledImage.setPixelColor(x, y, QColor(0, 0, 0).rgba());
                }
