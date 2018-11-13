@@ -47,7 +47,7 @@ void FrameView::setFrame(int column, QImage* image)
     QIcon icon(pixmap);
     item->setIcon(icon);
     tableWidget->setItem(0, column, item);
-    tableWidget->setIconSize(QSize(150, 150));
+    tableWidget->setIconSize(QSize(145, 145));
     tableWidget->show();
 }
 
