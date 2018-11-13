@@ -76,7 +76,7 @@ void Canvas::setImage(QImage* image)
     pixmap = Global::convertImageToPixmap(*image, 0);
     this->clear();
     this->addPixmap(pixmap);
-    //updatePixmap();
+    updatePixmap();
 }
 
 void Canvas::toggleGridlines()

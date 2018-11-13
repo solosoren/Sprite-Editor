@@ -222,23 +222,20 @@ void Tools::fillTool(QPointF point)
     int y = static_cast<int>(point.y());
 
     QColor tmpFillColor = currentImage->pixelColor(x, y);
-    if(tmpFillColor == activePen.color()) {
-        return;
-    }
+    if(tmpFillColor == activePen.color()) { return; }
     floodFill(x, y, tmpFillColor);
 }
 
 void Tools::floodFill(int x, int y, QColor prevColor)
 {
     /* base check */
-    if (x < 0 || x >= currentImage->width() || y < 0 || y >= currentImage->height()){
+    if (x < 0 || x >= currentImage->width() || y < 0 || y >= currentImage->height())
+    {
         return;
     }
 
     /* check color equal */
-    if(!(currentImage->pixelColor(x,y) == prevColor)) {
-        return;
-    }
+    if(!(currentImage->pixelColor(x,y) == prevColor)) { return; }
 
     /* replace Color */
     painter->drawPoint(x, y);
@@ -255,7 +252,8 @@ void Tools::brushTool(QPointF point)
     painter->drawPoint(static_cast<int>(point.x()), static_cast<int>(point.y()));
 
     double size = 0;
-    switch(selectedBrushSize) {
+    switch(selectedBrushSize)
+    {
         case 1:
             size = 1;
             break;
@@ -267,10 +265,12 @@ void Tools::brushTool(QPointF point)
             break;
     }
 
-    for(int i = 1; i < (size/2); i++) {
+    for(int i = 1; i < (size/2); i++)
+    {
         painter->drawPoint(static_cast<int>(point.x())+i, static_cast<int>(point.y())+i);
     }
-    for(int i = 1; i < (size/2); i++) {
+    for(int i = 1; i < (size/2); i++)
+    {
         painter->drawPoint(static_cast<int>(point.x())-i, static_cast<int>(point.y())-i);
     }
 }

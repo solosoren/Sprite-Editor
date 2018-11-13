@@ -28,8 +28,6 @@ public:
 
     QImage* createNewFrame();
 
-    QImage* createPreviewFrame();
-
     void addNewFrame();
 
     void setActiveTool(Global::Tool tool);

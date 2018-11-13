@@ -7,7 +7,7 @@ Project::Project(int frameSize):
 {
     currentFrame = 0;
     addNewFrame();
-    previewImage = createPreviewFrame();
+    previewImage = createNewFrame();
 
     canvas = new Canvas(frameSize, frames[currentFrame]);
     animation = new SpriteAnimation(&frames);
@@ -60,19 +60,6 @@ QImage* Project::createNewFrame()
     return image;
 }
 
-QImage* Project::createPreviewFrame()
-{
-    QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
-    for(int i = 0; i< framePixelSize; i++)
-    {
-        for(int j =0; j < framePixelSize; j++)
-        {
-            image->setPixelColor(i, j, QColor(255,255,255,255).rgba());
-        }
-    }
-    return image;
-}
-
 void Project::addNewFrame()
 {
     frames.push_back(createNewFrame());
@@ -112,11 +99,13 @@ void Project::handleAnimationSliderValueChanged(int value)
     animation->setFrameRate(value);
 }
 
-void Project::handleBrushSizeChanged(int value){
+void Project::handleBrushSizeChanged(int value)
+{
     tools->setBrushSize(value);
 }
 
-void Project::handleEraserSizeChanged(int value) {
+void Project::handleEraserSizeChanged(int value)
+{
     tools->setEraserSize(value);
 }
 
@@ -258,12 +247,12 @@ void Project::exportGIF(QString filename)
         gif.setDefaultTransparentColor(Qt::black);
         gif.setDefaultDelay(500);
 
-         for(int i = 0; i < frames.size(); i++) {
+         for(int i = 0; i < frames.size(); i++)
+         {
              gif.addFrame(frames[i]->convertToFormat(QImage::Format_RGB32).scaled(windowSize,windowSize), QPoint(0, 0));
          }
 
          gif.save(filename);
-
 }
 
 void Project::setNewFrameSize(int frameSize)

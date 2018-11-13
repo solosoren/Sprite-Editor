@@ -33,7 +33,7 @@ namespace Global
     }
 
     static QPixmap convertImageToPixmapWithGridLines(QImage image, int gridPixelSize = gridSize)
-       {
+    {
            QImage scaledImage = image.scaled(windowSize, windowSize);
 
            // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
@@ -56,7 +56,7 @@ namespace Global
            }
 
            return QPixmap().fromImage(scaledImage);
-       }
+      }
 
     const QString buttonHighlightFormat = QString("background-color: %1").arg(QColor(Qt::green).name());
     const QString buttonNonHighlightFormat = QString("background-color: %1; color: %2;").arg(QColor(Qt::black).name(), QColor(Qt::white).name());
