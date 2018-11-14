@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Nathan Boehm
+ *
+ * project.h
+ */
+
 #ifndef PROJECT_H
 #define PROJECT_H
 

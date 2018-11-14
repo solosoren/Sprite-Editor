@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Soren Nelson
+ *
+ * spriteanimation.h
+ */
+
 #ifndef SPRITEANIMATION_H
 #define SPRITEANIMATION_H
 

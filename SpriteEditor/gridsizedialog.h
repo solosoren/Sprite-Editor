@@ -1,9 +1,17 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * gridsizedialog.h
+ */
 #ifndef GRIDSIZEDIALOG_H
 #define GRIDSIZEDIALOG_H
 
 #include <QDialog>
 
-namespace Ui {
+namespace Ui
+{
 class GridSizeDialog;
 }
 

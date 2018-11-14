@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Soren Nelson
+ *
+ * frameview.cpp
+ */
+
 #include "frameview.h"
 
 FrameView::FrameView(QTableWidget* tableWidget, std::vector<QImage*>* images)

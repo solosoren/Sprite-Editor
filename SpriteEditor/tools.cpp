@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Jack Zhao
+ *
+ * tools.cpp
+ */
+
 #include "tools.h"
 
 /* PUBLIC */
@@ -41,7 +49,8 @@ void Tools::setBrushSize(int size)
     selectedBrushSize = size;
 }
 
-void Tools::setEraserSize(int size) {
+void Tools::setEraserSize(int size)
+{
     selectedEraserSize = size;
 }
 

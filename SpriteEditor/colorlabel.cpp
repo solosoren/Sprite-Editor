@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * colorlabel.cpp
+ */
+
 #include "colorlabel.h"
 #include <QColorDialog>
 

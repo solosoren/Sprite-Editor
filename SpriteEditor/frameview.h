@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Soren Nelson
+ *
+ * SimonLogic.h
+ */
+
 #ifndef FRAMETABLEWIDGET_H
 #define FRAMETABLEWIDGET_H
 

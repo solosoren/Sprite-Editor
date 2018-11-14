@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Soren Nelson
+ *
+ * spritanimation.cpp
+ */
+
 #include "spriteanimation.h"
 
 SpriteAnimation::SpriteAnimation(std::vector<QImage*>* images)

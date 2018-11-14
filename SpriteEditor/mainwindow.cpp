@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Nathan Boehm
+ *
+ * mainwindow.cpp
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "frameview.h"

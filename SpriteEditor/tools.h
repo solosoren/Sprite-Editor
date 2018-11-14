@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Jack Zhao
+ *
+ * tools.h
+ */
+
 #ifndef TOOLS_H
 #define TOOLS_H
 
