@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * canvas.h
+ */
+
 #ifndef CANVAS_H
 #define CANVAS_H
 

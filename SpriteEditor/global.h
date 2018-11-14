@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * SimonLogic.h
+ */
+
 #ifndef GLOBAL_H
 #define GLOBAL_H
 

@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * colorlabel.h
+ */
+
 #ifndef COLORLABEL_H
 #define COLORLABEL_H
 

@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * gridsizedialog.cpp
+ */
+
 #include "gridsizedialog.h"
 #include "ui_gridsizedialog.h"
 #include <global.h>

@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Nathan Boehm
+ *
+ * mainwindow.h
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

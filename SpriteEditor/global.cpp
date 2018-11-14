@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Kunaal Kumar
+ *
+ * global.cpp
+ */
+
 #include <global.h>
 
 int gridSize = 8;

@@ -1,3 +1,11 @@
+/*
+ * Purple Picnic Turtles
+ *
+ * Creator: - Nathan Boehm
+ *
+ * project.cpp
+ */
+
 #include "project.h"
 #include<3rdParty/qtgifimage/src/gifimage/qgifimage.h>
 
@@ -262,9 +270,13 @@ void Project::exportGIF(QString filename)
 
          QImage currentImage = frames[i]->copy();
 
-         for(int i = 0; i < currentImage.width(); i++) {
-             for(int j = 0; j < currentImage.height(); j++) {
-                 if(currentImage.pixelColor(i, j) == Qt::transparent || currentImage.pixelColor(i, j) == QColor(255, 255, 255, 0)) {
+         for(int i = 0; i < currentImage.width(); i++)
+         {
+             for(int j = 0; j < currentImage.height(); j++)
+             {
+                 if(currentImage.pixelColor(i, j) == Qt::transparent ||
+                         currentImage.pixelColor(i, j) == QColor(255, 255, 255, 0))
+                 {
                      currentImage.setPixelColor(i, j, QColor(Qt::white));
                  }
              }
