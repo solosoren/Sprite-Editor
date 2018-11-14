@@ -176,7 +176,7 @@ void Project::save(QString filename)
         {
             for (int x = 0; x < framePixelSize; x++)
             {
-                QColor color = image->pixelColor(x,y);
+                QColor color = image->pixelColor(y,x);
                 writer << color.red() << " " << color.green() << " "
                        << color.blue() << " " << color.alpha() << " ";
 
@@ -217,7 +217,7 @@ void Project::load(QString filename)
                     int g = lineArr[x * 4 + 1].toInt();
                     int b = lineArr[x * 4 + 2].toInt();
                     int a = lineArr[x * 4 + 3].toInt();
-                    frame->setPixelColor(QPoint(x, y), QColor(r, g, b, a));
+                    frame->setPixelColor(QPoint(y, x), QColor(r, g, b, a));
                 }
             }
             frames.push_back(frame);
