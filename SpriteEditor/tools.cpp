@@ -74,7 +74,7 @@ void Tools::handleMouseRelease(int button, QPointF point)
 void Tools::createLinePreview(QPointF point)
 {
     QPoint paintPos(0,0);
-    previewImage->fill(Qt::transparent);
+    previewImage->fill(QColor(Qt::transparent));
     previewPainter->setPen(activePen); //for some reason this needs to be reset here, to work correctly.
     previewPainter->drawImage(paintPos, *currentImage); //draw the current image to the preview image.
     previewPainter->drawLine(static_cast<int>(startPoint.x()), static_cast<int>(startPoint.y()), static_cast<int>(point.x()), static_cast<int>(point.y()));
@@ -150,7 +150,7 @@ void Tools::penTool(QPointF point)
 
 void Tools::eraser(QPointF point)
 {
-    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), Qt::transparent);
+    currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()), QColor(Qt::transparent));
     QSize imageSize = currentImage->size();
 
     switch(selectedEraserSize)
@@ -158,53 +158,53 @@ void Tools::eraser(QPointF point)
         case 4:
             if (point.x() + 2 < imageSize.width())
             {
-                currentImage->setPixelColor(static_cast<int>(point.x() + 2), static_cast<int>(point.y()), Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x() + 2), static_cast<int>(point.y()), QColor(Qt::transparent));
             }
             if (point.x() - 2  >= 0)
             {
-                currentImage->setPixelColor(static_cast<int>(point.x() - 2), static_cast<int>(point.y()), Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x() - 2), static_cast<int>(point.y()), QColor(Qt::transparent));
             }
             if (point.y() + 2 < imageSize.height())
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y() + 2), Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y() + 2), QColor(Qt::transparent));
             }
             if (point.y() - 2 >= 0)
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y() - 2), Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y() - 2), QColor(Qt::transparent));
             }
         case 3:
             if (point.x() + 1 < imageSize.width() && point.y() + 1 < imageSize.height())
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()) + 1, Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()) + 1, QColor(Qt::transparent));
             }
             if (point.x() + 1  < imageSize.width() && point.y() - 1 >= 0)
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()) - 1, Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()) - 1, QColor(Qt::transparent));
             }
             if (point.x() - 1 >= 0 && point.y() + 1 < imageSize.height())
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()) + 1, Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()) + 1, QColor(Qt::transparent));
             }
             if (point.x() - 1 >= 0 && point.y() - 1 >= 0)
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()) - 1, Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()) - 1, QColor(Qt::transparent));
             }
         case 2:
             if (point.x() + 1 < imageSize.width())
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()), Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()) + 1, static_cast<int>(point.y()), QColor(Qt::transparent));
             }
             if (point.x() -1 >= 0)
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()), Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()) - 1, static_cast<int>(point.y()), QColor(Qt::transparent));
             }
             if (point.y() + 1 < imageSize.height())
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) + 1, Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) + 1, QColor(Qt::transparent));
             }
             if (point.y() - 1 >= 0)
             {
-                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) - 1, Qt::transparent);
+                currentImage->setPixelColor(static_cast<int>(point.x()), static_cast<int>(point.y()) - 1, QColor(Qt::transparent));
             }
         case 1:
             break;
