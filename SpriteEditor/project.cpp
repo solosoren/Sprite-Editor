@@ -252,8 +252,8 @@ void Project::exportGIF(QString filename)
 
 //      file.close();
 
-    gif.setGlobalColorTable(ctable, QColor(Qt::transparent));
-    gif.setDefaultTransparentColor( QColor(Qt::transparent));
+    gif.setGlobalColorTable(ctable, QColor(Qt::white));
+    gif.setDefaultTransparentColor( QColor(Qt::white));
 
     gif.setDefaultDelay(1000/frameRate);
 
@@ -262,10 +262,10 @@ void Project::exportGIF(QString filename)
 
          QImage currentImage = frames[i]->copy();
 
-         for(int i = 0; i < gridSize; i++) {
-             for(int j = 0; j < gridSize; j++) {
-                 if(currentImage.pixelColor(i, j) == Qt::transparent) {
-                     currentImage.setPixelColor(i, j, QColor(Qt::transparent));
+         for(int i = 0; i < currentImage.width(); i++) {
+             for(int j = 0; j < currentImage.height(); j++) {
+                 if(currentImage.pixelColor(i, j) == Qt::transparent || currentImage.pixelColor(i, j) == QColor(255, 255, 255, 0)) {
+                     currentImage.setPixelColor(i, j, QColor(Qt::white));
                  }
              }
          }
