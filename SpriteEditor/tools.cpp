@@ -8,7 +8,10 @@
 
 #include "tools.h"
 
+
 /* PUBLIC */
+
+
 Tools::Tools(QImage* image, QImage* previewImage) :
     currentImage(image),
     previewImage(previewImage)
@@ -238,12 +241,7 @@ void Tools::fillTool(QPointF point)
 void Tools::floodFill(int x, int y, QColor prevColor)
 {
     /* base check */
-    if (x < 0 || x >= currentImage->width() || y < 0 || y >= currentImage->height())
-    {
-        return;
-    }
-
-    /* check color equal */
+    if (x < 0 || x >= currentImage->width() || y < 0 || y >= currentImage->height()) { return; }
     if(!(currentImage->pixelColor(x,y) == prevColor)) { return; }
 
     /* replace Color */

@@ -22,16 +22,10 @@ class Canvas  : public QGraphicsScene
     public:
         Canvas(int frameSize, QImage* image, QObject *parent = 0);
 
-        /* Mouse events*/
         virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
         virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
 
-        /**
-         * @brief setImage - Displays passed image in the scene
-         * @param image - QImage that needs to be displayed in the scene
-         * @return - Pointer to QImage being displayed
-         */
         void setImage(QImage* image);
 
         void toggleGridlines();
@@ -48,14 +42,11 @@ class Canvas  : public QGraphicsScene
     private:
         QPixmap pixmap;
         QImage* image;
-        bool enableDebugging;
         bool enableGridLines;
         int framePixelSize;
-        // Converts and returns (non-scaled) grid coords
+
         QPointF convertToPoint(QPointF scaledPos);
-        // Updates pixmap based on image by scaling it appropriately
         void updatePixmap();
-        void pointDebugMessage(QString message, QPointF point);
 };
 
 #endif // CANVAS_H

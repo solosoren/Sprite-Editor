@@ -27,44 +27,33 @@ class Project: public QObject
 
 public:
     Project(int frameSize);
-
     virtual ~Project();
 
     void setFrameView(QTableWidget* tableWidget);
+    void setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel);
 
     void setCurrentFrame(int frameNumber);
+    SpriteAnimation* getAnimation();
+    Canvas* getCanvas();
 
     QImage* createNewFrame();
-
     void addNewFrame();
 
     void setActiveTool(Global::Tool tool);
 
-    SpriteAnimation* getAnimation();
-
-    Canvas* getCanvas();
 
     void handleGridlinesToggled();
-
     void handleAnimationSliderValueChanged(int value);
-
     void handleBrushSizeChanged(int value);
-
     void handleEraserSizeChanged(int value);
 
-    void setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel);
-
     void save(QString filename);
-
     void load(QString filename);
-
     void exportGIF(QString filename);
 
 public slots:
     void updateImage();
-
     void handleColorChanged(QColor color, ColorLabel* label);
-
     void updatePreviewImage();
 
 private:

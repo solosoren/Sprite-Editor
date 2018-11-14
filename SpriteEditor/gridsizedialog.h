@@ -10,6 +10,7 @@
 
 #include <QDialog>
 
+
 namespace Ui
 {
 class GridSizeDialog;
@@ -24,9 +25,7 @@ public:
     ~GridSizeDialog();
 
 private slots:
-
     void on_gridSizeSlider_valueChanged(int value);
-
     void on_okButton_clicked();
 
 private:

@@ -8,6 +8,7 @@
 
 #include "spriteanimation.h"
 
+
 SpriteAnimation::SpriteAnimation(std::vector<QImage*>* images)
 {
     this->images = images;

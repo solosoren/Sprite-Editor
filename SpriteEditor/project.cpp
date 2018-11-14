@@ -63,7 +63,6 @@ void Project::setCurrentFrame(int frameNumber)
 QImage* Project::createNewFrame()
 {
     QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
-    // Initializes empty grid
     image->fill(Qt::transparent);
     return image;
 }
@@ -128,9 +127,9 @@ void Project::setColorLabel(ColorLabel* leftLabel, ColorLabel* rightLabel)
     QObject::connect(rightColorLabel, SIGNAL(colorChanged(QColor, ColorLabel*)),
                      this, SLOT(handleColorChanged(QColor, ColorLabel*)));
 
-    // Default starting color
+    // Default starting colors
     handleColorChanged(QColor(0, 0, 0), leftColorLabel);
-    handleColorChanged(QColor(255, 255, 255), rightColorLabel);
+    handleColorChanged(QColor(255, 0, 0), rightColorLabel);
 }
 
 
@@ -201,7 +200,6 @@ void Project::load(QString filename)
     if (!loadFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         qDebug() << "Opening file failed!";
-        // fix this
     }
     else
     {
@@ -238,27 +236,9 @@ void Project::load(QString filename)
 
 void Project::exportGIF(QString filename)
 {
-      QGifImage gif(QSize(windowSize, windowSize));
+    QGifImage gif(QSize(windowSize, windowSize));
 
-      QVector<QRgb> ctable;
-
-//      QFile file(":src/src/black-body-table-byte-0128.csv");
-
-//      if(!file.open(QIODevice::ReadOnly))
-//      {
-
-//      }
-
-//      QTextStream in(&file);
-
-//      while(!in.atEnd())
-//      {
-//          QString line = in.readLine();
-//          QStringList values = line.split(",");
-//          ctable.append(qRgb(values[1].toInt(), values[2].toInt(), values[3].toInt()));
-//      }
-
-//      file.close();
+    QVector<QRgb> ctable;
 
     gif.setGlobalColorTable(ctable, QColor(Qt::white));
     gif.setDefaultTransparentColor( QColor(Qt::white));
@@ -269,8 +249,8 @@ void Project::exportGIF(QString filename)
     }
     gif.setDefaultDelay(1000/frameRate);
 
-     for(int i = 0; i < frames.size(); i++)
-     {
+    for(int i = 0; i < frames.size(); i++)
+    {
 
          QImage currentImage = frames[i]->copy();
 

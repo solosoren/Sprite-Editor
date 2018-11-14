@@ -14,6 +14,7 @@
 #include <QTimer>
 #include "global.h"
 
+
 class SpriteAnimation: public QGraphicsScene
 {
     Q_OBJECT

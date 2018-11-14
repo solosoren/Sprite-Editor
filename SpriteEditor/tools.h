@@ -23,6 +23,7 @@ class Tools : public QObject
 public:
     Tools(QImage* image, QImage* previewImage);
     ~Tools();
+
     void setImage(QImage* image);
 
     void setSelectedTool(Global::Tool tool);
@@ -43,23 +44,24 @@ signals :
 
 private:
     enum class MouseEventType { press, move, release };
-    /* fields */
+
     Global::Tool selectedTool;
     int selectedBrushSize;
     int selectedEraserSize;
 
     QPainter* painter;
     QPainter* previewPainter;
+
     QPen leftPen;
     QPen rightPen;
     QPen activePen;
+
     QImage* currentImage;
     QImage* previewImage;
 
     QPointF startPoint;
     QPointF currentPoint;
 
-    /* functions */
     void createLinePreview(QPointF point);
     void useTool(QPointF point, MouseEventType met);
     void setButton(int button);

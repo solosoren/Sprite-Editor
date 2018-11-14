@@ -14,6 +14,7 @@
 #include <QHBoxLayout>
 #include "global.h"
 
+
 class FrameView
 {
 public:
@@ -29,6 +30,7 @@ private:
     QTableWidget* tableWidget;
     std::vector<QImage*>* images;
     int columnCount;
+
     void createNewFrameButton();
     void initialAddFrame();
     void setFrame(int column, QImage* image);

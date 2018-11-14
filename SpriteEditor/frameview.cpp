@@ -8,6 +8,7 @@
 
 #include "frameview.h"
 
+
 FrameView::FrameView(QTableWidget* tableWidget, std::vector<QImage*>* images)
 {
     this->images = images;

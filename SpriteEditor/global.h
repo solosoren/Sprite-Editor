@@ -10,20 +10,15 @@
 #define GLOBAL_H
 
 #include <QPixmap>
-#include<QtDebug>
+#include <QtDebug>
 
 
-// Window sizes
 extern int windowSize;
-
-// Grid sizes
 extern int gridSize;
 extern int frameRate;
 
 namespace Global
 {
-
-    // Animation window sizes
     static int animationWindowSize = 295;
     static int frameWindowSize = 150;
 
@@ -45,7 +40,6 @@ namespace Global
     {
            QImage scaledImage = image.scaled(windowSize, windowSize);
 
-           // "pixel" grid size = (windowSizeX / gridX) and (windowSizeY / gridY)
            for(int x = 0; x < windowSize; x++)
            {
                // Vertical

@@ -14,8 +14,6 @@ Canvas::Canvas(int frameSize, QImage* image, QObject *parent):
     image(image),
     QGraphicsScene (parent)
 {
-    /* Initializations */
-    enableDebugging = false;
     enableGridLines = false;
     setStickyFocus(true);
 
@@ -42,7 +40,6 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent)
 
 void Canvas::updatePixmap()
 {
-    //Instead of scaling pixmap, scale qimage
     if( enableGridLines)
     {
         pixmap = Global::convertImageToPixmapWithGridLines(*image, framePixelSize);
@@ -82,8 +79,6 @@ void Canvas::setImage(QImage* image)
 {
     this->image = image;
     pixmap = Global::convertImageToPixmap(*image, 0);
-    this->clear();
-    this->addPixmap(pixmap);
     updatePixmap();
 }
 
