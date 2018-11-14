@@ -10,7 +10,7 @@ void SpriteAnimation::setFrameRate(int rate)
     int oldRate = frameRate;
     frameRate = rate;
     frameIndex = 0;
-    if (oldRate == 1)
+    if (oldRate == 0)
     {
         QTimer::singleShot(0, this, SLOT(startAnimation()));
     }

@@ -255,6 +255,10 @@ void Project::exportGIF(QString filename)
     gif.setGlobalColorTable(ctable, QColor(Qt::white));
     gif.setDefaultTransparentColor( QColor(Qt::white));
 
+    if (frameRate == 0)
+    {
+        frameRate = 1;
+    }
     gif.setDefaultDelay(1000/frameRate);
 
      for(int i = 0; i < frames.size(); i++)
