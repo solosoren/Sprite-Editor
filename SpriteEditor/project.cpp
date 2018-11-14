@@ -1,6 +1,6 @@
 #include "project.h"
 #include<3rdParty/qtgifimage/src/gifimage/qgifimage.h>
-
+#include <QtDebug>
 
 Project::Project(int frameSize):
     framePixelSize(frameSize)
@@ -56,7 +56,7 @@ QImage* Project::createNewFrame()
 {
     QImage* image = new QImage(framePixelSize, framePixelSize, QImage::Format_ARGB32);
     // Initializes empty grid
-    image->fill(Qt::transparent);
+    image->fill(QColor(Qt::transparent));
     return image;
 }
 
@@ -234,32 +234,45 @@ void Project::exportGIF(QString filename)
 
       QVector<QRgb> ctable;
 
-      QFile file(":src/src/black-body-table-byte-0128.csv");
+//      QFile file(":src/src/black-body-table-byte-0128.csv");
 
-      if(!file.open(QIODevice::ReadOnly))
-      {
+//      QTextStream in(&file);
 
-      }
+//      while(!in.atEnd())
+//      {
+//          QString line = in.readLine();
+//          QStringList values = line.split(",");
+//          ctable.append(qRgb(values[1].toInt(), values[2].toInt(), values[3].toInt()));
+//      }
 
-      QTextStream in(&file);
+//      file.close();
 
-      while(!in.atEnd())
-      {
-          QString line = in.readLine();
-          QStringList values = line.split(",");
-          ctable.append(qRgb(values[1].toInt(), values[2].toInt(), values[3].toInt()));
-      }
+      ctable << qRgb(255, 255, 255)
+               << qRgb(0, 0, 0)
+               << qRgb(255, 0, 0)
+               << qRgb(0, 255, 0)
+               << qRgb(0, 0, 255)
+               << qRgb(255, 255, 0)
+               << qRgb(0, 255, 255)
+               << qRgb(255, 0, 255);
 
-      file.close();
+      gif.setGlobalColorTable(ctable, QColor(Qt::white));
+      gif.setDefaultTransparentColor(QColor(Qt::white));
 
-    gif.setGlobalColorTable(ctable, Qt::white);
-    gif.setDefaultTransparentColor(Qt::white);
-
-    gif.setDefaultDelay(1000/frameRate);
+      gif.setDefaultDelay(1000/frameRate);
 
      for(int i = 0; i < frames.size(); i++)
      {
-         gif.addFrame(frames[i]->scaled(windowSize,windowSize), QPoint(0, 0));
+         QImage currentImage = frames[i]->copy();
+         for(int i = 0; i < gridSize; i++) {
+             for(int j = 0; j < gridSize; j++) {
+                 if(currentImage.pixelColor(i, j) == QColor(Qt::transparent)) {
+                     currentImage.setPixelColor(i, j, QColor(Qt::white));
+                 }
+             }
+         }
+
+         gif.addFrame(currentImage.scaled(windowSize, windowSize).convertToFormat(QImage::Format_ARGB32), QPoint(0, 0));
      }
 
      gif.save(filename);
