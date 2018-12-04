@@ -243,7 +243,8 @@ void Project::exportGIF(QString filename)
     gif.setGlobalColorTable(ctable, QColor(Qt::white));
     gif.setDefaultTransparentColor( QColor(Qt::white));
 
-    if (frameRate == 0)
+    if (frameRate == 0)    using regionMap = std::map<QString, std::vector<Global::Coordinate>>;
+        ￼
     {
         frameRate = 1;
     }
@@ -305,5 +306,16 @@ void Project::setNewFrameSize(int frameSize)
 
 Project::regionMap Project::findImageRegions(QImage* image)
 {
-
+    regionMap regions;
+    for (int y = 0; y < framePixelSize; y++)
+    {
+        for (int x = 0; x < framePixelSize; x++)
+        {
+            if (image->pixelColor(x, y) != Qt::transparent)
+            {
+                regions[image->pixelColor(x,y)].push_back(Global::makeCoordinate(x,y));
+            }
+        }
+    }
+    return regions;
 }
