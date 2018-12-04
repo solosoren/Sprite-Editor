@@ -243,8 +243,7 @@ void Project::exportGIF(QString filename)
     gif.setGlobalColorTable(ctable, QColor(Qt::white));
     gif.setDefaultTransparentColor( QColor(Qt::white));
 
-    if (frameRate == 0)    using regionMap = std::map<QString, std::vector<Global::Coordinate>>;
-        ￼
+    if (frameRate == 0)
     {
         frameRate = 1;
     }
@@ -277,7 +276,7 @@ void Project::saveCurrentFrame(QString filename)
 {
     regionMap regions = findImageRegions(frames[currentFrame]);
 
-    if ( ! filename.contains(".ssp")) {filename = filename.append(".ssp");}
+    if ( ! filename.contains(".ssp")) {filename = filename.append(".qis");}
     QFile saveFile(filename);
     saveFile.open((QIODevice::WriteOnly | QIODevice::Text));
     QTextStream writer(&saveFile);
@@ -313,7 +312,7 @@ Project::regionMap Project::findImageRegions(QImage* image)
         {
             if (image->pixelColor(x, y) != Qt::transparent)
             {
-                regions[image->pixelColor(x,y)].push_back(Global::makeCoordinate(x,y));
+                regions[image->pixelColor(x,y).name()].push_back(Global::Coordinate(x,y));
             }
         }
     }

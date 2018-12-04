@@ -34,11 +34,6 @@ namespace Global
         }
     };
 
-    Coordinate makeCoordinate(int x, int y)
-    {
-        return Coordinate(x, y);
-    }
-
     static QPixmap convertImageToPixmap(QImage image, int window)
     {
         if (window == 0)

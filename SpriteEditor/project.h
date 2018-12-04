@@ -79,7 +79,7 @@ private:
     void setColorLabelColor(QColor color);
     void setNewFrameSize(int frameSize);
 
-    using regionMap = std::map<QColor, std::vector<Global::Coordinate>>;
+    using regionMap = std::map<QString, std::vector<Global::Coordinate>>;
     regionMap findImageRegions(QImage* Image);
 
 };
