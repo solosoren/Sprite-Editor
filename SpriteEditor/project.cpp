@@ -269,11 +269,41 @@ void Project::exportGIF(QString filename)
          gif.addFrame(currentImage.scaled(windowSize,windowSize), QPoint(0, 0));
      }
 
-     gif.save(filename);
+    gif.save(filename);
+}
+
+void Project::saveCurrentFrame(QString filename)
+{
+    regionMap regions = findImageRegions(frames[currentFrame]);
+
+    if ( ! filename.contains(".ssp")) {filename = filename.append(".ssp");}
+    QFile saveFile(filename);
+    saveFile.open((QIODevice::WriteOnly | QIODevice::Text));
+    QTextStream writer(&saveFile);
+
+    writer << framePixelSize << '\n';
+    int count = 1;
+    for (auto it = regions.begin(); it != regions.end(); it++)
+    {
+        writer << "region" << count << " ";
+        for (Global::Coordinate c : it->second)
+        {
+            writer << c.x << "," << c.y << " ";
+        }
+        writer << '\n';
+
+        count++;
+    }
+    saveFile.close();
 }
 
 void Project::setNewFrameSize(int frameSize)
 {
     framePixelSize = frameSize;
     canvas->setNewFrameSize(frameSize);
+}
+
+Project::regionMap Project::findImageRegions(QImage* image)
+{
+
 }

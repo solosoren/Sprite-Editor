@@ -22,6 +22,23 @@ namespace Global
     static int animationWindowSize = 295;
     static int frameWindowSize = 150;
 
+    struct Coordinate
+    {
+        int x;
+        int y;
+
+        Coordinate(int x,int y)
+        {
+            this->x = x;
+            this->y = y;
+        }
+    };
+
+    Coordinate makeCoordinate(int x, int y)
+    {
+        return Coordinate(x, y);
+    }
+
     static QPixmap convertImageToPixmap(QImage image, int window)
     {
         if (window == 0)
