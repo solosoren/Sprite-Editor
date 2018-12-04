@@ -166,6 +166,12 @@ void MainWindow::on_actionExport_triggered()
     project->exportGIF(filename);
 }
 
+void MainWindow::on_actionSave_Current_QImage_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Save File", QDir::homePath(), "*.qis");
+    project->saveCurrentFrame(filename);
+}
+
 void MainWindow::on_frameTableWidget_cellClicked(int row, int column)
 {
     if (column == 0)
