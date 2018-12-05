@@ -280,6 +280,7 @@ void Project::saveCurrentFrame(QString filename)
     saveFile.open((QIODevice::WriteOnly | QIODevice::Text));
     QTextStream writer(&saveFile);
 
+    writer << framePixelSize << '\n';
     writer << regions.size() << '\n';
     for (auto it = regions.begin(); it != regions.end(); it++)
     {
@@ -301,6 +302,9 @@ void Project::loadImage(QString filename)
     QTextStream reader(&loadFile);
 
     frames[currentFrame]->fill(Qt::transparent);
+
+    int imageSize;
+    reader >> imageSize;
 
     int regionsCount;
     reader >> regionsCount;
