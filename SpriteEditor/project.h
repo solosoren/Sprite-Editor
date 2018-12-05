@@ -51,6 +51,7 @@ public:
     void load(QString filename);
     void exportGIF(QString filename);
     void saveCurrentFrame(QString filename);
+    void loadImage(QString filename);
 
 public slots:
     void updateImage();

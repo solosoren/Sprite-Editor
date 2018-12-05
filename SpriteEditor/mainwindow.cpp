@@ -193,3 +193,9 @@ void MainWindow::on_eraserSizeSpinBox_valueChanged(int value)
 {
     project->handleEraserSizeChanged(value);
 }
+
+void MainWindow::on_actionLoad_Image_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Load Image", QDir::homePath(), "*.qis");
+    project->loadImage(filename);
+}

@@ -32,6 +32,15 @@ namespace Global
             this->x = x;
             this->y = y;
         }
+        Coordinate(QString commaPair)
+        {
+            QStringList list = commaPair.split(',');
+            QString xString = list.at(0);
+            QString yString = list.at(1);
+
+            this->x = xString.toInt();
+            this->y = yString.toInt();
+        }
     };
 
     static QPixmap convertImageToPixmap(QImage image, int window)
